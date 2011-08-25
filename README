@@ -1,0 +1,9 @@
+Рандоратор — это продвинутый графический генератор случайных чисел. Программа создаёт заданное количество значений в определённом интервале. Дополнительно можно указать среднее значение полученных чисел и максимальное относительное стандартное отклонение. Присутствует возможность выбора разделителя в выводимых числах и автоматического копирования в буфер обмена.
+Авторы: DarkneSS [https://github.com/DAP-DarkneSS] и ascrazy [https://github.com/ascrazy]
+Код распространяется под GNU LESSER GENERAL PUBLIC LICENSE: http://www.gnu.org/copyleft/lesser.html
+The program is written in the Python programming language using Tkinter graphical toolkit.
+
+Randorator is an advanced graphics generator of random numbers. The program creates the specified number of values in a certain interval. Optionally, the average value of the received number and the maximum relative standard deviation is able to specify. The possibility to automatically copy and select separator in the output numbers in the clipboard is present.
+Authors are DarkneSS [https://github.com/DAP-DarkneSS] & [ascrazy https://github.com/ascrazy]
+The code is distributed under the GNU LESSER GENERAL PUBLIC LICENSE: http://www.gnu.org/copyleft/lesser.html
+Программа написана на языке Python с использованием графической библиотеки Tkinter.
