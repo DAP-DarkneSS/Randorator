@@ -3,7 +3,7 @@
 
 from Tkinter import *
 from ScrolledText import *
-from random import uniform
+from body import randorator
 #Загружается модуль случайных чисел, графическая библиотека
 #и модуль, содержащий текстовый виджет с полосой прокрутки.
 
@@ -56,28 +56,15 @@ def button_fmake():
 #Функция для кнопки. Записывается без аргументов!
 
     text_out.delete(1.0, END)
-    mini = float((entry_mini.get()).replace(",", "."))
-    maxi = float((entry_maxi.get()).replace(",", "."))
-#Очистка текстового поля. Импорт минимума и максимума,
-#замена запятых на точки, если необходимо.
+#Очистка текстового поля
 
-    if vcheck_punctuation.get():
-        for i in xrange((int(entry_n.get()) - 1)):
-            text_out.insert(END, str(uniform(mini, maxi))+"\n")
-        text_out.insert(END, str(uniform(mini, maxi)))
-#Если не требуется вывод чисел с запятыми,
-#текстовое поле заполняется случайными числами,
-#каждое с новой строки. Последнее значение вставляется без перевода строки.
-
-    else:
-        for i in xrange((int(entry_n.get()) - 1)):
-            text_out.insert(END, str(uniform(mini, maxi)).replace(".", ",")+"\n")
-        text_out.insert(END, str(uniform(mini, maxi)).replace(".", ","))
-#Иначе в аналогичных операциях точки заменяются на запятые.
+    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get())     
+    text_out.insert(END, text)
+#Передача внешней функции большинства параметров. Получение теста и передача его в поле.
 
     if vcheck_copy.get():
         root.clipboard_clear()
-        root.clipboard_append(text_out.get(1.0, END))
+        root.clipboard_append(text)
 #Если не указано иное, очищается буфер обмена, копируются полученные значения.
 
 frame_buttonz = Frame(root)
@@ -104,18 +91,18 @@ check_copy.select()
 #Чекбокс для включения/выключения автоматического копирования значений.
 #Активен по умолчанию и означает "копировать".
 
-check_punctuation=Checkbutton(frame_punctuation,text=u"Числа с "." ("," по умолчанию)",variable=vcheck_punctuation,onvalue=1,offvalue=0)
+check_punctuation=Checkbutton(frame_punctuation,text=u'Числа с "." ("," по умолчанию)',variable=vcheck_punctuation,onvalue=1,offvalue=0)
 check_punctuation.pack(side=LEFT)
 #Чекбокс для переключения между точками и запятыми.
 #Неактивен по умолчанию и определяет вывод с запятыми.
 
-text_out=ScrolledText(root, height=11, width=11)
+text_out=ScrolledText(root, height=9, width=9)
 text_out.pack(fill=BOTH)
 #Текстовый виджет с полосой прокрутки растянут по ширине окна приложения.
 
-label_star = Label(root, text = u"Отмеченные * обязательны для заполнения")
-label_star.pack(side=BOTTOM)
-#Надпись с описанием программы.
+label_star = Label(root, text = u'* — обязательно для заполнения')
+label_star.pack(side=LEFT)
+#Надпись с пояснением звёздочки.
 
 root.mainloop()
 #Окончание текста приложения.
