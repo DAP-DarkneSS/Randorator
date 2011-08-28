@@ -7,8 +7,9 @@
 from random import triangular
 #Импорт функции генерирования случайного числа, приближённого к заданному значению.
 
-def average(mini, maxi, n, mean, m):
-#Функция получает верхнюю и нижнюю границу интервала, количество чисел и среднее значение.
+def average(mini, maxi, n, mean, m, fromzerotom):
+#Функция получает верхнюю и нижнюю границу интервала, количество чисел,
+#среднее значение и список, соответствующий количеству чисел -1.
 
     matrix = []
     summ = mean * n
@@ -24,7 +25,7 @@ def average(mini, maxi, n, mean, m):
 #можно ограничить верхний интервал. По аналогии ограничиваем и нижний.
 #Выбираем между рассчитанным ограничением и введённым значением.
 
-    for i in xrange(m):
+    for i in fromzerotom:
         if (summ / (n - i)) < mean:
             matrix.append(triangular(mini, mean, mean))
         else:
