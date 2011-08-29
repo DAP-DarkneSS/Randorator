@@ -10,6 +10,6 @@ Randorator is an advanced graphical generator of random numbers. The program cre
 in a certain interval. Optionally, the average value of the received number and the maximum relative standard
 deviation is able to specify. The possibility to automatically copy and select separator in the output numbers in
 the clipboard is present.
-Authors are DarkneSS [https://github.com/DAP-DarkneSS] & [ascrazy https://github.com/ascrazy]
+Authors are DarkneSS [https://github.com/DAP-DarkneSS] & ascrazy [https://github.com/ascrazy]
 The code is distributed under the GNU LESSER GENERAL PUBLIC LICENSE: http://www.gnu.org/copyleft/lesser.html
 The program is written in the Python programming language using Tkinter graphical toolkit.
