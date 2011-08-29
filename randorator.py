@@ -69,9 +69,9 @@ def button_fmake():
 
 frame_buttonz = Frame(root)
 frame_buttonz.pack(fill=BOTH)
-button_make = Button(frame_buttonz, width=11, text=u"Генерировать!", command=button_fmake)
+button_make = Button(frame_buttonz, width=14, text=u"Генерировать!", command=button_fmake)
 button_make.pack(side=LEFT)
-button_exit = Button(frame_buttonz, width=11, text=u"Выход", command=root.destroy)
+button_exit = Button(frame_buttonz, width=14, text=u"Выход", command=root.destroy)
 button_exit.pack(side=LEFT)
 #Рамка для кнопок. Кнопка генерирования и выхода из приложения.
 
