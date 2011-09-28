@@ -10,9 +10,10 @@ from average import average
 from rsd import relstdev
 #Импорт функций создания списка случайных чисел и уменьшения RSD.
 
-def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation):
-#Функция принимает текстовые значения нижней и верхней границ интервала, количества чисел, среднего значения,
-#максимально допустимого RSD и числовое значение, указывающее знак препинания в экспортируемых числах.
+def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
+#Функция принимает текстовые значения нижней и верхней границ интервала, количества чисел,
+#среднего значения, максимально допустимого RSD, количество знаков после запятой
+#и числовое значение, указывающее знак препинания в экспортируемых числах.
 
     def punctu(txt):
         return(float(txt.replace(",", ".")))
@@ -20,13 +21,26 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation):
 
     matrix = []
     text = ""
-    mini = punctu(t_mini)
-    maxi = punctu(t_maxi)
-    n = int(t_n)
+    if t_mini == "":
+        mini = 0
+    else:
+        mini = punctu(t_mini)
+    if t_maxi == "":
+        maxi = 0
+    else:
+        maxi = punctu(t_maxi)
+    if t_n == "":
+        n = 1
+    else:
+        n = int(t_n)
     m = n - 1
     fromzeroton = xrange(n)
     fromzerotom = xrange(m)
-#Создаётся пустой список и текст. Обрабатываются границы интервала и количество чисел.
+    if t_round == "":
+        rounding = -1
+    else:
+        rounding = int(t_round)
+#Создаётся пустой список и текст. Обрабатываются числовые параметры.
 #Вычисляется удобное число m. Создаются удобные списки.
 
     if t_mean == "":
@@ -43,9 +57,13 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation):
 #Если требуется, уменьшается RSD.
     
     for i in fromzerotom:
+        if rounding != -1:
+            matrix[i] = round(matrix[i], rounding)
         text += str(matrix[i]) + "\n"
     text +=  str(matrix[m])
-#Список преобразуется в строку. Каждое число с красной строки.
+    if rounding != -1:
+        matrix[m] = round(matrix[m], rounding)
+#Список преобразуется в строку. Каждое число с красной строки. Округление при необходимости.
     
     if not punctuation:
         text = text.replace(".", ",")

@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#Указывается язык и кодировка.
 
 from Tkinter import *
 from ScrolledText import *
 from body import randorator
-#Загружается модуль случайных чисел, графическая библиотека
+#Загружается основной модуль программы, графическая библиотека
 #и модуль, содержащий текстовый виджет с полосой прокрутки.
 
 root=Tk()
@@ -27,7 +28,9 @@ frame_mean = Frame(root)
 frame_mean.pack(fill=BOTH)
 frame_rsd = Frame(root)
 frame_rsd.pack(fill=BOTH)
-#Создаётся три рамки для виджетов. Рамки растягиваются по ширине окна.
+frame_round = Frame(root)
+frame_round.pack(fill=BOTH)
+#Создаётся четыре рамки для виджетов. Рамки растягиваются по ширине окна.
 
 label_mini = Label(frame_mini, text = u"*Минимум:")
 label_mini.pack(side=LEFT)
@@ -49,6 +52,10 @@ label_rsd = Label(frame_rsd, text = u"RSD, %:")
 label_rsd.pack(side=LEFT)
 entry_rsd = Entry(frame_rsd, width=15)
 entry_rsd.pack(side=RIGHT)
+label_round = Label(frame_round, text = u"Округление:")
+label_round.pack(side=LEFT)
+entry_round = Entry(frame_round, width=15)
+entry_round.pack(side=RIGHT)
 #Надписи, описывающие вводимые значения, выровнены по левому краю.
 #Элементы для ввода значений шириной в 15 знаков выровнены по правому краю.
 
@@ -58,7 +65,7 @@ def button_fmake():
     text_out.delete(1.0, END)
 #Очистка текстового поля
 
-    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get())     
+    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get())     
     text_out.insert(END, text)
 #Передача внешней функции большинства параметров. Получение теста и передача его в поле.
 
