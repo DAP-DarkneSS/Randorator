@@ -50,7 +50,7 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
         matrix = average(mini, maxi, n, mean, m, fromzerotom)
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
         
-    if t_rsd != "":
+    if (t_rsd != "") and (n > 1):
         if t_mean == "":
             mean = sum(matrix) / n
         matrix = relstdev(matrix, n, mean, punctu(t_rsd), fromzeroton)
