@@ -60,9 +60,9 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
         if rounding != -1:
             matrix[i] = round(matrix[i], rounding)
         text += str(matrix[i]) + "\n"
-    text +=  str(matrix[m])
     if rounding != -1:
         matrix[m] = round(matrix[m], rounding)
+    text +=  str(matrix[m])
 #Список преобразуется в строку. Каждое число с красной строки. Округление при необходимости.
     
     if not punctuation:
