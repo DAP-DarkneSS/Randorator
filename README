@@ -18,7 +18,7 @@ the maximum relative standard deviation and number of digits for rounding is abl
 possibility to automatically copy and select separator in the output numbers in the clipboard is present.
 
 Installation: in Linux you should install packages python, python-minimal and python-tk,
-unpack the archive, make randorator.py executable and run it. in Windows you should install python 2.7
+unpack the archive, make randorator.py executable and run it; in Windows you should install python 2.7
 from the official site http://www.python.org/download/
 
 Authors are DarkneSS [https://github.com/DAP-DarkneSS] & ascrazy [https://github.com/ascrazy]
