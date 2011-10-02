@@ -3,7 +3,7 @@
 #Указывается язык и кодировка.
 
 from Tkinter import *
-from ScrolledText import *
+from ScrolledText import ScrolledText
 from body import randorator
 #Загружается основной модуль программы, графическая библиотека
 #и модуль, содержащий текстовый виджет с полосой прокрутки.
