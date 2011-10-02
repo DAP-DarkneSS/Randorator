@@ -5,7 +5,7 @@
 
 Установка: в Linux установите пакеты python, python-minimal и python-tk, распакуйте архив,
 сделайте randorator.py исполняемым и запустите его; в Windows установите python 2.7
-с оффициального сайта: http://www.python.org/download/
+с официального сайта: http://www.python.org/download/
 
 Авторы: DarkneSS [https://github.com/DAP-DarkneSS] и ascrazy [https://github.com/ascrazy]
 Код распространяется под GNU LESSER GENERAL PUBLIC LICENSE: http://www.gnu.org/copyleft/lesser.html
