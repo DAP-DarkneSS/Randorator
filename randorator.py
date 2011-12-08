@@ -17,10 +17,10 @@ class MyEntry:
 #Внутри – рамка для виджетов, растягивается по ширине окна.
         self.label_class = Label(self.frame_class, text = string_class)
         self.label_class.pack(side = LEFT)
+#В ней – надписи для описания вводимых значений выровнены по левому краю.
         self.entry_class = Entry(self.frame_class, width = 15)
         self.entry_class.pack(side = RIGHT)
-#В ней – надписи (для описания вводимых значений, выровнены по левому краю) и
-#элементы для ввода значений (шириной в 15 знаков, выровнены по правому краю).
+#И элементы для ввода значений шириной в 15 знаков выровнены по правому краю.
     def get(self):
         return(self.entry_class.get())
 #Метод .get() передаётся от элемента для ввода объекту описываемого класса.
@@ -57,7 +57,7 @@ class MyButton:
 def button_fmake():
 #Функция для кнопки. Записывается без аргументов!
     text_out.delete(1.0, END)
-#Очистка текстового поля
+#Очистка текстового поля.
     text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get())     
     text_out.insert(END, text)
 #Передача внешней функции большинства параметров. Получение теста и передача его в поле.
@@ -67,8 +67,9 @@ def button_fmake():
 #Если не указано иное, очищается буфер обмена, копируются полученные значения.
 
 root=Tk()
+#Создаётся окно приложения.
 root.title(u"Рандоратор")
-#Создаётся окно приложения, задаётся заголовок.
+#Задаётся заголовок.
 root.resizable(False, False)
 #Нельзя изменять размер окна.
 
