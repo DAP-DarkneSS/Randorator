@@ -8,108 +8,99 @@ from body import randorator
 #Загружается основной модуль программы, графическая библиотека
 #и модуль, содержащий текстовый виджет с полосой прокрутки.
 
+class MyEntry:
+#Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
+    def __init__(self, place_class, string_class):
+#При создании принимается место прикрепления виджета и строковое значение для надписи.
+        self.frame_class = Frame(place_class)
+        self.frame_class.pack(side = TOP, fill = BOTH)
+#Внутри – рамка для виджетов, растягивается по ширине окна.
+        self.label_class = Label(self.frame_class, text = string_class)
+        self.label_class.pack(side = LEFT)
+        self.entry_class = Entry(self.frame_class, width = 15)
+        self.entry_class.pack(side = RIGHT)
+#В ней – надписи (для описания вводимых значений, выровнены по левому краю) и
+#элементы для ввода значений (шириной в 15 знаков, выровнены по правому краю).
+    def get(self):
+        return(self.entry_class.get())
+#Метод .get() передаётся от элемента для ввода объекту описываемого класса.
+
+class MyVCheck:
+#Класс для улучшения читаемости кода однотипных элементов чекбоксов.
+    def __init__(self, place_class, string_class, logical_class):
+#При создании принимается место прикрепления виджета, строковое значение для надписи
+#и логическое для установки положения по умолчанию.
+        self.frame_class = Frame(place_class)
+        self.frame_class.pack(side = TOP, fill = BOTH)
+#Внутри – рамка для виджетов, растягивается по ширине окна.
+        self.vcheck_class = IntVar()
+#Создание переменной для значения чекбокса.
+        self.check_class = Checkbutton(self.frame_class, text=string_class, variable=self.vcheck_class, onvalue=1, offvalue=0)
+        self.check_class.pack(side = LEFT)
+#Собственно чекбокс внутри рамки, выровнен по левому краю.
+        if logical_class:
+            self.check_class.select()
+#Если переданное логическое значение истинно, чекбокс делается активным.
+    def get(self):
+        return(self.vcheck_class.get())
+#Метод .get() передаётся от значения чекбокса объекту описываемого класса.
+
+class MyButton:
+#Класс для улучшения читаемости кода однотипных элементов кнопок.
+    def __init__(self, place_class, string_class, command_class):
+#При создании принимается место прикрепления виджета, строковое значение для надписи
+#и строковое для установления команды при нажатии.
+        self.button_class = Button(place_class, width = 14, text = string_class, command = command_class)
+        self.button_class.pack(side = LEFT)
+#Кнопка шириной в 14 пикселей прикрепляется к левому краю.
+
+def button_fmake():
+#Функция для кнопки. Записывается без аргументов!
+    text_out.delete(1.0, END)
+#Очистка текстового поля
+    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get())     
+    text_out.insert(END, text)
+#Передача внешней функции большинства параметров. Получение теста и передача его в поле.
+    if vcheck_copy.get():
+        root.clipboard_clear()
+        root.clipboard_append(text)
+#Если не указано иное, очищается буфер обмена, копируются полученные значения.
+
 root=Tk()
 root.title(u"Рандоратор")
-root.resizable(False, False)
 #Создаётся окно приложения, задаётся заголовок.
+root.resizable(False, False)
 #Нельзя изменять размер окна.
 
 label_title = Label(root, text = u"Продвинутый графический\nгенератор случайных чисел")
 label_title.pack()
 #Надпись с описанием программы.
 
-frame_mini = Frame(root)
-frame_mini.pack(fill=BOTH)
-frame_maxi = Frame(root)
-frame_maxi.pack(fill=BOTH)
-frame_n = Frame(root)
-frame_n.pack(fill=BOTH)
-frame_mean = Frame(root)
-frame_mean.pack(fill=BOTH)
-frame_rsd = Frame(root)
-frame_rsd.pack(fill=BOTH)
-frame_round = Frame(root)
-frame_round.pack(fill=BOTH)
-#Создаётся четыре рамки для виджетов. Рамки растягиваются по ширине окна.
-
-label_mini = Label(frame_mini, text = u"*Минимум:")
-label_mini.pack(side=LEFT)
-entry_mini = Entry(frame_mini, width=15)
-entry_mini.pack(side=RIGHT)
-label_maxi = Label(frame_maxi, text = u"*Максимум:")
-label_maxi.pack(side=LEFT)
-entry_maxi = Entry(frame_maxi, width=15)
-entry_maxi.pack(side=RIGHT)
-label_n = Label(frame_n, text = u"*Количество:")
-label_n.pack(side=LEFT)
-entry_n = Entry(frame_n, width=15)
-entry_n.pack(side=RIGHT)
-label_mean = Label(frame_mean, text = u"Среднее:")
-label_mean.pack(side=LEFT)
-entry_mean = Entry(frame_mean, width=15)
-entry_mean.pack(side=RIGHT)
-label_rsd = Label(frame_rsd, text = u"RSD, %:")
-label_rsd.pack(side=LEFT)
-entry_rsd = Entry(frame_rsd, width=15)
-entry_rsd.pack(side=RIGHT)
-label_round = Label(frame_round, text = u"Округление:")
-label_round.pack(side=LEFT)
-entry_round = Entry(frame_round, width=15)
-entry_round.pack(side=RIGHT)
-#Надписи, описывающие вводимые значения, выровнены по левому краю.
-#Элементы для ввода значений шириной в 15 знаков выровнены по правому краю.
-
-def button_fmake():
-#Функция для кнопки. Записывается без аргументов!
-
-    text_out.delete(1.0, END)
-#Очистка текстового поля
-
-    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get())     
-    text_out.insert(END, text)
-#Передача внешней функции большинства параметров. Получение теста и передача его в поле.
-
-    if vcheck_copy.get():
-        root.clipboard_clear()
-        root.clipboard_append(text)
-#Если не указано иное, очищается буфер обмена, копируются полученные значения.
+entry_mini = MyEntry(root, u"Минимум:")
+entry_maxi = MyEntry(root, "Максимум:")
+entry_n = MyEntry(root, u"Количество:")
+entry_mean = MyEntry(root, u"Среднее:")
+entry_rsd = MyEntry(root, u"RSD, %:")
+entry_round = MyEntry(root, u"Округление:")
+#Создаётся необходимое количество объектов класса элементов ввода.
 
 frame_buttonz = Frame(root)
-frame_buttonz.pack(fill=BOTH)
-button_make = Button(frame_buttonz, width=14, text=u"Генерировать!", command=button_fmake)
-button_make.pack(side=LEFT)
-button_exit = Button(frame_buttonz, width=14, text=u"Выход", command=root.destroy)
-button_exit.pack(side=LEFT)
-#Рамка для кнопок. Кнопка генерирования и выхода из приложения.
+frame_buttonz.pack(side = TOP, fill = BOTH)
+#Рамка для кнопок. 
+button_make = MyButton(frame_buttonz, u"Генерировать!", button_fmake)
+#Кнопка генерирования.
+button_exit = MyButton(frame_buttonz, u"Выход", root.destroy)
+#Кнопка выхода из приложения.
 
-frame_checkz = Frame(root)
-frame_checkz.pack(fill=BOTH)
-frame_copy = Frame(frame_checkz)
-frame_copy.pack(fill=BOTH)
-frame_punctuation = Frame(frame_checkz)
-frame_punctuation.pack(fill=BOTH)
-vcheck_copy=IntVar()
-vcheck_punctuation=IntVar()
-#Рамки для чекбоксов и создание переменных для значений чекбоксов.
-
-check_copy=Checkbutton(frame_copy,text=u"Автоматически копировать",variable=vcheck_copy,onvalue=1,offvalue=0)
-check_copy.pack(side=LEFT)
-check_copy.select()
+vcheck_copy = MyVCheck(root, u"Автоматически копировать", 1)
 #Чекбокс для включения/выключения автоматического копирования значений.
-#Активен по умолчанию и означает "копировать".
+#Активен – копировать.
+vcheck_punctuation = MyVCheck(root, u'Числа с "." ("," по умолчанию)', 0)
+#Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
 
-check_punctuation=Checkbutton(frame_punctuation,text=u'Числа с "." ("," по умолчанию)',variable=vcheck_punctuation,onvalue=1,offvalue=0)
-check_punctuation.pack(side=LEFT)
-#Чекбокс для переключения между точками и запятыми.
-#Неактивен по умолчанию и определяет вывод с запятыми.
-
-text_out=ScrolledText(root, height=9, width=9)
-text_out.pack(fill=BOTH)
+text_out=ScrolledText(root, height = 9, width = 9)
+text_out.pack(side = BOTTOM, fill = BOTH)
 #Текстовый виджет с полосой прокрутки растянут по ширине окна приложения.
-
-label_star = Label(root, text = u'* — обязательно для заполнения')
-label_star.pack(side=LEFT)
-#Надпись с пояснением звёздочки.
 
 root.mainloop()
 #Окончание текста приложения.

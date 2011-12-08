@@ -41,8 +41,11 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
             out_data += "0" * (rounding - len(out_data) + out_data.find(".") + 1)
         else:
             out_data = str(in_data)
+        if rounding == 0:
+            out_data = out_data.replace(".0", "")
         return(out_data)
 #Число преобразуется в строку, если необходимо, округляется с добавлением нулей.
+#У числа, округлённого до целой части, отбрасывается ".0".
 
     matrix = []
     text = ""
