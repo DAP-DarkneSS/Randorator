@@ -68,7 +68,7 @@ def button_fmake():
 
 root=Tk()
 #Создаётся окно приложения.
-root.title(u"Рандоратор")
+root.title(u"Randorator")
 #Задаётся заголовок.
 root.resizable(False, False)
 #Нельзя изменять размер окна.
