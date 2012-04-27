@@ -13,7 +13,8 @@ def button_fexit(event):
 # Функция для кнопки выхода. Записывается с аргументом события.
     gui.Close(True)
     root.ExitMainLoop()
-# Сразу два способа выйти ^,_,^
+    wx.Exit()
+# Сразу три способа выйти ^,_,^
 
 root = wx.App()
 
