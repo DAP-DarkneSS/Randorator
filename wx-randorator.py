@@ -20,7 +20,7 @@ def button_fexit(event):
 app_root = wx.App()
 # Инициация тулкита.
 
-frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX, title = 'Randorator', size = (230, 250))
+frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX, title = 'Randorator')
 # Окно можно сворачивать, с системным меню, с заголовком и кнопкой закрытия.
 # Задаётся заголовок и размер.
 
@@ -47,6 +47,9 @@ sizer_buttonz.Add(button_exit)
 frame_root.Bind(wx.EVT_BUTTON, button_fmake, button_make)
 frame_root.Bind(wx.EVT_BUTTON, button_fexit, button_exit)
 # Присваиваем кнопкам соответствующие функции.
+
+frame_root.SetSize(frame_root.GetBestSize())
+# Окно подбирает оптимальный размер, для размещения всех виджетов.
 
 frame_root.Show()
 # Показать окно.
