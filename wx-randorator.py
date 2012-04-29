@@ -8,9 +8,8 @@ import wx
 #===========================|Text_Control_Class|============================#
 
 class MyTextCtrl:
-# Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
     def __init__(self, place_frame, place_sizer, string_class):
-# Принимается frame прикрепления виджета, sizer упаковки и строковое значение для надписи.
+# Принимается frame прикрепления виджета, sizer упаковки и текст надписи.
         self.sizer_class = wx.BoxSizer(wx.HORIZONTAL)
         place_sizer.Add(self.sizer_class)
 # Создаётся упаковщик с горизонтальным порядком заполнения и добавляется в переданный упаковщик.
@@ -21,10 +20,21 @@ class MyTextCtrl:
         self.sizer_class.Add(self.control_class)
 # Описание (с выравниванием по вертикали) и поле упаковываются в соответствующий упаковщик.
 
+#=============================|Check_Box_Class|=============================#
+
+class MyCheckBox:
+    def __init__(self, place_frame, place_sizer, string_class, logical_class):
+# Принимается frame прикрепления, sizer упаковки, текст надписи и маркер отметки.
+        self.check_class = wx.CheckBox(place_frame, label = string_class)
+        place_sizer.Add(self.check_class)
+# Создаётся и добавляется в переданный упаковщик чекбокс.
+        if logical_class:
+            self.check_class.SetValue(logical_class)
+# Если задано, чекбокс отмечается.
+
 #==============================|Button_Class|===============================#
 
 class MyButton:
-# Класс для уменьшений объёма кода однотипных элементов кнопок.
     def __init__(self, place_frame, place_sizer, string_class, command_class):
 # Принимается frame прикрепления виджета, sizer упаковки, строковое значение для надписи и функция.
         self.button_class = wx.Button(place_frame, label = string_class, size = (120, -1))
@@ -55,7 +65,6 @@ app_root = wx.App()
 
 frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX)
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
-
 frame_root.SetTitle('Randorator')
 # Задаётся заголовок окна.
 
@@ -63,9 +72,13 @@ sizer_root = wx.BoxSizer(wx.VERTICAL)
 frame_root.SetSizer(sizer_root, deleteOld=True)
 # Создаётся упаковщик с вертикальным порядком заполнения и применяется к окну.
 
-#==============================|Window_Title|===============================#
+#==================================|Title|==================================#
 
-text_title = wx.StaticText(frame_root, label = u"Продвинутый графический\nгенератор случайных чисел", style = wx.ALIGN_CENTER | wx.EXPAND)
+text_title = wx.StaticText(frame_root, style = wx.ALIGN_CENTER | wx.EXPAND)
+# Текстовый виджет c выравниванием по центру, растянут по ширине.
+text_title.SetLabel(u"Продвинутый графический\nгенератор случайных чисел")
+# Задаётся текст виджета.
+
 sizer_root.Add(text_title, flag = wx.ALIGN_CENTER)
 # Текстовый виджет добавляется в корневой упаковщик.
 
@@ -86,16 +99,29 @@ sizer_root.Add(sizer_buttonz)
 # Создаётся упаковщик для кнопок и добавляется в корневой упаковщик.
 
 button_make = MyButton(frame_root, sizer_buttonz, u"Генерировать!", button_fmake)
+# Кнопка запуска генерирования.
 button_exit = MyButton(frame_root, sizer_buttonz, u"Выход", button_fexit)
-# Создаются кнопки в соответствующем упаковщике.
+# Кнопка выхода из приложения.
+
+#===============================|Check_Boxes|===============================#
+
+check_copy = MyCheckBox(frame_root, sizer_root, u"Автоматически копировать", 1)
+# Чекбокс для включения/выключения автоматического копирования значений. Активен — копировать
+check_punctu = MyCheckBox(frame_root, sizer_root, u'Числа с "." ("," по умолчанию)', 0)
+# Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
+
+#============================|Text_Data_Output|=============================#
+
+text_out = wx.TextCtrl(frame_root, style = wx.EXPAND | wx.TE_MULTILINE, size = (-1, 150))
+# Текстовый виджет c выравниванием по центру, растянут по ширине.
+sizer_root.Add(text_out, flag = wx.EXPAND)
+# Текстовый виджет добавляется в корневой упаковщик.
 
 #=============================|Program_Window|==============================#
 
 frame_root.SetSize(frame_root.GetBestSize())
 # Окно подбирает оптимальный размер, для размещения всех виджетов.
-
 frame_root.Show()
 # Показать окно.
-
 app_root.MainLoop()
 # Окончание графической формы.
