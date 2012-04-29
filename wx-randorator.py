@@ -3,7 +3,8 @@
 #Указывается язык и кодировка.
 
 import wx
-# Импорт тулкита.
+from body import randorator
+#Загружается основной модуль программы и графическая библиотека.
 
 #===========================|Text_Control_Class|============================#
 
@@ -19,6 +20,9 @@ class MyTextCtrl:
         self.sizer_class.Add(self.text_class, flag = wx.ALIGN_CENTER_VERTICAL)
         self.sizer_class.Add(self.control_class)
 # Описание (с выравниванием по вертикали) и поле упаковываются в соответствующий упаковщик.
+    def GetValue(self):
+        return(self.control_class.GetValue())
+# Метод передаётся от чекбокса объекту описываемого класса.
 
 #=============================|Check_Box_Class|=============================#
 
@@ -31,6 +35,9 @@ class MyCheckBox:
         if logical_class:
             self.check_class.SetValue(logical_class)
 # Если задано, чекбокс отмечается.
+    def IsChecked(self):
+        return(self.check_class.IsChecked())
+# Метод передаётся от чекбокса объекту описываемого класса.
 
 #==============================|Button_Class|===============================#
 
@@ -46,8 +53,12 @@ class MyButton:
 
 def button_fmake(event):
 # Функция для кнопки генерации. Записывается с аргументом события.
-    event.Skip()
-# Ничего не делать... пока .__.
+    #text_out.Clear()
+## Очистка текстового поля.
+    text = randorator(sizer_mini.GetValue(), sizer_maxi.GetValue(), sizer_n.GetValue(), sizer_mean.GetValue(), sizer_rsd.GetValue(), check_copy.IsChecked(), sizer_round.GetValue())     
+# Передача внешней функции большинства параметров и получение теста.
+    text_out.SetValue(text)
+# Запись текста в поле.
 
 #==========================|Exit_Button_Function|===========================#
 
