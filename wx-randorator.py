@@ -57,6 +57,14 @@ def button_fmake(event):
 # Передача внешней функции большинства параметров и получение теста.
     text_out.SetValue(text)
 # Запись текста в поле.
+    if check_copy.IsChecked():
+        pass
+        #cb = wx.Clipboard()
+        #if cb.Open():
+            #tdo = wx.TextDataObject("123")
+            #cb.SetData(tdo)
+            #cb.Close()
+# Начало работы над буфером обмена. Epic fail! =(
 
 #==========================|Exit_Button_Function|===========================#
 
