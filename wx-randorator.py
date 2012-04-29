@@ -84,6 +84,8 @@ frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | 
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
 frame_root.SetTitle('Randorator')
 # Задаётся заголовок окна.
+frame_root.SetIcon(wx.Icon('randorator.png', type = wx.BITMAP_TYPE_PNG))
+# Задаётся иконка окна.
 
 sizer_root = wx.BoxSizer(wx.VERTICAL)
 frame_root.SetSizer(sizer_root, deleteOld=True)
