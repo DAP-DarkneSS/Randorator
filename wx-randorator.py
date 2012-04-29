@@ -53,9 +53,7 @@ class MyButton:
 
 def button_fmake(event):
 # Функция для кнопки генерации. Записывается с аргументом события.
-    #text_out.Clear()
-## Очистка текстового поля.
-    text = randorator(sizer_mini.GetValue(), sizer_maxi.GetValue(), sizer_n.GetValue(), sizer_mean.GetValue(), sizer_rsd.GetValue(), check_copy.IsChecked(), sizer_round.GetValue())     
+    text = randorator(sizer_mini.GetValue(), sizer_maxi.GetValue(), sizer_n.GetValue(), sizer_mean.GetValue(), sizer_rsd.GetValue(), check_punctu.IsChecked(), sizer_round.GetValue())
 # Передача внешней функции большинства параметров и получение теста.
     text_out.SetValue(text)
 # Запись текста в поле.
