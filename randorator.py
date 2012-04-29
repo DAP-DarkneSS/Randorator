@@ -78,7 +78,7 @@ label_title.pack()
 #Надпись с описанием программы.
 
 entry_mini = MyEntry(root, u"Минимум:")
-entry_maxi = MyEntry(root, "Максимум:")
+entry_maxi = MyEntry(root, u"Максимум:")
 entry_n = MyEntry(root, u"Количество:")
 entry_mean = MyEntry(root, u"Среднее:")
 entry_rsd = MyEntry(root, u"RSD, %:")
