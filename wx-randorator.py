@@ -38,16 +38,16 @@ sizer_buttonz = wx.BoxSizer(wx.HORIZONTAL)
 sizer_root.Add(sizer_buttonz)
 # Создаются упаковщики с горизонтальным порядком заполнения и добавлются в корневой упаковщик.
 
-text_mini = wx.StaticText(frame_root, label = u"*Минимум:", size = (110, -1))
-control_mini = wx.TextCtrl(frame_root, size = (110, -1))
+text_mini = wx.StaticText(frame_root, label = u"*Минимум:", size = (120, -1))
+control_mini = wx.TextCtrl(frame_root, size = (120, -1))
 # Описание значение и поле ввода.
 
 sizer_mini.Add(text_mini, flag = wx.ALIGN_CENTER_VERTICAL)
 sizer_mini.Add(control_mini)
 # Описание и поле упаковываются в соответствующий упаковщик.
 
-button_make = wx.Button(frame_root, label = u"Генерировать!", size = (110, -1))
-button_exit = wx.Button(frame_root, label = u"Выход", size = (110, -1))
+button_make = wx.Button(frame_root, label = u"Генерировать!", size = (120, -1))
+button_exit = wx.Button(frame_root, label = u"Выход", size = (120, -1))
 # Создаются кнопки.
 
 sizer_buttonz.Add(button_make)
