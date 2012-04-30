@@ -89,3 +89,37 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
 
     return(text)
 #Возврат текста.
+
+#================================|Direct_Run|===============================#
+
+if __name__ == '__main__':
+# Проверка, запускается ли файл как самостоятельное приложение.
+
+    print u"Продвинутый графический генератор случайных чисел.\n"
+    print u"Ввод параметров подтверждайте Enter, пустые параметры разрешены.\n"
+    mini = raw_input("Минимально допустимое значение:\t\t")
+    maxi = raw_input("Максимально допустимое значение:\t")
+    n = raw_input("Количество генерируемых чисел:\t\t")
+    mean = raw_input("Среднее значение:\t\t\t")
+    rsd = raw_input("Максимальное RSD в %:\t\t\t")
+    punctu = raw_input("Разделитель целой и дробной части (. или ,):\t")
+    rounding = raw_input("Количество цифер после запятой:\t\t")
+# Импорт параметров.
+
+    punctuation = False
+    if punctu == ".":
+        punctuation = True
+# Обработка параметра разделителя.
+
+    while True:
+        print u"\nСгенерировано:\n" + randorator(mini, maxi, n, mean, rsd, punctuation, rounding)
+# Вход в бесконечный цикл, получение снегерированных данных.
+
+        try:
+            raw_input("\nEnter для повторной генерации. Ctrl+C для выхода.")
+# При любом вводе цикл возвращается в начало.
+
+        except KeyboardInterrupt:
+            print "\n\n\tBye!\n"
+            quit()
+# В случае клавиатурного прерывания программа завершается.
