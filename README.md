@@ -14,6 +14,8 @@ http://creativecommons.org/licenses/by/3.0/us/
 Программа написана на языке Python с опциональным использованием
 графических библиотек Tkinter или wxPython.
 
+Инструкции по установке находятся в INSTALL.md.
+
 #================|English|=================#
 
 Randorator is an advanced graphical generator of random numbers. The program creates the specified
@@ -29,3 +31,5 @@ http://creativecommons.org/licenses/by/3.0/us/
 
 The program is written in the Python programming language optional using
 Tkinter or wxPython graphical toolkit.
+
+How to install instructions see at INSTALL.md.
