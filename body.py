@@ -51,6 +51,8 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
     text = ""
     mini = set_float_data(t_mini)
     maxi = set_float_data(t_maxi)
+    if (t_mean != ""):
+        mean = punctu(t_mean)
     n = set_int_data(t_n, 1)
     rounding = set_int_data(t_round, -1)
     m = n - 1
@@ -59,18 +61,22 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
 #Создаётся пустой список и текст. Обрабатываются числовые параметры.
 #Вычисляется удобное число m. Создаются удобные списки.
 
-    if t_mean == "":
-        matrix = rando(mini, maxi, fromzeroton)
-    else:
-        mean = punctu(t_mean)
+    if mini > maxi:
+        maxi, mini = mini, maxi
+#Если при вводе были перепутаны границы, то они меняются местами.
+
+    if (t_mean != "") and (maxi > mean) and (mini < mean):
         matrix = average(mini, maxi, n, mean, m, fromzerotom)
+    else:
+        matrix = rando(mini, maxi, fromzeroton)
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
+#Также игнориуется среднее значение, если оно не принадлежит заданному интервалу.
         
     if (t_rsd != "") and (n > 1):
         if t_mean == "":
             mean = sum(matrix) / n
         matrix = relstdev(matrix, n, mean, punctu(t_rsd), fromzeroton)
-#Если требуется, уменьшается RSD.
+#Если требуется, уменьшается RSD. Задания на одно число игнорируются.
     
     for i in fromzerotom:
         text += to_text(matrix[i], rounding) + "\n"

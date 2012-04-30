@@ -15,10 +15,6 @@ def average(mini, maxi, n, mean, m, fromzerotom):
     summ = mean * n
 #Создание пустого списка. Расчёт суммы всех чисел.
 
-    if mini > maxi:
-        maxi, mini = mini, maxi
-#Если при вводе были перепутаны границы, то они меняются местами.
-
     maxi = min(maxi, (summ - mini * m))
     mini = max(mini, (summ - maxi * m))
 #Немного математики: mini*(n-1)+maxi<=summ. Этим простым неравенством
