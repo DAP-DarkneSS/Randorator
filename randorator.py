@@ -2,6 +2,27 @@
 # -*- coding: utf-8 -*-
 #Указывается язык и кодировка.
 
+#=================================|Copying|=================================#
+
+# Copyright (C) 2011-2012 Dmitriy A. Perlow <dap.darkness@gmail.com>
+
+# This file is part of Randorator.
+
+# Randorator is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# Randorator is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License
+# along with Randorator.  If not, see <http://www.gnu.org/licenses/>.
+
+#=================================|Import|==================================#
+
 from Tkinter import *
 from ScrolledText import ScrolledText
 #Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
@@ -75,8 +96,10 @@ root.resizable(False, False)
 #Нельзя изменять размер окна.
 if system().endswith("Windows"):
     root.iconbitmap(default='randorator.ico')
+#Для windows задаётся иконка окна. Под linux не работает. Лицензия иконки:
+#CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
+#Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
 #http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
-#Для windows задаётся иконка окна. Лицензия: CC Attribution 3.0 United States. Под linux не работает.
 
 label_title = Label(root, text = u"Продвинутый графический\nгенератор случайных чисел")
 label_title.pack()

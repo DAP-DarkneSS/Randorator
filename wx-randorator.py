@@ -2,6 +2,27 @@
 # -*- coding: utf-8 -*-
 # Указывается язык и кодировка.
 
+#=================================|Copying|=================================#
+
+# Copyright (C) 2011-2012 Dmitriy A. Perlow <dap.darkness@gmail.com>
+
+# This file is part of Randorator.
+
+# Randorator is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# Randorator is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License
+# along with Randorator.  If not, see <http://www.gnu.org/licenses/>.
+
+#=================================|Import|==================================#
+
 import wx
 from body import randorator
 # Загружается основной модуль программы и графическая библиотека.
@@ -82,8 +103,10 @@ frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | 
 frame_root.SetTitle('Randorator')
 # Задаётся заголовок окна.
 frame_root.SetIcon(wx.Icon('randorator.ico', type = wx.BITMAP_TYPE_ICO))
+# Задаётся иконка окна. Лицензия иконки: CC Attribution 3.0 United States
+# (http://creativecommons.org/licenses/by/3.0/us/).
+# Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
 # http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
-# Задаётся иконка окна. Лицензия: CC Attribution 3.0 United States
 frame_root.SetBackgroundColour(wx.NullColor)
 # Под Windows окно заливается цветом по умолчанию.
 
