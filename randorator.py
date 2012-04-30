@@ -4,9 +4,10 @@
 
 from Tkinter import *
 from ScrolledText import ScrolledText
+#Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
 from body import randorator
-#Загружается основной модуль программы, графическая библиотека
-#и модуль, содержащий текстовый виджет с полосой прокрутки.
+from platform import system
+#Загружается основной модуль программы и модуль определения операционной системы.
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
@@ -72,6 +73,10 @@ root.title(u"Randorator")
 #Задаётся заголовок.
 root.resizable(False, False)
 #Нельзя изменять размер окна.
+if system().endswith("Windows"):
+    root.iconbitmap(default='randorator.ico')
+#http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
+#Для windows задаётся иконка окна. Лицензия: CC Attribution 3.0 United States. Под linux не работает.
 
 label_title = Label(root, text = u"Продвинутый графический\nгенератор случайных чисел")
 label_title.pack()

@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#Указывается язык и кодировка.
+# Указывается язык и кодировка.
 
 import wx
 from body import randorator
-#Загружается основной модуль программы и графическая библиотека.
+# Загружается основной модуль программы и графическая библиотека.
 
 #===========================|Text_Control_Class|============================#
 
@@ -81,8 +81,11 @@ frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | 
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
 frame_root.SetTitle('Randorator')
 # Задаётся заголовок окна.
-frame_root.SetIcon(wx.Icon('randorator.png', type = wx.BITMAP_TYPE_PNG))
-# Задаётся иконка окна.
+frame_root.SetIcon(wx.Icon('randorator.ico', type = wx.BITMAP_TYPE_ICO))
+# http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
+# Задаётся иконка окна. Лицензия: CC Attribution 3.0 United States
+frame_root.SetBackgroundColour(wx.NullColor)
+# Под Windows окно заливается цветом по умолчанию.
 
 sizer_root = wx.BoxSizer(wx.VERTICAL)
 frame_root.SetSizer(sizer_root, deleteOld=True)
