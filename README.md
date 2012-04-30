@@ -1,4 +1,4 @@
-#=================================|Russian|=================================#
+#================|Russian|=================#
 
 Рандоратор — это продвинутый графический генератор случайных чисел. Программа создаёт заданное
 количество значений в определённом интервале. Дополнительно можно указать среднее значение полученных
@@ -14,7 +14,7 @@ http://creativecommons.org/licenses/by/3.0/us/
 Программа написана на языке Python с опциональным использованием
 графических библиотек Tkinter или wxPython.
 
-#=================================|English|=================================#
+#================|English|=================#
 
 Randorator is an advanced graphical generator of random numbers. The program creates the specified
 number of values in a certain interval. Optionally, the average value of the received number,
