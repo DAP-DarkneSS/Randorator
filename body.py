@@ -93,10 +93,12 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
 #Также игнориуется среднее значение, если оно не принадлежит заданному интервалу.
         
-    if (t_rsd != "") and (n > 1):
+    if (t_rsd != "") and (n > 1) and (mini * maxi >= 0):
+        rsd = abs(punctu(t_rsd))
         if t_mean == "":
             mean = sum(matrix) / n
-        matrix = relstdev(matrix, n, mean, punctu(t_rsd), fromzeroton)
+        if (mean != 0) and (rsd != 0):
+            matrix = relstdev(matrix, n, mean, rsd, fromzeroton)
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
     
     for i in fromzerotom:

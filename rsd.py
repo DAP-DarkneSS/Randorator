@@ -40,7 +40,7 @@ def relstdev(matrix, n, mean, referance, fromzeroton):
         summ = 0
         for i in fromzeroton:
             summ += ((matrix[i] - mean) ** 2)
-        rsd = 100 * (sqrt(summ / (n - 1))) / mean
+        rsd = 100 * (sqrt(summ / (n - 1))) / abs(mean)
 #Расчёт и суммирование квадратичных отклонений. Расчёт RSD.
 
         if rsd > referance:
