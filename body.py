@@ -86,18 +86,22 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
         maxi, mini = mini, maxi
 #Если при вводе были перепутаны границы, то они меняются местами.
 
-    if (t_mean != "") and (maxi > mean) and (mini < mean):
+    mean_ok = False
+    if maxi > mean > mini:
+        mean_ok = True
+#Проверка среднего значения на принадлежность заданному интервалу.
+
+    if (t_mean != "") and mean_ok:
         matrix = average(mini, maxi, n, mean, m, fromzerotom)
     else:
         matrix = rando(mini, maxi, fromzeroton)
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
-#Также игнориуется среднее значение, если оно не принадлежит заданному интервалу.
         
     if (t_rsd != "") and (n > 1) and (mini * maxi >= 0):
         rsd = abs(punctu(t_rsd))
         if t_mean == "":
             mean = sum(matrix) / n
-        if (mean != 0) and (rsd != 0):
+        if (mean != 0) and mean_ok and (rsd != 0):
             matrix = relstdev(matrix, n, mean, rsd, fromzeroton)
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
     
