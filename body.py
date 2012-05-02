@@ -37,7 +37,10 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
 #и числовое значение, указывающее знак препинания в экспортируемых числах.
 
     def punctu(txt):
-        return(float(txt.replace(",", ".")))
+        try:
+            return(float(txt.replace(",", ".")))
+        except ValueError:
+            return(0)
 #Функция принимает строковое значение и возвращает число с точкой. Для обработки введённых данных.
 
     def set_float_data(in_data):
@@ -50,7 +53,10 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
 
     def set_int_data(in_data, out_data):
         if in_data != "":
-            out_data = int(in_data)
+            try:
+                out_data = int(round(abs(punctu(in_data)), 0))
+            except TypeError:
+                pass
         return(out_data)
 #Функция принимает строковое значение и число, возвращает целое число
 #или второе число, если строка пустая. Для обработки введённых данных.
@@ -86,12 +92,7 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
         maxi, mini = mini, maxi
 #Если при вводе были перепутаны границы, то они меняются местами.
 
-    mean_ok = False
-    if maxi > mean > mini:
-        mean_ok = True
-#Проверка среднего значения на принадлежность заданному интервалу.
-
-    if (t_mean != "") and mean_ok:
+    if (t_mean != "") and (maxi > mean > mini):
         matrix = average(mini, maxi, n, mean, m, fromzerotom)
     else:
         matrix = rando(mini, maxi, fromzeroton)
@@ -101,13 +102,16 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
         rsd = abs(punctu(t_rsd))
         if t_mean == "":
             mean = sum(matrix) / n
-        if (mean != 0) and mean_ok and (rsd != 0):
+        if (mean != 0) and (maxi > mean > mini) and (rsd != 0):
             matrix = relstdev(matrix, n, mean, rsd, fromzeroton)
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
     
     for i in fromzerotom:
         text += to_text(matrix[i], rounding) + "\n"
-    text +=  to_text(matrix[m], rounding)
+    if m >= 0:
+        text += to_text(matrix[m], rounding)
+    else:
+        text = u" Неверные параметры!"
 #Список преобразуется в текст. Каждое число с красной строки. Округление при необходимости.
     
     if not punctuation:
