@@ -35,7 +35,7 @@ class MyTextCtrl:
         self.sizer_class = wx.BoxSizer(wx.HORIZONTAL)
         place_sizer.Add(self.sizer_class)
 # Создаётся упаковщик с горизонтальным порядком заполнения и добавляется в переданный упаковщик.
-        self.text_class = wx.StaticText(place_frame, label = string_class, size = (140, -1))
+        self.text_class = wx.StaticText(place_frame, label = string_class, size = (130, -1))
         self.control_class = wx.TextCtrl(place_frame, size = (100, -1))
 # Описание значения и поле ввода.
         self.sizer_class.Add(self.text_class, flag = wx.ALIGN_CENTER_VERTICAL)
@@ -65,7 +65,7 @@ class MyCheckBox:
 class MyButton:
     def __init__(self, place_frame, place_sizer, string_class, command_class):
 # Принимается frame прикрепления виджета, sizer упаковки, строковое значение для надписи и функция.
-        self.button_class = wx.Button(place_frame, label = string_class, size = (120, -1))
+        self.button_class = wx.Button(place_frame, label = string_class, size = (115, -1))
         place_sizer.Add(self.button_class)
         place_frame.Bind(wx.EVT_BUTTON, command_class, self.button_class)
 # Создаётся и добавляется в переданный упаковщик кнопка. Присваевается функция для выполнения.
