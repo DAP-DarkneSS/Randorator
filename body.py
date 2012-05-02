@@ -126,15 +126,19 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
 if __name__ == '__main__':
 # Проверка, запускается ли файл как самостоятельное приложение.
 
+    def my_input(string):
+        print string
+        return(raw_input())
+
     print u"Продвинутый графический генератор случайных чисел.\n"
     print u"Ввод параметров подтверждайте Enter, пустые параметры разрешены.\n"
-    mini = raw_input("Минимально допустимое значение:\t\t")
-    maxi = raw_input("Максимально допустимое значение:\t")
-    n = raw_input("Количество генерируемых чисел:\t\t")
-    mean = raw_input("Среднее значение:\t\t\t")
-    rsd = raw_input("Максимальное RSD в %:\t\t\t")
-    punctu = raw_input("Разделитель целой и дробной части (. или ,):\t")
-    rounding = raw_input("Количество цифер после запятой:\t\t")
+    mini = my_input(u"Минимально допустимое значение:")
+    maxi = my_input(u"Максимально допустимое значение:")
+    n = my_input(u"Количество генерируемых чисел:")
+    mean = my_input(u"Среднее значение:")
+    rsd = my_input(u"Максимальное RSD в %:")
+    punctu = my_input(u"Разделитель целой и дробной части (. или ,):")
+    rounding = my_input(u"Количество цифер после запятой:")
 # Импорт параметров.
 
     punctuation = False
@@ -147,7 +151,7 @@ if __name__ == '__main__':
 # Вход в бесконечный цикл, получение снегерированных данных.
 
         try:
-            raw_input("\nEnter для повторной генерации. Ctrl+C для выхода.")
+            my_input(u"\nEnter для повторной генерации. Ctrl+C для выхода.")
 # При любом вводе цикл возвращается в начало.
 
         except KeyboardInterrupt:
