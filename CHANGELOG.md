@@ -4,6 +4,7 @@ Fri May  4 01:28:38 2012 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
  * wxWidgets GUI was done.
  * Program icon was added.
  * Lots of bugs were fixed.
+ * Program core became usable from terminal.
 
 Thu Apr 26 19:47:16 2012 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
