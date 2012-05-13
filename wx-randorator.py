@@ -26,6 +26,8 @@
 import wx
 from body import randorator
 # Загружается основной модуль программы и графическая библиотека.
+from os import chdir, path
+# Загрузка модулей работы с путями файлов.
 
 #===========================|Text_Control_Class|============================#
 
@@ -102,6 +104,8 @@ frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | 
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
 frame_root.SetTitle('Randorator')
 # Задаётся заголовок окна.
+chdir(path.dirname(__file__))
+# Текущая директория изменяется на папку с запускаемым файлом для корректной загрузки иконки.
 frame_root.SetIcon(wx.Icon('randorator.ico', type = wx.BITMAP_TYPE_ICO))
 # Задаётся иконка окна. Лицензия иконки: CC Attribution 3.0 United States
 # (http://creativecommons.org/licenses/by/3.0/us/).

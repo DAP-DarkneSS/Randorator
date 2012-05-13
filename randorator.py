@@ -95,6 +95,10 @@ root.title(u"Randorator")
 root.resizable(False, False)
 #Нельзя изменять размер окна.
 if system().endswith("Windows"):
+    from os import chdir, path
+#Загрузка модулей работы с путями файлов.
+    chdir(path.dirname(__file__))
+#Текущая директория изменяется на папку с запускаемым файлом для корректной загрузки иконки.
     root.iconbitmap(default='randorator.ico')
 #Для windows задаётся иконка окна. Под linux не работает. Лицензия иконки:
 #CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
