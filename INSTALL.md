@@ -2,8 +2,8 @@
 
 - Описание модулей:
  * body.py требует только базовые модули.
- * randorator.py требует графиеский тулкит Tk.
- * wx-randorator.py требует графиеский тулкит wx.
+ * randorator.py требует графический тулкит Tk.
+ * wx-randorator.py требует графический тулкит wx.
 
 - Зависимости:
  * openSUSE: sudo zypper in python-base python-tk python-wxWidgets
