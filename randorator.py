@@ -95,13 +95,12 @@ root.title(u"Randorator")
 root.resizable(False, False)
 #Нельзя изменять размер окна.
 if system().endswith("Windows"):
-    from os import chdir, path
-#Загрузка модулей работы с путями файлов.
-    chdir(path.dirname(__file__))
-#Текущая директория изменяется на папку с запускаемым файлом для корректной загрузки иконки.
-    root.iconbitmap(default='randorator.ico')
-#Для windows задаётся иконка окна. Под linux не работает. Лицензия иконки:
-#CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
+    from os import path
+#Загрузка модуля получения пути файла.
+    root.iconbitmap(default=path.dirname(__file__) + '/randorator.ico')
+#Для windows загружается иконка окна из папки с запускаемым файлом.
+#Под linux не работает. Лицензия иконки: CC Attribution 3.0 United States
+#(http://creativecommons.org/licenses/by/3.0/us/).
 #Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
 #http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
 

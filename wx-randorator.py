@@ -26,8 +26,8 @@
 import wx
 from body import randorator
 # Загружается основной модуль программы и графическая библиотека.
-from os import chdir, path
-# Загрузка модулей работы с путями файлов.
+from os import path
+# Загрузка модуля получения пути файла.
 
 #===========================|Text_Control_Class|============================#
 
@@ -104,15 +104,13 @@ frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | 
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
 frame_root.SetTitle('Randorator')
 # Задаётся заголовок окна.
-chdir(path.dirname(__file__))
-# Текущая директория изменяется на папку с запускаемым файлом для корректной загрузки иконки.
-frame_root.SetIcon(wx.Icon('randorator.ico', type = wx.BITMAP_TYPE_ICO))
-# Задаётся иконка окна. Лицензия иконки: CC Attribution 3.0 United States
-# (http://creativecommons.org/licenses/by/3.0/us/).
+frame_root.SetIcon(wx.Icon(path.dirname(__file__) + '/randorator.ico', type = wx.BITMAP_TYPE_ICO))
+# Загружается иконка окна из папки с запускаемым файлом. Лицензия иконки:
+# CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
 # Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
 # http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
 frame_root.SetBackgroundColour(wx.NullColor)
-# Под Windows окно заливается цветом по умолчанию.
+# Окно заливается цветом по умолчанию для корректной отрисовки под windows.
 
 sizer_root = wx.BoxSizer(wx.VERTICAL)
 frame_root.SetSizer(sizer_root, deleteOld=True)
