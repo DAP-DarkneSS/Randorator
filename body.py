@@ -75,6 +75,7 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
 #У числа, округлённого до целой части, отбрасывается ".0".
 
     matrix = []
+    errorz = []
     text = ""
     mini = set_float_data(t_mini)
     maxi = set_float_data(t_maxi)
@@ -85,34 +86,60 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
     m = n - 1
     fromzeroton = xrange(n)
     fromzerotom = xrange(m)
-#Создаётся пустой список и текст. Обрабатываются числовые параметры.
+#Создаются пустые списки и текст. Обрабатываются числовые параметры.
 #Вычисляется удобное число m. Создаются удобные списки.
 
     if mini > maxi:
         maxi, mini = mini, maxi
+        errorz.append(u"Минимальное значение больше максимального!")
 #Если при вводе были перепутаны границы, то они меняются местами.
+#Запись соответствующего сообщения об ошибке.
 
-    if (t_mean != "") and (maxi > mean > mini):
-        matrix = average(mini, maxi, n, mean, m, fromzerotom)
+    if n > 0:
+        if t_mean != "":
+            if (maxi > mean > mini):
+                matrix = average(mini, maxi, n, mean, m, fromzerotom)
+            else:
+                matrix = rando(mini, maxi, fromzeroton)
+                errorz.append(u"Среднее значение вне заданного диапазона!")
+        else:
+            matrix = rando(mini, maxi, fromzeroton)
     else:
-        matrix = rando(mini, maxi, fromzeroton)
+        errorz.append(u"Недопустимое количество чисел!")
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
-        
-    if (t_rsd != "") and (n > 1) and (mini * maxi >= 0):
-        rsd = abs(punctu(t_rsd))
-        if t_mean == "":
-            mean = sum(matrix) / n
-        if (mean != 0) and (maxi > mean > mini) and (rsd != 0):
-            matrix = relstdev(matrix, n, mean, rsd, fromzeroton)
+#Запись соответствующего сообщения об ошибке.
+
+    if t_rsd != "":
+        if n > 1:
+            if (mini * maxi >= 0):
+                rsd = punctu(t_rsd)
+                if t_mean == "":
+                    mean = sum(matrix) / n
+                if mean != 0:
+                        if rsd > 0:
+                            matrix = relstdev(matrix, n, mean, rsd, fromzeroton)
+                        else:
+                            errorz.append(u"RSD должно быть больше 0!")
+            else:
+                errorz.append(u"RSD не может быть рассчитано для интервала, включающего 0!")
+        else:
+            errorz.append(u"RSD не может быть рассчитано менее чем для двух чисел!")
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
-    
-    for i in fromzerotom:
-        text += to_text(matrix[i], rounding) + "\n"
-    if m >= 0:
-        text += to_text(matrix[m], rounding)
-    else:
-        text = u" Неверные параметры!"
-#Список преобразуется в текст. Каждое число с красной строки. Округление при необходимости.
+#Запись соответствующих сообщений об ошибке.
+
+    verbosity = True
+    if verbosity:
+        for i in xrange(len(errorz)):
+            text += errorz[i] + "\n"
+#Если задано, ошибки переносятся в текст.
+
+    if matrix != []:
+        for i in fromzerotom:
+                text += to_text(matrix[i], rounding) + "\n"
+        if m >= 0:
+                text += to_text(matrix[m], rounding)
+#Непустой список преобразуется в текст. Каждое число с красной строки.
+#Округление при необходимости.
     
     if not punctuation:
         text = text.replace(".", ",")
