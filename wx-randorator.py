@@ -76,7 +76,7 @@ class MyButton:
 
 def button_fmake(event):
 # Функция для кнопки генерации. Записывается с аргументом события.
-    text = randorator(sizer_mini.GetValue(), sizer_maxi.GetValue(), sizer_n.GetValue(), sizer_mean.GetValue(), sizer_rsd.GetValue(), check_punctu.IsChecked(), sizer_round.GetValue())
+    text = randorator(sizer_mini.GetValue(), sizer_maxi.GetValue(), sizer_n.GetValue(), sizer_mean.GetValue(), sizer_rsd.GetValue(), check_punctu.IsChecked(), sizer_round.GetValue(), check_verbosity.IsChecked())
 # Передача внешней функции большинства параметров и получение теста.
     text_out.SetValue(text)
 # Запись текста в поле.
@@ -150,9 +150,13 @@ button_exit = MyButton(frame_root, sizer_buttonz, u"Выход", button_fexit)
 #===============================|Check_Boxes|===============================#
 
 check_copy = MyCheckBox(frame_root, sizer_root, u"Автоматически копировать", 1)
-# Чекбокс для включения/выключения автоматического копирования значений. Активен — копировать
+# Чекбокс для включения/выключения автоматического копирования значений.
+# Активен — копировать.
 check_punctu = MyCheckBox(frame_root, sizer_root, u'Числа с "." ("," по умолчанию)', 0)
 # Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
+check_verbosity = MyCheckBox(frame_root, sizer_root, u'Сообщения об ошибках', 1)
+# Чекбокс для включения/выключения вывода сообщений об ошибках.
+# Активен – копировать.
 
 #============================|Text_Data_Output|=============================#
 

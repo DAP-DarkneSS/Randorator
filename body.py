@@ -31,7 +31,7 @@ from average import average
 from rsd import relstdev
 #Импорт функций создания списка случайных чисел и уменьшения RSD.
 
-def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
+def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosity):
 #Функция принимает строковые значения нижней и верхней границ интервала, количества чисел,
 #среднего значения, максимально допустимого RSD, количество знаков после запятой
 #и числовое значение, указывающее знак препинания в экспортируемых числах.
@@ -127,7 +127,6 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round):
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
 #Запись соответствующих сообщений об ошибке.
 
-    verbosity = True
     if verbosity:
         for i in xrange(len(errorz)):
             text += errorz[i] + "\n"

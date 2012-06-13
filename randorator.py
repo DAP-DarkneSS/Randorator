@@ -80,7 +80,7 @@ def button_fmake():
 #Функция для кнопки. Записывается без аргументов!
     text_out.delete(1.0, END)
 #Очистка текстового поля.
-    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get())     
+    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get(), vcheck_verbosity.get())     
     text_out.insert(END, text)
 #Передача внешней функции большинства параметров. Получение теста и передача его в поле.
     if vcheck_copy.get():
@@ -129,6 +129,9 @@ vcheck_copy = MyVCheck(root, u"Автоматически копировать",
 #Активен – копировать.
 vcheck_punctuation = MyVCheck(root, u'Числа с "." ("," по умолчанию)', 0)
 #Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
+vcheck_verbosity = MyVCheck(root, u'Сообщения об ошибках', 1)
+#Чекбокс для включения/выключения вывода сообщений об ошибках.
+#Активен – копировать.
 
 text_out=ScrolledText(root, height = 9, width = 9)
 text_out.pack(side = BOTTOM, fill = BOTH)
