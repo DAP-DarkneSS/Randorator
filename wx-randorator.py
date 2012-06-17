@@ -109,16 +109,21 @@ frame_root.SetIcon(wx.Icon(path.dirname(__file__) + '/randorator.ico', type = wx
 # CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
 # Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
 # http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
-frame_root.SetBackgroundColour(wx.NullColor)
+
+panel_root = wx.Panel(frame_root, style = wx.TAB_TRAVERSAL)
+# На корневой фрейм добавляется корневая панель,
+# чтобы можно было переключаться между элементами по нажатию кнопки Tab.
+# Применяется соответствующий стиль, хотя работает и без него.
+panel_root.SetBackgroundColour(wx.NullColor)
 # Окно заливается цветом по умолчанию для корректной отрисовки под windows.
 
 sizer_root = wx.BoxSizer(wx.VERTICAL)
-frame_root.SetSizer(sizer_root, deleteOld=True)
+panel_root.SetSizer(sizer_root, deleteOld=True)
 # Создаётся упаковщик с вертикальным порядком заполнения и применяется к окну.
 
 #==================================|Title|==================================#
 
-text_title = wx.StaticText(frame_root, style = wx.ALIGN_CENTER | wx.EXPAND)
+text_title = wx.StaticText(panel_root, style = wx.ALIGN_CENTER | wx.EXPAND)
 # Текстовый виджет c выравниванием по центру, растянут по ширине.
 text_title.SetLabel(u"Продвинутый графический\nгенератор случайных чисел")
 # Задаётся текст виджета.
@@ -128,12 +133,12 @@ sizer_root.Add(text_title, flag = wx.ALIGN_CENTER)
 
 #=============================|Text_Data_Input|=============================#
 
-sizer_mini = MyTextCtrl(frame_root, sizer_root, u" Минимум:")
-sizer_maxi = MyTextCtrl(frame_root, sizer_root, u" Максимум:")
-sizer_n = MyTextCtrl(frame_root, sizer_root, u" Количество:")
-sizer_mean = MyTextCtrl(frame_root, sizer_root, u" Среднее:")
-sizer_rsd = MyTextCtrl(frame_root, sizer_root, u" RSD, %:")
-sizer_round = MyTextCtrl(frame_root, sizer_root, u" Округление:")
+sizer_mini = MyTextCtrl(panel_root, sizer_root, u" Минимум:")
+sizer_maxi = MyTextCtrl(panel_root, sizer_root, u" Максимум:")
+sizer_n = MyTextCtrl(panel_root, sizer_root, u" Количество:")
+sizer_mean = MyTextCtrl(panel_root, sizer_root, u" Среднее:")
+sizer_rsd = MyTextCtrl(panel_root, sizer_root, u" RSD, %:")
+sizer_round = MyTextCtrl(panel_root, sizer_root, u" Округление:")
 # Рисуются упаковщики с описаниями значений и полями ввода.
 
 #=================================|Buttons|=================================#
@@ -142,32 +147,32 @@ sizer_buttonz = wx.BoxSizer(wx.HORIZONTAL)
 sizer_root.Add(sizer_buttonz)
 # Создаётся упаковщик для кнопок и добавляется в корневой упаковщик.
 
-button_make = MyButton(frame_root, sizer_buttonz, u"Генерировать!", button_fmake)
+button_make = MyButton(panel_root, sizer_buttonz, u"Генерировать!", button_fmake)
 # Кнопка запуска генерирования.
-button_exit = MyButton(frame_root, sizer_buttonz, u"Выход", button_fexit)
+button_exit = MyButton(panel_root, sizer_buttonz, u"Выход", button_fexit)
 # Кнопка выхода из приложения.
 
 #===============================|Check_Boxes|===============================#
 
-check_copy = MyCheckBox(frame_root, sizer_root, u"Автоматически копировать", 1)
+check_copy = MyCheckBox(panel_root, sizer_root, u"Автоматически копировать", 1)
 # Чекбокс для включения/выключения автоматического копирования значений.
 # Активен — копировать.
-check_punctu = MyCheckBox(frame_root, sizer_root, u'Числа с "." ("," по умолчанию)', 0)
+check_punctu = MyCheckBox(panel_root, sizer_root, u'Числа с "." ("," по умолчанию)', 0)
 # Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
-check_verbosity = MyCheckBox(frame_root, sizer_root, u'Сообщения об ошибках', 1)
+check_verbosity = MyCheckBox(panel_root, sizer_root, u'Сообщения об ошибках', 1)
 # Чекбокс для включения/выключения вывода сообщений об ошибках.
 # Активен – копировать.
 
 #============================|Text_Data_Output|=============================#
 
-text_out = wx.TextCtrl(frame_root, style = wx.EXPAND | wx.TE_MULTILINE, size = (-1, 150))
+text_out = wx.TextCtrl(panel_root, style = wx.EXPAND | wx.TE_MULTILINE, size = (-1, 150))
 # Текстовый виджет c выравниванием по центру, растянут по ширине.
 sizer_root.Add(text_out, flag = wx.EXPAND)
 # Текстовый виджет добавляется в корневой упаковщик.
 
 #=============================|Program_Window|==============================#
 
-frame_root.SetSize(frame_root.GetBestSize())
+frame_root.SetSize(panel_root.GetBestSize())
 # Окно подбирает оптимальный размер, для размещения всех виджетов.
 frame_root.Show()
 # Показать окно.
