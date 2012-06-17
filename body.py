@@ -31,6 +31,9 @@ from average import average
 from rsd import relstdev
 #Импорт функций создания списка случайных чисел и уменьшения RSD.
 
+from random import shuffle
+#Импорт функции перемешивания списков.
+
 def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosity):
 #Функция принимает строковые значения нижней и верхней границ интервала, количества чисел,
 #среднего значения, максимально допустимого RSD, количество знаков после запятой
@@ -131,12 +134,13 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
 #Если задано, ошибки переносятся в текст.
 
     if matrix != []:
+        shuffle(matrix)
         for i in fromzerotom:
                 text += to_text(matrix[i], rounding) + "\n"
         if m >= 0:
                 text += to_text(matrix[m], rounding)
-#Непустой список преобразуется в текст. Каждое число с красной строки.
-#Округление при необходимости.
+#Непустой список перемешивается и преобразуется в текст.
+#Каждое число с красной строки. Округление при необходимости.
     
     if not punctuation:
         text = text.replace(".", ",")
