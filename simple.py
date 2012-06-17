@@ -25,7 +25,7 @@
 
 #Функция создаёт список случайных чисел из определённого интервала.
 
-from random import uniform
+from randomwrapper import uniform
 #Импорт функции генерирования случайного числа.
 
 def rando(mini, maxi, fromzeroton):

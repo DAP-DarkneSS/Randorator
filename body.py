@@ -31,7 +31,7 @@ from average import average
 from rsd import relstdev
 #Импорт функций создания списка случайных чисел и уменьшения RSD.
 
-from random import shuffle
+from randomwrapper import shuffle
 #Импорт функции перемешивания списков.
 
 def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosity):

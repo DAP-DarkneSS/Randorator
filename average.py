@@ -25,7 +25,7 @@
 
 #Функция создаёт список случайных чисел из определённого интервала с заданным средним значением
 
-from random import triangular
+from randomwrapper import triangular
 #Импорт функции генерирования случайного числа, приближённого к заданному значению.
 
 def average(mini, maxi, n, mean, m, fromzerotom):
