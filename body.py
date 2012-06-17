@@ -51,12 +51,13 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
 #Функция принимает строковое значение и возвращает число с точкой или 0,
 #если строка пустая. Для обработки введённых данных.
 
-    def set_int_data(in_data, out_data):
-        if in_data != "":
-            try:
-                out_data = int(round(abs(punctu(in_data)), 0))
-            except TypeError:
-                pass
+    def set_int_data(in_data, fallback_d):
+        try:
+            out_data = int(round(abs(punctu(in_data)), 0))
+        except TypeError:
+            pass
+        if out_data == 0:
+            out_data = fallback_d
         return(out_data)
 #Функция принимает строковое значение и число, возвращает целое число
 #или второе число, если строка пустая. Для обработки введённых данных.
@@ -95,17 +96,14 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
 #Если при вводе были перепутаны границы, то они меняются местами.
 #Запись соответствующего сообщения об ошибке.
 
-    if n > 0:
-        if t_mean != "":
-            if (maxi > mean > mini):
-                matrix = average(mini, maxi, n, mean, m, fromzerotom)
-            else:
-                matrix = rando(mini, maxi, fromzeroton)
-                errorz.append(u"Среднее значение вне заданного диапазона!")
+    if t_mean != "":
+        if (maxi > mean > mini):
+            matrix = average(mini, maxi, n, mean, m, fromzerotom)
         else:
             matrix = rando(mini, maxi, fromzeroton)
+            errorz.append(u"Среднее значение вне заданного диапазона!")
     else:
-        errorz.append(u"Недопустимое количество чисел!")
+        matrix = rando(mini, maxi, fromzeroton)
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
 #Запись соответствующего сообщения об ошибке.
 
