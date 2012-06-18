@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#Указывается язык и кодировка.
+# Programming language and character encoding setting.
 
 #=================================|Copying|=================================#
 
@@ -21,4 +21,6 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with Randorator.  If not, see <http://www.gnu.org/licenses/>.
 
-# Заглушка для импорта из подкаталога.
+#===============================|Description|===============================#
+
+# Here it is a blank file to import modules from a subdirectory.

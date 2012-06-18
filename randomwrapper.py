@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Указывается язык и кодировка.
+# Programming language and character encoding setting.
 
 #=================================|Copying|=================================#
 
@@ -23,18 +23,29 @@
 
 #=================================|Import|==================================#
 
-# Вызывается модуль истинно случаных чисел, если http://www.random.org/
-# доступен, и квота не исчерпана. Иначе вызывается модуль псевдослучайных чисел.
+# Here it is a simple wrapper to use some random functions transparently.
 
 from urllib2 import urlopen
 from thirdparty.randomdotorg import RandomDotOrg
+# A site opening function and a true random generation module are imported.
 
-if (urlopen("http://www.random.org/").getcode() < 400) and (RandomDotOrg().get_quota() > 0):
+#=============================|Module_Wrapper|==============================#
+
+if (urlopen("http://www.random.org/").getcode() < 400) and (RandomDotOrg().get_quota() > 15):
     wrapper = RandomDotOrg()
+# If response of random.org is OK and if the site quota allows using it
+# the wrapper will became a synonym of the true random generation module.
+# randomdotorg is licenced under GPL3. The creator is Clovis Fabricio.
+# See more at http://code.google.com/p/randomdotorg/
+
 else:
     import random
     wrapper = random
-    
+# Else a pseudorandom generation module will be imported
+# and the wrapper will became it's synonym.
+
+#===========================|Functions_Wrappers|============================#
+
 def random():
     return(wrapper.random())
 
@@ -46,3 +57,4 @@ def triangular(mini, maxi, mean):
     
 def uniform(mini, maxi):
     return(wrapper.uniform(mini, maxi))
+# Some functions are wrapped.
