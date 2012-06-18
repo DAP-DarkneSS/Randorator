@@ -128,18 +128,19 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
 #Запись соответствующих сообщений об ошибке.
 
-    if verbosity:
+    if verbosity and (errorz != []):
         for i in xrange(len(errorz)):
             text += errorz[i] + "\n"
-#Если задано, ошибки переносятся в текст.
+#Если задано, и ошибки есть, они переносятся в текст.
 
     if matrix != []:
-        shuffle(matrix)
+        if len(matrix) > 2:
+            shuffle(matrix)
         for i in fromzerotom:
                 text += to_text(matrix[i], rounding) + "\n"
         if m >= 0:
                 text += to_text(matrix[m], rounding)
-#Непустой список перемешивается и преобразуется в текст.
+#Cписок c количеством элементов больше 3 перемешивается и преобразуется в текст.
 #Каждое число с красной строки. Округление при необходимости.
     
     if not punctuation:
