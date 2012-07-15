@@ -3,7 +3,7 @@
 Рандоратор — это продвинутый графический генератор случайных чисел. Программа создаёт заданное
 количество значений в определённом интервале. Дополнительно можно указать среднее значение полученных
 чисел, максимальное относительное стандартное отклонение и количество знаков для округления. Присутствует
-возможность выбора разделителя в выводимых числах и автоматического копирования в буфер обмена.
+возможность выбора десятичного разделителя и автоматического копирования в буфер обмена.
 
 Автор: https://github.com/DAP-DarkneSS 
 Код распространяется под GNU LESSER GENERAL PUBLIC LICENSE 3 и/или более поздней:
@@ -28,8 +28,8 @@ http://www.gnu.org/copyleft/lesser.html
 
 Randorator is an advanced graphical generator of random numbers. The program creates the specified
 number of values in a certain interval. Optionally, the average value of the received number,
-the maximum relative standard deviation and number of digits for rounding is able to specify. The
-possibility to automatically copy and select separator in the output numbers in the clipboard is present.
+the maximum relative standard deviation and number of digits for rounding is able to specify.
+There are possibilities to select decimal mark and to automatically copy in the clipboard.
 
 Author is https://github.com/DAP-DarkneSS
 The code is distributed under the GNU LESSER GENERAL PUBLIC LICENSE 3 and/or later:
