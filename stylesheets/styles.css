@@ -300,6 +300,14 @@ a.github {
 	background: url(../images/octocat-small.png) no-repeat 1px;
 }
 
+a.en {
+	background: url(../images/England-Flag.png) no-repeat 1px;
+}
+
+a.ru {
+	background: url(../images/Russia-Flag.png) no-repeat 1px;
+}
+
 a.buttons:hover {
 	color: #fff;
 	text-decoration: none;
