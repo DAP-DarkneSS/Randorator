@@ -57,7 +57,7 @@ def shuffle(matrix):
     return(wrapper.shuffle(matrix))
     
 def triangular(mini, maxi, mean):
-    return(triangular(mini, maxi, mean))
+    return(wrapper.triangular(mini, maxi, mean))
     
 def uniform(mini, maxi):
     return(wrapper.uniform(mini, maxi))
