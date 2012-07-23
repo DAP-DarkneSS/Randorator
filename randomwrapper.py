@@ -54,8 +54,8 @@ def checkthemall():
 
 #===========================|Functions_Wrappers|============================#
 
-def random():
-    return(checkthemall().random())
+#def random():
+    #return(checkthemall().random())
 
 def shuffle(matrix):
     return(checkthemall().shuffle(matrix))
