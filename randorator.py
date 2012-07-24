@@ -84,7 +84,7 @@ def button_fmake():
 #Функция для кнопки. Записывается без аргументов!
     text_out.delete(1.0, END)
 #Очистка текстового поля.
-    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get(), vcheck_verbosity.get())     
+    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get(), vcheck_verbosity.get(), vcheck_algorithm.get())     
     text_out.insert(END, text)
 #Передача внешней функции большинства параметров. Получение теста и передача его в поле.
     if vcheck_copy.get():

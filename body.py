@@ -38,7 +38,7 @@ from rsd import relstdev
 from randomwrapper import shuffle
 #Импорт функции перемешивания списков.
 
-def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosity):
+def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosity, algorithm):
 #Функция принимает строковые значения нижней и верхней границ интервала, количества чисел,
 #среднего значения, максимально допустимого RSD, количество знаков после запятой
 #и числовое значение, указывающее знак препинания в экспортируемых числах.
