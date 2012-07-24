@@ -135,7 +135,7 @@ vcheck_punctuation = MyVCheck(root, u'Числа с "." ("," по умолчан
 #Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
 vcheck_verbosity = MyVCheck(root, u'Сообщения об ошибках', 1)
 #Чекбокс для включения/выключения вывода сообщений об ошибках.
-#Активен – копировать.
+#Активен – выводить.
 
 text_out=ScrolledText(root, height = 9, width = 9)
 text_out.pack(side = BOTTOM, fill = BOTH)
