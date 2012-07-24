@@ -172,6 +172,7 @@ if __name__ == '__main__':
     rsd = my_input(u"Максимальное RSD в %:")
     punctu = my_input(u"Разделитель целой и дробной части (. или ,):")
     rounding = my_input(u"Количество цифер после запятой:")
+    algorithm = my_input(u"Истинно случайные числа через интернет, медленно (True[1]/False[0], 0 is default):")
 # Импорт параметров.
 
     punctuation = False
@@ -180,7 +181,7 @@ if __name__ == '__main__':
 # Обработка параметра разделителя.
 
     while True:
-        print u"\nСгенерировано:\n" + randorator(mini, maxi, n, mean, rsd, punctuation, rounding)
+        print u"\nСгенерировано:\n" + randorator(mini, maxi, n, mean, rsd, punctuation, rounding, True, algorithm)
 # Вход в бесконечный цикл, получение снегерированных данных.
 
         try:
