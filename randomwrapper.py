@@ -30,32 +30,43 @@
 # Here it is a simple wrapper to use some random functions transparently.
 
 from urllib2 import urlopen, URLError, HTTPError
-from thirdparty.randomdotorg import RandomDotOrg
-import random
-# A site opening function and true and pseudorandom random generation modules are imported.
+# A site opening function and exceptions are imported.
+
+def truerando():
+    from thirdparty.randomdotorg import RandomDotOrg
+    return(RandomDotOrg())
+def pseudorando():
+    import random
+    return(random)
+# There are functions to import true and pseudorandom generation modules.
 
 #=============================|Module_Wrapper|==============================#
 
 def checkthemall():
     try:
-        if (urlopen("http://www.random.org/", timeout = 0.02).getcode() < 400) and (RandomDotOrg().get_quota() > 15):
-            wrapper = RandomDotOrg()
-# If response of random.org is OK and if the site quota allows using it
+        if urlopen("http://www.random.org/", timeout = 0.03).getcode() < 400:
+            wrapper = truerando()
+# If response of random.org is OK
 # the wrapper will became a synonym of the true random generation module.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
 
-        else:
-            wrapper = random
+            if wrapper.get_quota() < 15:
+                wrapper = pseudorando()
+# If the site quota disallows using it the wrapper will
+# became a synonym of pseudorandom random generation module.
+
     except (URLError, HTTPError):
-        wrapper = random
+        wrapper = pseudorando()
+    print(str(wrapper) + u" was used.")
     return(wrapper)
 # Else the wrapper will became synonym of pseudorandom random generation module.
+# There is an announcement of the module was used.
 
 #===========================|Functions_Wrappers|============================#
 
-#def random():
-    #return(checkthemall().random())
+def random():
+    return(checkthemall().random())
 
 def shuffle(matrix):
     return(checkthemall().shuffle(matrix))
