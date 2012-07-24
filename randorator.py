@@ -136,6 +136,10 @@ vcheck_punctuation = MyVCheck(root, u'Числа с "." ("," по умолчан
 vcheck_verbosity = MyVCheck(root, u'Сообщения об ошибках', 1)
 #Чекбокс для включения/выключения вывода сообщений об ошибках.
 #Активен – выводить.
+vcheck_algorithm = MyVCheck(root, u'Истинно случайные числа\nчерез интернет, медленно', 0)
+# Here it is a checkbox to enable true random numbers generation.
+# randomdotorg is licenced under GPLv3 and/or any later. The creator is
+# Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
 
 text_out=ScrolledText(root, height = 9, width = 9)
 text_out.pack(side = BOTTOM, fill = BOTH)

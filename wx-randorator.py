@@ -166,6 +166,10 @@ check_punctu = MyCheckBox(panel_root, sizer_root, u'Числа с "." ("," по 
 check_verbosity = MyCheckBox(panel_root, sizer_root, u'Сообщения об ошибках', 1)
 # Чекбокс для включения/выключения вывода сообщений об ошибках.
 # Активен – выводить.
+check_algorithm = MyCheckBox(panel_root, sizer_root, u'Истинно случайные числа\nчерез интернет, медленно', 0)
+# Here it is a checkbox to enable true random numbers generation.
+# randomdotorg is licenced under GPLv3 and/or any later. The creator is
+# Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
 
 #============================|Text_Data_Output|=============================#
 
