@@ -29,7 +29,7 @@
 
 # Here it is a simple wrapper to use some random functions transparently.
 
-from urllib2 import urlopen, URLError
+from urllib2 import urlopen, URLError, HTTPError
 from thirdparty.randomdotorg import RandomDotOrg
 import random
 # A site opening function and true and pseudorandom random generation modules are imported.
@@ -47,7 +47,7 @@ def checkthemall():
 
         else:
             wrapper = random
-    except URLError:
+    except (URLError, HTTPError):
         wrapper = random
     return(wrapper)
 # Else the wrapper will became synonym of pseudorandom random generation module.
