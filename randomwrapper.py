@@ -44,7 +44,7 @@ def pseudorando():
 
 def checkthemall():
     try:
-        if urlopen("http://www.random.org/", timeout = 0.03).getcode() < 400:
+        if urlopen("http://www.random.org/", timeout = 0.3).getcode() < 400:
             wrapper = truerando()
 # If response of random.org is OK
 # the wrapper will became a synonym of the true random generation module.
