@@ -33,6 +33,8 @@ from ScrolledText import ScrolledText
 from body import randorator
 from platform import system
 #Загружается основной модуль программы и модуль определения операционной системы.
+from locale_ru import locale
+# Russian locale module is imported.
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
@@ -94,7 +96,7 @@ def button_fmake():
 
 root=Tk()
 #Создаётся окно приложения.
-root.title(u"Randorator")
+root.title(locale(u"ui_title"))
 #Задаётся заголовок.
 root.resizable(False, False)
 #Нельзя изменять размер окна.
@@ -108,35 +110,35 @@ if system().endswith("Windows"):
 #Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
 #http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
 
-label_title = Label(root, text = u"Продвинутый графический\nгенератор случайных чисел")
+label_title = Label(root, text = locale(u"ui_about"))
 label_title.pack()
 #Надпись с описанием программы.
 
-entry_mini = MyEntry(root, u"Минимум:")
-entry_maxi = MyEntry(root, u"Максимум:")
-entry_n = MyEntry(root, u"Количество:")
-entry_mean = MyEntry(root, u"Среднее:")
-entry_rsd = MyEntry(root, u"RSD, %:")
-entry_round = MyEntry(root, u"Округление:")
+entry_mini = MyEntry(root, locale(u"ui_minim"))
+entry_maxi = MyEntry(root, locale(u"ui_maxim"))
+entry_n = MyEntry(root, locale(u"ui_quant"))
+entry_mean = MyEntry(root, locale(u"ui_avera"))
+entry_rsd = MyEntry(root, locale(u"ui_rsd_p"))
+entry_round = MyEntry(root, locale(u"ui_round"))
 #Создаётся необходимое количество объектов класса элементов ввода.
 
 frame_buttonz = Frame(root)
 frame_buttonz.pack(side = TOP, fill = BOTH)
 #Рамка для кнопок. 
-button_make = MyButton(frame_buttonz, u"Генерировать!", button_fmake)
+button_make = MyButton(frame_buttonz, locale(u"ui_gen_b"), button_fmake)
 #Кнопка генерирования.
-button_exit = MyButton(frame_buttonz, u"Выход", root.destroy)
+button_exit = MyButton(frame_buttonz, locale(u"ui_exi_b"), root.destroy)
 #Кнопка выхода из приложения.
 
-vcheck_copy = MyVCheck(root, u"Автоматически копировать", 1)
+vcheck_copy = MyVCheck(root, locale(u"ui_clipb"), 1)
 #Чекбокс для включения/выключения автоматического копирования значений.
 #Активен – копировать.
-vcheck_punctuation = MyVCheck(root, u'Числа с "." ("," по умолчанию)', 0)
+vcheck_punctuation = MyVCheck(root, locale(u"ui_punct"), 0)
 #Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
-vcheck_verbosity = MyVCheck(root, u'Сообщения об ошибках', 1)
+vcheck_verbosity = MyVCheck(root, locale(u"ui_error"), 1)
 #Чекбокс для включения/выключения вывода сообщений об ошибках.
 #Активен – выводить.
-vcheck_algorithm = MyVCheck(root, u'Истинно случайные числа\nчерез интернет, медленно', 0)
+vcheck_algorithm = MyVCheck(root, locale(u"ui_truer"), 0)
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/

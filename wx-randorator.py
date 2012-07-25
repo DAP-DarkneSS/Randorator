@@ -32,6 +32,8 @@ from body import randorator
 # Загружается основной модуль программы и графическая библиотека.
 from os import path
 # Загрузка модуля получения пути файла.
+from locale_ru import locale
+# Russian locale module is imported.
 
 #===========================|Text_Control_Class|============================#
 
@@ -106,7 +108,7 @@ app_root = wx.App()
 
 frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX)
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
-frame_root.SetTitle('Randorator')
+frame_root.SetTitle(locale(u"ui_title"))
 # Задаётся заголовок окна.
 frame_root.SetIcon(wx.Icon(path.dirname(__file__) + '/randorator.ico', type = wx.BITMAP_TYPE_ICO))
 # Загружается иконка окна из папки с запускаемым файлом. Лицензия иконки:
@@ -129,7 +131,7 @@ panel_root.SetSizer(sizer_root, deleteOld=True)
 
 text_title = wx.StaticText(panel_root, style = wx.ALIGN_CENTER | wx.EXPAND)
 # Текстовый виджет c выравниванием по центру, растянут по ширине.
-text_title.SetLabel(u"Продвинутый графический\nгенератор случайных чисел")
+text_title.SetLabel(locale(u"ui_about"))
 # Задаётся текст виджета.
 
 sizer_root.Add(text_title, flag = wx.ALIGN_CENTER)
@@ -137,12 +139,12 @@ sizer_root.Add(text_title, flag = wx.ALIGN_CENTER)
 
 #=============================|Text_Data_Input|=============================#
 
-sizer_mini = MyTextCtrl(panel_root, sizer_root, u" Минимум:")
-sizer_maxi = MyTextCtrl(panel_root, sizer_root, u" Максимум:")
-sizer_n = MyTextCtrl(panel_root, sizer_root, u" Количество:")
-sizer_mean = MyTextCtrl(panel_root, sizer_root, u" Среднее:")
-sizer_rsd = MyTextCtrl(panel_root, sizer_root, u" RSD, %:")
-sizer_round = MyTextCtrl(panel_root, sizer_root, u" Округление:")
+sizer_mini = MyTextCtrl(panel_root, sizer_root, locale(u"ui_minim"))
+sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale(u"ui_maxim"))
+sizer_n = MyTextCtrl(panel_root, sizer_root, locale(u"ui_quant"))
+sizer_mean = MyTextCtrl(panel_root, sizer_root, locale(u"ui_avera"))
+sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale(u"ui_rsd_p"))
+sizer_round = MyTextCtrl(panel_root, sizer_root, locale(u"ui_round"))
 # Рисуются упаковщики с описаниями значений и полями ввода.
 
 #=================================|Buttons|=================================#
@@ -151,22 +153,22 @@ sizer_buttonz = wx.BoxSizer(wx.HORIZONTAL)
 sizer_root.Add(sizer_buttonz)
 # Создаётся упаковщик для кнопок и добавляется в корневой упаковщик.
 
-button_make = MyButton(panel_root, sizer_buttonz, u"Генерировать!", button_fmake)
+button_make = MyButton(panel_root, sizer_buttonz, locale(u"ui_gen_b"), button_fmake)
 # Кнопка запуска генерирования.
-button_exit = MyButton(panel_root, sizer_buttonz, u"Выход", button_fexit)
+button_exit = MyButton(panel_root, sizer_buttonz, locale(u"ui_exi_b"), button_fexit)
 # Кнопка выхода из приложения.
 
 #===============================|Check_Boxes|===============================#
 
-check_copy = MyCheckBox(panel_root, sizer_root, u"Автоматически копировать", 1)
+check_copy = MyCheckBox(panel_root, sizer_root, locale(u"ui_clipb"), 1)
 # Чекбокс для включения/выключения автоматического копирования значений.
 # Активен — копировать.
-check_punctu = MyCheckBox(panel_root, sizer_root, u'Числа с "." ("," по умолчанию)', 0)
+check_punctu = MyCheckBox(panel_root, sizer_root, locale(u"ui_punct"), 0)
 # Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
-check_verbosity = MyCheckBox(panel_root, sizer_root, u'Сообщения об ошибках', 1)
+check_verbosity = MyCheckBox(panel_root, sizer_root, locale(u"ui_error"), 1)
 # Чекбокс для включения/выключения вывода сообщений об ошибках.
 # Активен – выводить.
-check_algorithm = MyCheckBox(panel_root, sizer_root, u'Истинно случайные числа\nчерез интернет, медленно', 0)
+check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_truer"), 0)
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
