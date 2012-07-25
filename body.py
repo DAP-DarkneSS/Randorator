@@ -30,18 +30,21 @@
 #Основная функция. Производит выбор функции генерирования. Если требуется, применяют функцию
 #уменьшения относительного стандартного отклонения (RSD), округляет и заменяет точки на запятые.
 
-from simple import rando
-from average import average
-from rsd import relstdev
-#Импорт функций создания списка случайных чисел и уменьшения RSD.
-
-from randomwrapper import shuffle
-#Импорт функции перемешивания списков.
-
 def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosity, algorithm):
 #Функция принимает строковые значения нижней и верхней границ интервала, количества чисел,
 #среднего значения, максимально допустимого RSD, количество знаков после запятой
 #и числовое значение, указывающее знак препинания в экспортируемых числах.
+
+    from simple import rando
+    from average import average
+    from rsd import relstdev
+#Импорт функций создания списка случайных чисел и уменьшения RSD.
+
+    if algorithm:
+        from randomwrapper import shuffle
+    else:
+        from random import shuffle
+# Here it is an import of a list shuffling function from the chosen module.
 
     def punctu(txt):
         try:
