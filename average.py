@@ -29,12 +29,15 @@
 
 #Функция создаёт список случайных чисел из определённого интервала с заданным средним значением
 
-from randomwrapper import triangular
-#Импорт функции генерирования случайного числа, приближённого к заданному значению.
-
-def average(mini, maxi, n, mean, m, fromzerotom):
+def average(mini, maxi, n, mean, m, fromzerotom, algorithm):
 #Функция получает верхнюю и нижнюю границу интервала, количество чисел,
 #среднее значение и список, соответствующий количеству чисел -1.
+
+    if algorithm:
+        from randomwrapper import triangular
+    else:
+        from random import triangular
+#Импорт функции генерирования случайного числа, приближённого к заданному значению.
 
     matrix = []
     summ = mean * n

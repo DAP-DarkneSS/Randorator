@@ -108,12 +108,12 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
 
     if t_mean != "":
         if (maxi > mean > mini):
-            matrix = average(mini, maxi, n, mean, m, fromzerotom)
+            matrix = average(mini, maxi, n, mean, m, fromzerotom, algorithm)
         else:
-            matrix = rando(mini, maxi, fromzeroton)
+            matrix = rando(mini, maxi, fromzeroton, algorithm)
             errorz.append(u"Среднее значение вне заданного диапазона!")
     else:
-        matrix = rando(mini, maxi, fromzeroton)
+        matrix = rando(mini, maxi, fromzeroton, algorithm)
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
 #Запись соответствующего сообщения об ошибке.
 

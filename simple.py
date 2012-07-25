@@ -29,11 +29,14 @@
 
 #Функция создаёт список случайных чисел из определённого интервала.
 
-from randomwrapper import uniform
-#Импорт функции генерирования случайного числа.
-
-def rando(mini, maxi, fromzeroton):
+def rando(mini, maxi, fromzeroton, algorithm):
 #Функция получает верхнюю и нижнюю границу интервала и список, соответствующий количеству чисел.
+
+    if algorithm:
+        from randomwrapper import uniform
+    else:
+        from random import uniform
+#Импорт функции генерирования случайного числа.
 
     matrix = []
     for i in fromzeroton:
