@@ -10,7 +10,7 @@ http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ru
 
 Автор выражает благодарность
 * http://www.softicons.com/free-icons/designers/custom-icon-design
-за изображения флагов:
+за изображения флагов Англии и России:
  - Коммерческое использование запрещено.
 
 Сайт располагается на https://pages.github.com/ и использует тему Dinky.
@@ -26,7 +26,7 @@ http://creativecommons.org/licenses/by-nc-sa/3.0/
 
 Great thanks to
 * http://www.softicons.com/free-icons/designers/custom-icon-design
-for the flag icons;
+for the flag icons of England and Russia;
  - Commercial usage isn't allowed.
 
 The website is hosted on https://pages.github.com/ using the Dinky theme.
