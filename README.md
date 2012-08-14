@@ -12,6 +12,9 @@ http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ru
 * http://www.softicons.com/free-icons/designers/custom-icon-design
 за изображения флагов Англии и России:
  - Коммерческое использование запрещено.
+* http://www.softicons.com/free-icons/designers/aha-soft за иконку сайта;
+ - Файл распространяется под CC Attribution 3.0 United States:
+ - http://creativecommons.org/licenses/by/3.0/us/
 
 Сайт располагается на https://pages.github.com/ и использует тему Dinky.
 
@@ -28,5 +31,8 @@ Great thanks to
 * http://www.softicons.com/free-icons/designers/custom-icon-design
 for the flag icons of England and Russia;
  - Commercial usage isn't allowed.
+* http://www.softicons.com/free-icons/designers/aha-soft for the favicon;
+ - The file is distributed under the CC Attribution 3.0 United States:
+ - http://creativecommons.org/licenses/by/3.0/us/
 
 The website is hosted on https://pages.github.com/ using the Dinky theme.
