@@ -15,8 +15,10 @@ http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ru
 * http://www.softicons.com/free-icons/designers/aha-soft за иконку сайта;
  - Файл распространяется под CC Attribution 3.0 United States:
  - http://creativecommons.org/licenses/by/3.0/us/
+* https://github.com/broccolini за тему theme:
+https://github.com/broccolini/dinky сайта.
 
-Сайт располагается на https://pages.github.com/ и использует тему Dinky.
+Сайт располагается на https://pages.github.com
 
 #================|English|=================#
 
@@ -34,5 +36,7 @@ for the flag icons of England and Russia;
 * http://www.softicons.com/free-icons/designers/aha-soft for the favicon;
  - The file is distributed under the CC Attribution 3.0 United States:
  - http://creativecommons.org/licenses/by/3.0/us/
+* https://github.com/broccolini for the site theme:
+https://github.com/broccolini/dinky
 
-The website is hosted on https://pages.github.com/ using the Dinky theme.
+The website is hosted on https://pages.github.com
