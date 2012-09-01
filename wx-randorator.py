@@ -103,8 +103,8 @@ def button_fexit(event):
 
 #=============================|Program_Window|==============================#
 
-app_root = wx.App()
-# Инициация тулкита.
+app_root = wx.App(0)
+# Инициация тулкита. Zero to disable output window creating under windows.
 
 frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX)
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
