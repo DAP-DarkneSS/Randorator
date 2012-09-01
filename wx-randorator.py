@@ -110,7 +110,10 @@ frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | 
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
 frame_root.SetTitle(locale(u"ui_title"))
 # Задаётся заголовок окна.
-frame_root.SetIcon(wx.Icon(path.dirname(__file__) + '/randorator.ico', type = wx.BITMAP_TYPE_ICO))
+try:
+    frame_root.SetIcon(wx.Icon(path.dirname(__file__) + '/randorator.ico', type = wx.BITMAP_TYPE_ICO))
+except NameError:
+    frame_root.SetIcon(wx.Icon('randorator.ico', type = wx.BITMAP_TYPE_ICO))
 # Загружается иконка окна из папки с запускаемым файлом. Лицензия иконки:
 # CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
 # Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)

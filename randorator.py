@@ -103,7 +103,10 @@ root.resizable(False, False)
 if system().endswith("Windows"):
     from os import path
 #Загрузка модуля получения пути файла.
-    root.iconbitmap(default=path.dirname(__file__) + '/randorator.ico')
+    try:
+        root.iconbitmap(default=path.dirname(__file__) + '/randorator.ico')
+    except NameError:
+        root.iconbitmap(default='randorator.ico')
 #Для windows загружается иконка окна из папки с запускаемым файлом.
 #Под linux не работает. Лицензия иконки: CC Attribution 3.0 United States
 #(http://creativecommons.org/licenses/by/3.0/us/).
