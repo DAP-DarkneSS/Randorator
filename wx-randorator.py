@@ -32,6 +32,8 @@ from body import randorator
 # Загружается основной модуль программы и графическая библиотека.
 from os import path
 # Загрузка модуля получения пути файла.
+from platform import system
+# Module of defining the operaton system is loaded.
 from locale_ru import locale
 # Russian locale module is imported.
 
@@ -171,10 +173,15 @@ check_punctu = MyCheckBox(panel_root, sizer_root, locale(u"ui_punct"), 0)
 check_verbosity = MyCheckBox(panel_root, sizer_root, locale(u"ui_error"), 1)
 # Чекбокс для включения/выключения вывода сообщений об ошибках.
 # Активен – выводить.
-check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_truer"), 0)
+if system().endswith("Windows"):
+    check_algorithm = MyCheckBox(panel_root, sizer_root, u"Истинно случайные, медленно", 0)
+else:
+    check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_truer"), 0)
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
+# wx.CheckBox under windows doesn't suppoth the newline symbol:
+# see more at http://trac.wxwidgets.org/ticket/9495
 
 #============================|Text_Data_Output|=============================#
 
