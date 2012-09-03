@@ -30,17 +30,15 @@
 #Основная функция. Производит выбор функции генерирования. Если требуется, применяют функцию
 #уменьшения относительного стандартного отклонения (RSD), округляет и заменяет точки на запятые.
 
-def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosity, algorithm):
-#Функция принимает строковые значения нижней и верхней границ интервала, количества чисел,
-#среднего значения, максимально допустимого RSD, количество знаков после запятой
-#и числовое значение, указывающее знак препинания в экспортируемых числах.
+def randorator(dict_val):
+# The function gets the dictionary with input values.
 
     from simple import rando
     from average import average
     from rsd import relstdev
 #Импорт функций создания списка случайных чисел и уменьшения RSD.
 
-    if algorithm:
+    if dict_val["log_algor"]:
         from randomwrapper import shuffle
     else:
         from random import shuffle
@@ -88,12 +86,12 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
     matrix = []
     errorz = []
     text = ""
-    mini = set_float_data(t_mini)
-    maxi = set_float_data(t_maxi)
-    if (t_mean != ""):
-        mean = punctu(t_mean)
-    n = set_int_data(t_n, 1)
-    rounding = set_int_data(t_round, -1)
+    mini = set_float_data(dict_val["str_minim"])
+    maxi = set_float_data(dict_val["str_maxim"])
+    if (dict_val["str_avera"] != ""):
+        mean = punctu(dict_val["str_avera"])
+    n = set_int_data(dict_val["str_quant"], 1)
+    rounding = set_int_data(dict_val["str_round"], -1)
     m = n - 1
     fromzeroton = xrange(n)
     fromzerotom = xrange(m)
@@ -106,22 +104,22 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
 #Если при вводе были перепутаны границы, то они меняются местами.
 #Запись соответствующего сообщения об ошибке.
 
-    if t_mean != "":
+    if dict_val["str_avera"] != "":
         if (maxi > mean > mini):
-            matrix = average(mini, maxi, n, mean, m, fromzerotom, algorithm)
+            matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
         else:
-            matrix = rando(mini, maxi, fromzeroton, algorithm)
+            matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
             errorz.append(u"Среднее значение вне заданного диапазона!")
     else:
-        matrix = rando(mini, maxi, fromzeroton, algorithm)
+        matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
 #Запись соответствующего сообщения об ошибке.
 
-    if t_rsd != "":
+    if dict_val["str_rsd_p"] != "":
         if n > 1:
             if (mini * maxi >= 0):
-                rsd = punctu(t_rsd)
-                if t_mean == "":
+                rsd = punctu(dict_val["str_rsd_p"])
+                if dict_val["str_avera"] == "":
                     mean = sum(matrix) / n
                 if mean != 0:
                         if rsd > 0:
@@ -135,7 +133,7 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
 #Запись соответствующих сообщений об ошибке.
 
-    if verbosity and (errorz != []):
+    if dict_val["log_verbo"] and (errorz != []):
         for i in xrange(len(errorz)):
             text += errorz[i] + "\n"
 #Если задано, и ошибки есть, они переносятся в текст.
@@ -150,7 +148,7 @@ def randorator(t_mini, t_maxi, t_n, t_mean, t_rsd, punctuation, t_round, verbosi
 #Cписок c количеством элементов больше 3 перемешивается и преобразуется в текст.
 #Каждое число с красной строки. Округление при необходимости.
     
-    if not punctuation:
+    if not dict_val["log_punct"]:
         text = text.replace(".", ",")
 #Если требуется, то точки заменяются запятыми.
 
@@ -166,25 +164,36 @@ if __name__ == '__main__':
         print string
         return(raw_input())
 
+    dict_val = {
+    "str_minim": "",
+    "str_maxim": "",
+    "str_quant": "",
+    "str_avera": "",
+    "str_rsd_p": "",
+    "str_round": "",
+    "log_punct": False,
+    "log_verbo": True,
+    "log_algor": False}
+# Here it is a blank dictionary with almost all output values.
+        
     print u"Продвинутый графический генератор случайных чисел.\n"
     print u"Ввод параметров подтверждайте Enter, пустые параметры разрешены.\n"
-    mini = my_input(u"Минимально допустимое значение:")
-    maxi = my_input(u"Максимально допустимое значение:")
-    n = my_input(u"Количество генерируемых чисел:")
-    mean = my_input(u"Среднее значение:")
-    rsd = my_input(u"Максимальное RSD в %:")
+    dict_val["str_minim"] = my_input(u"Минимально допустимое значение:")
+    dict_val["str_maxim"] = my_input(u"Максимально допустимое значение:")
+    dict_val["str_quant"] = my_input(u"Количество генерируемых чисел:")
+    dict_val["str_avera"] = my_input(u"Среднее значение:")
+    dict_val["str_rsd_p"] = my_input(u"Максимальное RSD в %:")
     punctu = my_input(u"Разделитель целой и дробной части (. или ,):")
-    rounding = my_input(u"Количество цифер после запятой:")
+    dict_val["str_round"] = my_input(u"Количество цифер после запятой:")
     algorithm = my_input(u"Истинно случайные числа через интернет, медленно (True[1]/False[0], 0 is default):")
 # Импорт параметров.
 
-    punctuation = False
     if punctu == ".":
-        punctuation = True
+        dict_val["log_punct"] = True
 # Обработка параметра разделителя.
 
     while True:
-        print u"\nСгенерировано:\n" + randorator(mini, maxi, n, mean, rsd, punctuation, rounding, True, algorithm)
+        print u"\nСгенерировано:\n" + randorator(dict_val)
 # Вход в бесконечный цикл, получение снегерированных данных.
 
         try:

@@ -84,8 +84,19 @@ class MyButton:
 
 def button_fmake(event):
 # Функция для кнопки генерации. Записывается с аргументом события.
-    text = randorator(sizer_mini.GetValue(), sizer_maxi.GetValue(), sizer_n.GetValue(), sizer_mean.GetValue(), sizer_rsd.GetValue(), check_punctu.IsChecked(), sizer_round.GetValue(), check_verbosity.IsChecked(), check_algorithm.IsChecked())
-# Передача внешней функции большинства параметров и получение теста.
+    dict_val = {
+    "str_minim": sizer_mini.GetValue(),
+    "str_maxim": sizer_maxi.GetValue(),
+    "str_quant": sizer_n.GetValue(),
+    "str_avera": sizer_mean.GetValue(),
+    "str_rsd_p": sizer_rsd.GetValue(),
+    "str_round": sizer_round.GetValue(),
+    "log_punct": check_punctu.IsChecked(),
+    "log_verbo": check_verbosity.IsChecked(),
+    "log_algor": check_algorithm.IsChecked()}
+# Here it is a dictionary with almost all output values.
+    text = randorator(dict_val)
+# The output dictionary is transfered to the external function to get text back.
     text_out.SetValue(text)
 # Запись текста в поле.
     if check_copy.IsChecked():

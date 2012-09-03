@@ -86,9 +86,21 @@ def button_fmake():
 #Функция для кнопки. Записывается без аргументов!
     text_out.delete(1.0, END)
 #Очистка текстового поля.
-    text = randorator(entry_mini.get(), entry_maxi.get(), entry_n.get(), entry_mean.get(), entry_rsd.get(), vcheck_punctuation.get(), entry_round.get(), vcheck_verbosity.get(), vcheck_algorithm.get())     
+    dict_val = {
+    "str_minim": entry_mini.get(),
+    "str_maxim": entry_maxi.get(),
+    "str_quant": entry_n.get(),
+    "str_avera": entry_mean.get(),
+    "str_rsd_p": entry_rsd.get(),
+    "str_round": entry_round.get(),
+    "log_punct": vcheck_punctuation.get(),
+    "log_verbo": vcheck_verbosity.get(),
+    "log_algor": vcheck_algorithm.get()}
+# Here it is a dictionary with almost all output values.
+    text = randorator(dict_val)
+# The output dictionary is transfered to the external function to get text back.
     text_out.insert(END, text)
-#Передача внешней функции большинства параметров. Получение теста и передача его в поле.
+# The text is put into the field.
     if vcheck_copy.get():
         root.clipboard_clear()
         root.clipboard_append(text)
