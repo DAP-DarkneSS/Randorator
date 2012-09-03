@@ -190,7 +190,9 @@ if __name__ == '__main__':
 
     if punctu == ".":
         dict_val["log_punct"] = True
-# Обработка параметра разделителя.
+    if (algorithm == "True") or (algorithm == "1"):
+        dict_val["log_algor"] = True
+# Logical data are refined.
 
     while True:
         print u"\nСгенерировано:\n" + randorator(dict_val)
