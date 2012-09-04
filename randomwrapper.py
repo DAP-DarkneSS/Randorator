@@ -51,7 +51,11 @@ def checkthemall():
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
 
-            if wrapper.get_quota() < 15:
+            rorg_quota = wrapper.get_quota()
+            print(str(rorg_quota) + u" of random.org quota left over.")
+# Here it is an announcement of the random.org quota left over.
+
+            if rorg_quota < 90:
                 wrapper = pseudorando()
 # If the site quota disallows using it the wrapper will
 # became a synonym of pseudorandom random generation module.
