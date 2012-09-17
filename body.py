@@ -100,6 +100,8 @@ def randorator(dict_val):
     from average import average
     from rsd import relstdev
 #Импорт функций создания списка случайных чисел и уменьшения RSD.
+    from math import log
+# Logarithm counting module is loaded.
 
     if dict_val["log_algor"]:
         from randomwrapper import shuffle
@@ -196,6 +198,37 @@ def randorator(dict_val):
             errorz.append(u"RSD не может быть рассчитано менее чем для двух чисел!")
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
 #Запись соответствующих сообщений об ошибке.
+
+    if not (mini == maxi == 0):
+        mini = abs(mini)
+        maxi = abs(maxi)
+        if mini > maxi:
+            maxi, mini = mini, maxi
+        if mini == 0:
+            mini = maxi / 10
+        elif maxi == 0:
+            maxi = mini * 10
+# Logarithm of nonpositive numbers couldn't be calculated!
+
+        log_mini = log(mini, 10)
+        if (log_mini > 11) or (log(maxi, 10) < -4):
+            if rounding != -1:
+                errorz.append(u"Округление больших и маленьких чисел не поддерживается!")
+                rounding = -1
+# Rounding of small and big numbers doesn't work.
+
+        else:
+            round_max = (-1 * log_mini) + 11
+            if rounding > round_max:
+                rounding = int(round_max)
+                errorz.append(u"Не более " + str(rounding) + u" цифер после запятой!")
+# If rounding is set more than the maximum value
+# that could be applied the rounding is truncated.
+
+    else:
+        errorz.append(u"Кого бы поделить на ноль?")
+        rounding = 0
+# Here it is an easter egg ^,,^
 
     if dict_val["log_verbo"] and (errorz != []):
         for i in xrange(len(errorz)):
