@@ -60,7 +60,9 @@ def checkthemall():
 # If the site quota disallows using it the wrapper will
 # became a synonym of pseudorandom random generation module.
 
-    except (URLError, HTTPError):
+    except (URLError, HTTPError, ValueError):
+# URLError and HTTPError are Internet connection errors.
+# ValueError is generated when random.org is substituted by another site.
         wrapper = pseudorando()
     print(str(wrapper) + u" was used.")
     return(wrapper)
