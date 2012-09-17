@@ -30,8 +30,9 @@
 from Tkinter import *
 from ScrolledText import ScrolledText
 #Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
-from body import randorator, check_windows
+from body import randorator, check_icon, check_windows
 # Program kernel module is loaded.
+# Program icon existence checking module is loaded.
 # Windows platform checking module is loaded.
 from locale_ru import locale
 # Russian locale module is imported.
@@ -116,17 +117,11 @@ root.title(locale(u"ui_title"))
 root.resizable(False, False)
 #Нельзя изменять размер окна.
 if windows:
-    from os import path
-#Загрузка модуля получения пути файла.
-    try:
-        root.iconbitmap(default=path.dirname(__file__) + '/randorator.ico')
-    except NameError:
-        root.iconbitmap(default='randorator.ico')
-#Для windows загружается иконка окна из папки с запускаемым файлом.
-#Под linux не работает. Лицензия иконки: CC Attribution 3.0 United States
-#(http://creativecommons.org/licenses/by/3.0/us/).
-#Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
-#http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
+    window_icon = check_icon()
+    if window_icon != "":
+        root.iconbitmap(default = window_icon)
+# Window icon is loaded if the program is run under windows.
+# It doesn't work for linux.
 
 label_title = Label(root, text = locale(u"ui_about"))
 label_title.pack()

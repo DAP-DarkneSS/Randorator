@@ -28,11 +28,10 @@
 #=================================|Import|==================================#
 
 import wx
-from body import randorator, check_windows
+from body import randorator, check_icon, check_windows
 # Загружается основной модуль программы и графическая библиотека.
+# Program icon existence checking module is loaded.
 # Windows platform checking module is loaded.
-from os import path
-# Загрузка модуля получения пути файла.
 from locale_ru import locale
 # Russian locale module is imported.
 
@@ -125,14 +124,10 @@ frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | 
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
 frame_root.SetTitle(locale(u"ui_title"))
 # Задаётся заголовок окна.
-try:
-    frame_root.SetIcon(wx.Icon(path.dirname(__file__) + '/randorator.ico', type = wx.BITMAP_TYPE_ICO))
-except NameError:
-    frame_root.SetIcon(wx.Icon('randorator.ico', type = wx.BITMAP_TYPE_ICO))
-# Загружается иконка окна из папки с запускаемым файлом. Лицензия иконки:
-# CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
-# Автор — Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
-# http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
+window_icon = check_icon()
+if window_icon != "":
+    frame_root.SetIcon(wx.Icon(window_icon, type = wx.BITMAP_TYPE_ICO))
+# Window icon is loaded.
 
 panel_root = wx.Panel(frame_root, style = wx.TAB_TRAVERSAL)
 # На корневой фрейм добавляется корневая панель,

@@ -25,6 +25,47 @@
 
 # You could contact me with e-mail or jabber dap.darkness@gmail.com
 
+#==================================|Icon|===================================#
+
+# Here it is a function to find the icon file location.
+
+def check_icon():
+
+    from os import path
+# A module to get file path is loaded.
+
+    icon_file = u"randorator.ico"
+    a_icofile = path.dirname(__file__) + u'/' + icon_file
+# There are variants of the icon file location. The icon is licenced under
+# CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
+# The author is Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
+# http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
+
+    def brute_icon(icon_file):
+        try:
+            if open(icon_file):
+                bi_output = True
+        except (IOError, NameError):
+            bi_output = False
+        return(bi_output)
+# Here it is a subfunction to check the icon file existence.
+
+    if brute_icon(icon_file):
+        ci_output = icon_file
+    elif brute_icon(a_icofile):
+        ci_output = a_icofile
+    else:
+        ci_output = ""
+# The correct icon file location is searched.
+
+    if ci_output != "":
+        print(ci_output + u" was loaded.")
+    else:
+        print(u"Icon file wasn't found :(")
+# Here it is an announcement of icon file search result.
+
+    return(ci_output)
+
 #=================================|Windows|=================================#
 
 # Here it is a function to check if the program is run under windows.
