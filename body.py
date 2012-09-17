@@ -123,11 +123,12 @@ def randorator(dict_val):
 #если строка пустая. Для обработки введённых данных.
 
     def set_int_data(in_data, fallback_d):
-        try:
-            out_data = int(round(abs(punctu(in_data)), 0))
-        except TypeError:
-            pass
-        if (out_data == 0) and (fallback_d == 1):
+        if in_data != "":
+            try:
+                out_data = int(round(abs(punctu(in_data)), 0))
+            except TypeError:
+                pass
+        else:
             out_data = fallback_d
         return(out_data)
 #Функция принимает строковое значение и число, возвращает целое число

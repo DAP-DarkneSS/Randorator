@@ -200,7 +200,12 @@ sizer_root.Add(text_out, flag = wx.EXPAND)
 
 #=============================|Program_Window|==============================#
 
-frame_root.SetSize(panel_root.GetBestSize())
+window_size = panel_root.GetBestSize()
+if windows:
+    window_size[0] += ((235 - 230) + 1)
+    window_size[1] += ((400 - 377) + 1)
+# Size should be enlaged to fix wx/windows bug.
+frame_root.SetSize(window_size)
 # Окно подбирает оптимальный размер, для размещения всех виджетов.
 frame_root.Show()
 # Показать окно.
