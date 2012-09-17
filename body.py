@@ -25,7 +25,29 @@
 
 # You could contact me with e-mail or jabber dap.darkness@gmail.com
 
-#=================================|Import|==================================#
+#=================================|Windows|=================================#
+
+# Here it is a function to check if the program is run under windows.
+
+def check_windows():
+
+    from platform import system
+# A module of defining the operation system is loaded.
+
+    system_name = system()
+    print('Beam me up, "' + system_name + '"!')
+# Here it is an announcement of the system name.
+
+    if system_name.endswith("Windows"):
+        cw_output = True
+    else:
+        cw_output = False
+# The function will return True if the program is run under windows.
+# Or False — if not.
+
+    return(cw_output)
+
+#=================================|Kernel|==================================#
 
 #Основная функция. Производит выбор функции генерирования. Если требуется, применяют функцию
 #уменьшения относительного стандартного отклонения (RSD), округляет и заменяет точки на запятые.

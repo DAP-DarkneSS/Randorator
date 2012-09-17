@@ -28,14 +28,16 @@
 #=================================|Import|==================================#
 
 import wx
-from body import randorator
+from body import randorator, check_windows
 # Загружается основной модуль программы и графическая библиотека.
+# Windows platform checking module is loaded.
 from os import path
 # Загрузка модуля получения пути файла.
-from platform import system
-# Module of defining the operaton system is loaded.
 from locale_ru import locale
 # Russian locale module is imported.
+
+windows = check_windows()
+# Here it is a value to check if the program is run under windows.
 
 #===========================|Text_Control_Class|============================#
 
@@ -184,7 +186,7 @@ check_punctu = MyCheckBox(panel_root, sizer_root, locale(u"ui_punct"), 0)
 check_verbosity = MyCheckBox(panel_root, sizer_root, locale(u"ui_error"), 1)
 # Чекбокс для включения/выключения вывода сообщений об ошибках.
 # Активен – выводить.
-if system().endswith("Windows"):
+if windows:
     check_algorithm = MyCheckBox(panel_root, sizer_root, u"Истинно случайные, медленно", 0)
 else:
     check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_truer"), 0)

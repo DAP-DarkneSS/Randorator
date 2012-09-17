@@ -30,11 +30,14 @@
 from Tkinter import *
 from ScrolledText import ScrolledText
 #Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
-from body import randorator
-from platform import system
-#Загружается основной модуль программы и модуль определения операционной системы.
+from body import randorator, check_windows
+# Program kernel module is loaded.
+# Windows platform checking module is loaded.
 from locale_ru import locale
 # Russian locale module is imported.
+
+windows = check_windows()
+# Here it is a value to check if the program is run under windows.
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
@@ -112,7 +115,7 @@ root.title(locale(u"ui_title"))
 #Задаётся заголовок.
 root.resizable(False, False)
 #Нельзя изменять размер окна.
-if system().endswith("Windows"):
+if windows:
     from os import path
 #Загрузка модуля получения пути файла.
     try:
