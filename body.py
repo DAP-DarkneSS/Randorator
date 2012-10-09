@@ -149,6 +149,11 @@ def randorator(dict_val):
 #Число преобразуется в строку, если необходимо, округляется с добавлением нулей.
 #У числа, округлённого до целой части, отбрасывается ".0".
 
+    def mean_count(mean_old, quantiny, number_to_count):
+        return ((mean_old * quantiny - number_to_count) / (quantiny - 1))
+# Here it is a function to correct the mean value
+# when a number is set to be included to the output.
+
     matrix = []
     errorz = []
     text = ""
@@ -157,6 +162,17 @@ def randorator(dict_val):
     if (dict_val["str_avera"] != ""):
         mean = punctu(dict_val["str_avera"])
     n = set_int_data(dict_val["str_quant"], 1)
+    if dict_val["log_min_v"]:
+        if (dict_val["str_avera"] != "") and (n > 1):
+            mean = mean_count(mean, n, mini)
+        n -= 1
+    if dict_val["log_max_v"]:
+        if (dict_val["str_avera"] != "") and (n > 1):
+            mean = mean_count(mean, n, maxi)
+        n -= 1
+# The numbers quantity and the mean value will be fixed
+# when maximum or minimum is set to be included to the output.
+
     rounding = set_int_data(dict_val["str_round"], -1)
     m = n - 1
     fromzeroton = xrange(n)
@@ -182,22 +198,34 @@ def randorator(dict_val):
 #Запись соответствующего сообщения об ошибке.
 
     if dict_val["str_rsd_p"] != "":
-        if n > 1:
-            if (mini * maxi >= 0):
-                rsd = punctu(dict_val["str_rsd_p"])
-                if dict_val["str_avera"] == "":
-                    mean = sum(matrix) / n
-                if mean != 0:
-                        if rsd > 0:
-                            matrix = relstdev(matrix, n, mean, rsd, fromzeroton)
-                        else:
-                            errorz.append(u"RSD должно быть больше 0!")
+        if (not dict_val["log_max_v"]) and (not dict_val["log_min_v"]):
+# RSD adjustment with maximum or minimum included to the output isn't implemented.
+
+            if n > 1:
+                if (mini * maxi >= 0):
+                    rsd = punctu(dict_val["str_rsd_p"])
+                    if dict_val["str_avera"] == "":
+                        mean = sum(matrix) / n
+                    if mean != 0:
+                            if rsd > 0:
+                                matrix = relstdev(matrix, n, mean, rsd, fromzeroton)
+                            else:
+                                errorz.append(u"RSD должно быть больше 0!")
+                else:
+                    errorz.append(u"RSD не может быть рассчитано для интервала, включающего 0!")
             else:
-                errorz.append(u"RSD не может быть рассчитано для интервала, включающего 0!")
+                errorz.append(u"RSD не может быть рассчитано менее чем для двух чисел!")
+
         else:
-            errorz.append(u"RSD не может быть рассчитано менее чем для двух чисел!")
+            errorz.append(u"Оптимизация по RSD отключена при добавлении границы интервала!")
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
 #Запись соответствующих сообщений об ошибке.
+
+    if dict_val["log_min_v"]:
+        matrix.append(mini)
+    if dict_val["log_max_v"]:
+        matrix.append(maxi)
+# Selected numbers are included to the output.
 
     if not (mini == maxi == 0):
         mini = abs(mini)
@@ -236,7 +264,12 @@ def randorator(dict_val):
 #Если задано, и ошибки есть, они переносятся в текст.
 
     if matrix != []:
-        if len(matrix) > 2:
+        n = len(matrix)
+        m = n - 1
+        fromzerotom = xrange(m)
+# Proper values are restored.
+
+        if n > 2:
             shuffle(matrix)
         for i in fromzerotom:
                 text += to_text(matrix[i], rounding) + "\n"
