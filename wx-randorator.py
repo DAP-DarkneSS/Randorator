@@ -41,20 +41,39 @@ windows = check_windows()
 #===========================|Text_Control_Class|============================#
 
 class MyTextCtrl:
-    def __init__(self, place_frame, place_sizer, string_class):
+    def __init__(self, place_frame, place_sizer, string_class, choise_class = False):
 # Принимается frame прикрепления виджета, sizer упаковки и текст надписи.
+# A string value to add a combobox could be also inputed.
+
+        if choise_class:
+            x_box = 45
+        else:
+            x_box = 0
+        x_text = 130 - x_box
+# The text widget width will be fixed if a combobox is enabled.
         self.sizer_class = wx.BoxSizer(wx.HORIZONTAL)
         place_sizer.Add(self.sizer_class)
 # Создаётся упаковщик с горизонтальным порядком заполнения и добавляется в переданный упаковщик.
-        self.text_class = wx.StaticText(place_frame, label = string_class, size = (130, -1))
+        self.text_class = wx.StaticText(place_frame, label = string_class, size = (x_text, -1))
+        if choise_class:
+            self.box_class = wx.Choice(place_frame, size = (x_box, -1), choices = choise_class)
         self.control_class = wx.TextCtrl(place_frame, size = (100, -1))
 # Описание значения и поле ввода.
         self.sizer_class.Add(self.text_class, flag = wx.ALIGN_CENTER_VERTICAL)
+        if choise_class:
+            self.sizer_class.Add(self.box_class)
+# The combobox widget will be added if it is set.
         self.sizer_class.Add(self.control_class)
 # Описание (с выравниванием по вертикали) и поле упаковываются в соответствующий упаковщик.
     def GetValue(self):
         return(self.control_class.GetValue())
 # Метод передаётся от чекбокса объекту описываемого класса.
+    def GetCurrentSelection(self):
+        if self.box_class.GetCurrentSelection() == 1:
+            return(True)
+        else:
+            return(False)
+# Here it is a method to get user decision from a combobox as a logical value.
 
 #=============================|Check_Box_Class|=============================#
 

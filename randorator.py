@@ -30,6 +30,8 @@
 from Tkinter import *
 from ScrolledText import ScrolledText
 #Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
+from ttk import Combobox
+# Combobox widget module is loaded.
 from body import randorator, check_icon, check_windows
 # Program kernel module is loaded.
 # Program icon existence checking module is loaded.
@@ -42,8 +44,10 @@ windows = check_windows()
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
-    def __init__(self, place_class, string_class):
+    def __init__(self, place_class, string_class, choise_class = False):
 #При создании принимается место прикрепления виджета и строковое значение для надписи.
+# A string value to add a combobox could be also inputed.
+
         self.frame_class = Frame(place_class)
         self.frame_class.pack(side = TOP, fill = BOTH)
 #Внутри – рамка для виджетов, растягивается по ширине окна.
@@ -53,9 +57,19 @@ class MyEntry:
         self.entry_class = Entry(self.frame_class, width = 15)
         self.entry_class.pack(side = RIGHT)
 #И элементы для ввода значений шириной в 15 знаков выровнены по правому краю.
+        if choise_class:
+            self.box_class = Combobox(self.frame_class, values = choise_class, width = 2)
+            self.box_class.pack(side = RIGHT)
+# The combobox widget will be added if it is set.g
     def get(self):
         return(self.entry_class.get())
 #Метод .get() передаётся от элемента для ввода объекту описываемого класса.
+    def getbox(self):
+        if self.box_class.get() == "+":
+            return(True)
+        else:
+            return(False)
+# Here it is a method to get user decision from a combobox as a logical value.
 
 class MyVCheck:
 #Класс для улучшения читаемости кода однотипных элементов чекбоксов.
