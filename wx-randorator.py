@@ -113,7 +113,9 @@ def button_fmake(event):
     "str_round": sizer_round.GetValue(),
     "log_punct": check_punctu.IsChecked(),
     "log_verbo": check_verbosity.IsChecked(),
-    "log_algor": check_algorithm.IsChecked()}
+    "log_algor": check_algorithm.IsChecked(),
+    "log_min_v": sizer_mini.GetCurrentSelection(),
+    "log_max_v": sizer_maxi.GetCurrentSelection()}
 # Here it is a dictionary with almost all output values.
     text = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
@@ -171,8 +173,8 @@ sizer_root.Add(text_title, flag = wx.ALIGN_CENTER)
 
 #=============================|Text_Data_Input|=============================#
 
-sizer_mini = MyTextCtrl(panel_root, sizer_root, locale(u"ui_minim"))
-sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale(u"ui_maxim"))
+sizer_mini = MyTextCtrl(panel_root, sizer_root, locale(u"ui_minim"), ["", "+"])
+sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale(u"ui_maxim"), ["", "+"])
 sizer_n = MyTextCtrl(panel_root, sizer_root, locale(u"ui_quant"))
 sizer_mean = MyTextCtrl(panel_root, sizer_root, locale(u"ui_avera"))
 sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale(u"ui_rsd_p"))

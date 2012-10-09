@@ -113,7 +113,9 @@ def button_fmake():
     "str_round": entry_round.get(),
     "log_punct": vcheck_punctuation.get(),
     "log_verbo": vcheck_verbosity.get(),
-    "log_algor": vcheck_algorithm.get()}
+    "log_algor": vcheck_algorithm.get(),
+    "log_min_v": entry_mini.getbox(),
+    "log_max_v": entry_maxi.getbox()}
 # Here it is a dictionary with almost all output values.
     text = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
@@ -141,8 +143,8 @@ label_title = Label(root, text = locale(u"ui_about"))
 label_title.pack()
 #Надпись с описанием программы.
 
-entry_mini = MyEntry(root, locale(u"ui_minim"))
-entry_maxi = MyEntry(root, locale(u"ui_maxim"))
+entry_mini = MyEntry(root, locale(u"ui_minim"), ["", "+"])
+entry_maxi = MyEntry(root, locale(u"ui_maxim"), ["", "+"])
 entry_n = MyEntry(root, locale(u"ui_quant"))
 entry_mean = MyEntry(root, locale(u"ui_avera"))
 entry_rsd = MyEntry(root, locale(u"ui_rsd_p"))

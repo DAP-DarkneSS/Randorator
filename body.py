@@ -270,7 +270,9 @@ if __name__ == '__main__':
     "str_round": "",
     "log_punct": False,
     "log_verbo": True,
-    "log_algor": False}
+    "log_algor": False,
+    "log_min_v": False,
+    "log_max_v": False}
 # Here it is a blank dictionary with almost all output values.
         
     print u"Продвинутый графический генератор случайных чисел.\n"
