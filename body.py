@@ -189,11 +189,17 @@ def randorator(dict_val):
     if dict_val["str_avera"] != "":
         if (maxi > mean > mini):
             matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
+            average_used = True
+            print(u"Average value was selected and randorated.")
         else:
             matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
             errorz.append(u"Среднее значение вне заданного диапазона!")
+            average_used = False
+            print(u"Average value was selected but couldn't be randorated.")
     else:
         matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
+        average_used = False
+        print(u"Average value wasn't selected.")
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
 #Запись соответствующего сообщения об ошибке.
 
@@ -204,7 +210,7 @@ def randorator(dict_val):
             if n > 1:
                 if (mini * maxi >= 0):
                     rsd = punctu(dict_val["str_rsd_p"])
-                    if dict_val["str_avera"] == "":
+                    if not average_used:
                         mean = sum(matrix) / n
                     if mean != 0:
                             if rsd > 0:
