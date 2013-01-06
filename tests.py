@@ -1,0 +1,170 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Programming language and character encoding setting.
+
+#=================================|Copying|=================================#
+
+# Randorator is an advanced graphical generator of random numbers.
+# Copyright (C) 2011-2012 Dmitriy A. Perlow <dap.darkness@gmail.com>
+
+# This file is part of Randorator.
+
+# Randorator is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 2.1 of the License, or
+# (at your option) any later version.
+
+# Randorator is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License
+# along with Randorator.  If not, see
+# <http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html>.
+
+# You could contact me with e-mail or jabber dap.darkness@gmail.com
+
+#=================================|Import|==================================#
+
+# The are some tests to prevent some known bugs.
+
+from body import randorator
+# A program kernel function is imported.
+
+#=================================|Global|==================================#
+
+dict_def = {
+"str_minim": "0",
+"str_maxim": "9",
+"str_quant": "5",
+"str_avera": "",
+"str_rsd_p": "",
+"str_round": "",
+"log_punct": True,
+"log_verbo": True,
+"log_algor": False,
+"log_min_v": False,
+"log_max_v": False}
+# Default values are set.
+
+tests = []
+# A blank tests list is created.
+
+#=================================|Test_1|==================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/1
+
+def test_1():
+    print u"Test #1: not (min < mean < max)."
+    
+    dict_1 = dict(dict_def)
+# The dictionary is truly copied.
+    dict_1["str_minim"] = "0"
+    dict_1["str_maxim"] = "1"
+    dict_1["str_avera"] = "2"
+
+    print randorator(dict_1)
+
+tests.append(test_1)
+
+#=================================|Test_4|==================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/4
+
+def test_4():
+    print u"Test #4: (mean = 0) and (rsd != Nill)."
+    
+    dict_4 = dict(dict_def)
+    dict_4["str_minim"] = "-1"
+    dict_4["str_maxim"] = "1"
+    dict_4["str_avera"] = "0"
+    dict_4["str_rsd_p"] = "1"
+
+    print randorator(dict_4)
+
+tests.append(test_4)
+
+#=================================|Test_12|=================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/12
+
+def test_12():
+    print u"Test #12 (at least one number should be generated): n = Nill."
+    
+    dict_12 = dict(dict_def)
+    dict_12["str_quant"] = ""
+
+    print randorator(dict_12)
+
+tests.append(test_12)
+
+#=================================|Test_24|=================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/24
+
+def test_24():
+    print u"Test #24 (zero rounding must work): rounding = 0."
+    
+    dict_24 = dict(dict_def)
+    dict_24["str_round"] = "0"
+
+    print randorator(dict_24)
+
+tests.append(test_24)
+
+#=================================|Test_25|=================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/25
+
+def test_25():
+    print u"Test #25 (rounding should be limited): rounding = 20."
+    
+    dict_25 = dict(dict_def)
+    dict_25["str_minim"] = "0"
+    dict_25["str_maxim"] = "1"
+    dict_25["str_round"] = "20"
+
+    print randorator(dict_25)
+
+tests.append(test_25)
+
+#=================================|Test_29|=================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/29
+
+def test_29():
+    print u"Test #29 (no rounding by default): rounding = Nill."
+    
+    dict_29 = dict(dict_def)
+    dict_29["str_round"] = ""
+
+    print randorator(dict_29)
+
+tests.append(test_29)
+
+#=================================|Test_30|=================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/30
+
+def test_30():
+    print u"Test #30: (not min < mean < max) and (n > 1) and (rsd != Nill)."
+    
+    dict_30 = dict(dict_def)
+    dict_30["str_minim"] = "0"
+    dict_30["str_maxim"] = "1"
+    dict_30["str_avera"] = "1"
+    dict_30["str_rsd_p"] = "1"
+
+    print randorator(dict_30)
+
+tests.append(test_30)
+
+#================================|Direct_Run|===============================#
+
+if __name__ == '__main__':
+    print u"Testing...\n-------\n"
+    for test in tests:
+        test()
+        print u"-------\n"
+# All tests will be run if this file is directly executed.
