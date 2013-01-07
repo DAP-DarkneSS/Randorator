@@ -59,5 +59,9 @@ def relstdev(matrix, n, mean, referance, fromzeroton):
 #число по позиции с минимальным значением увеличивается на инкремент.
 #Возвращение в начала цикла.
 
-    return(matrix)
-#Возврат списка.
+    dict_out = {
+    "lst_matrix": matrix,
+    "num_rsd_q": rsd}
+
+    return(dict_out)
+# Dictionary with numbers list and rsd value is created and returned.

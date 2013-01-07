@@ -214,16 +214,22 @@ def randorator(dict_val):
                         mean = sum(matrix) / n
                     if mean != 0:
                             if rsd > 0:
-                                matrix = relstdev(matrix, n, mean, rsd, fromzeroton)
+                                dict_rsd = relstdev(matrix, n, mean, rsd, fromzeroton)
+                                print(u"RSD value was selected and randorated.")
+                                matrix = dict_rsd["lst_matrix"]
                             else:
                                 errorz.append(u"RSD должно быть больше 0!")
+                                print(u"RSD value was selected but couldn't be randorated.")
                 else:
                     errorz.append(u"RSD не может быть рассчитано для интервала, включающего 0!")
+                    print(u"RSD value was selected but couldn't be randorated.")
             else:
                 errorz.append(u"RSD не может быть рассчитано менее чем для двух чисел!")
+                print(u"RSD value was selected but couldn't be randorated.")
 
         else:
             errorz.append(u"Оптимизация по RSD отключена при добавлении границы интервала!")
+            print(u"RSD value was selected but couldn't be randorated.")
 #Если требуется, уменьшается RSD. Задания на одно число игнорируются.
 #Запись соответствующих сообщений об ошибке.
 
