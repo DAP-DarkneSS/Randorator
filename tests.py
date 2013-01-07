@@ -49,6 +49,11 @@ dict_def = {
 "log_rsd_a": True}
 # Default values are set.
 
+def test_rando(dict_in):
+    dict_out = randorator(dict_in)
+    print(dict_out["str_infoz"] + dict_out["str_numbz"])
+# A function to transform input values into printed ootput.
+
 tests = []
 # A blank tests list is created.
 
@@ -65,7 +70,7 @@ def test_1():
     dict_1["str_maxim"] = "1"
     dict_1["str_avera"] = "2"
 
-    print randorator(dict_1)
+    test_rando(dict_1)
 
 tests.append(test_1)
 
@@ -82,7 +87,7 @@ def test_4():
     dict_4["str_avera"] = "0"
     dict_4["str_rsd_p"] = "1"
 
-    print randorator(dict_4)
+    test_rando(dict_4)
 
 tests.append(test_4)
 
@@ -96,7 +101,7 @@ def test_12():
     dict_12 = dict(dict_def)
     dict_12["str_quant"] = ""
 
-    print randorator(dict_12)
+    test_rando(dict_12)
 
 tests.append(test_12)
 
@@ -110,7 +115,7 @@ def test_24():
     dict_24 = dict(dict_def)
     dict_24["str_round"] = "0"
 
-    print randorator(dict_24)
+    test_rando(dict_24)
 
 tests.append(test_24)
 
@@ -126,7 +131,7 @@ def test_25():
     dict_25["str_maxim"] = "1"
     dict_25["str_round"] = "20"
 
-    print randorator(dict_25)
+    test_rando(dict_25)
 
 tests.append(test_25)
 
@@ -140,7 +145,7 @@ def test_29():
     dict_29 = dict(dict_def)
     dict_29["str_round"] = ""
 
-    print randorator(dict_29)
+    test_rando(dict_29)
 
 tests.append(test_29)
 
@@ -157,7 +162,7 @@ def test_30():
     dict_30["str_avera"] = "1"
     dict_30["str_rsd_p"] = "1"
 
-    print randorator(dict_30)
+    test_rando(dict_30)
 
 tests.append(test_30)
 

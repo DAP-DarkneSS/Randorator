@@ -118,13 +118,13 @@ def button_fmake():
     "log_max_v": entry_maxi.getbox(),
     "log_rsd_a": vcheck_rsd_a.get()}
 # Here it is a dictionary with almost all output values.
-    text = randorator(dict_val)
+    dict_out = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
-    text_out.insert(END, text)
+    text_out.insert(END, dict_out["str_infoz"] + dict_out["str_numbz"])
 # The text is put into the field.
     if vcheck_copy.get():
         root.clipboard_clear()
-        root.clipboard_append(text)
+        root.clipboard_append(dict_out["str_numbz"])
 #Если не указано иное, очищается буфер обмена, копируются полученные значения.
 
 root=Tk()

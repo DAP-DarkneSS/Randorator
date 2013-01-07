@@ -118,13 +118,13 @@ def button_fmake(event):
     "log_max_v": sizer_maxi.GetCurrentSelection(),
     "log_rsd_a": check_rsd_a.IsChecked()}
 # Here it is a dictionary with almost all output values.
-    text = randorator(dict_val)
+    dict_out = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
-    text_out.SetValue(text)
+    text_out.SetValue(dict_out["str_infoz"] + dict_out["str_numbz"])
 # Запись текста в поле.
     if check_copy.IsChecked():
         if wx.TheClipboard.Open():
-            wx.TheClipboard.SetData(wx.TextDataObject(text))
+            wx.TheClipboard.SetData(wx.TextDataObject(dict_out["str_numbz"]))
             wx.TheClipboard.Close()
 # Если задано, открывается, заполняется и закрывается буфер обмена.
 

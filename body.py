@@ -156,7 +156,9 @@ def randorator(dict_val):
 
     matrix = []
     errorz = []
-    text = ""
+    dict_txt  = {
+    "str_numbz": u"",
+    "str_infoz": u""}
     mini = set_float_data(dict_val["str_minim"])
     maxi = set_float_data(dict_val["str_maxim"])
     if (dict_val["str_avera"] != ""):
@@ -203,6 +205,7 @@ def randorator(dict_val):
 #Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
 #Запись соответствующего сообщения об ошибке.
 
+    rsd_used = False
     if dict_val["str_rsd_p"] != "":
         if (not dict_val["log_max_v"]) and (not dict_val["log_min_v"]):
 # RSD adjustment with maximum or minimum included to the output isn't implemented.
@@ -215,6 +218,7 @@ def randorator(dict_val):
                     if mean != 0:
                             if rsd > 0:
                                 dict_rsd = relstdev(matrix, n, mean, rsd, fromzeroton)
+                                rsd_used = True
                                 print(u"RSD value was selected and randorated.")
                                 matrix = dict_rsd["lst_matrix"]
                             else:
@@ -270,9 +274,13 @@ def randorator(dict_val):
         rounding = 0
 # Here it is an easter egg ^,,^
 
+    if rsd_used and dict_val["log_rsd_a"]:
+        dict_txt["str_infoz"] += u"RSD, % = " + str(dict_rsd["num_rsd_q"]) + "\n"
+# If RSD is randorated and requested to show it will be outputed.
+
     if dict_val["log_verbo"] and (errorz != []):
         for i in xrange(len(errorz)):
-            text += errorz[i] + "\n"
+            dict_txt["str_infoz"] += errorz[i] + "\n"
 #Если задано, и ошибки есть, они переносятся в текст.
 
     if matrix != []:
@@ -284,17 +292,17 @@ def randorator(dict_val):
         if n > 2:
             shuffle(matrix)
         for i in fromzerotom:
-                text += to_text(matrix[i], rounding) + "\n"
+                dict_txt["str_numbz"] += to_text(matrix[i], rounding) + "\n"
         if m >= 0:
-                text += to_text(matrix[m], rounding)
+                dict_txt["str_numbz"] += to_text(matrix[m], rounding)
 #Cписок c количеством элементов больше 3 перемешивается и преобразуется в текст.
 #Каждое число с красной строки. Округление при необходимости.
     
     if not dict_val["log_punct"]:
-        text = text.replace(".", ",")
+        dict_txt["str_numbz"] = dict_txt["str_numbz"].replace(".", ",")
 #Если требуется, то точки заменяются запятыми.
 
-    return(text)
+    return(dict_txt)
 #Возврат текста.
 
 #================================|Direct_Run|===============================#
@@ -340,7 +348,8 @@ if __name__ == '__main__':
 # Logical data are refined.
 
     while True:
-        print u"\nСгенерировано:\n" + randorator(dict_val)
+        dict_out = randorator(dict_val)
+        print(u"\nСгенерировано:\n" + dict_out["str_infoz"] + dict_out["str_numbz"])
 # Вход в бесконечный цикл, получение снегерированных данных.
 
         try:
