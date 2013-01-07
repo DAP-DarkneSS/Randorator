@@ -317,7 +317,8 @@ if __name__ == '__main__':
     "log_verbo": True,
     "log_algor": False,
     "log_min_v": False,
-    "log_max_v": False}
+    "log_max_v": False,
+    "log_rsd_a": True}
 # Here it is a blank dictionary with almost all output values.
         
     print u"Продвинутый графический генератор случайных чисел.\n"

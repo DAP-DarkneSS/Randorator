@@ -45,7 +45,8 @@ dict_def = {
 "log_verbo": True,
 "log_algor": False,
 "log_min_v": False,
-"log_max_v": False}
+"log_max_v": False,
+"log_rsd_a": True}
 # Default values are set.
 
 tests = []

@@ -115,7 +115,8 @@ def button_fmake(event):
     "log_verbo": check_verbosity.IsChecked(),
     "log_algor": check_algorithm.IsChecked(),
     "log_min_v": sizer_mini.GetCurrentSelection(),
-    "log_max_v": sizer_maxi.GetCurrentSelection()}
+    "log_max_v": sizer_maxi.GetCurrentSelection(),
+    "log_rsd_a": check_rsd_a.IsChecked()}
 # Here it is a dictionary with almost all output values.
     text = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
@@ -211,6 +212,9 @@ else:
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
 # wx.CheckBox under windows doesn't suppoth the newline symbol:
 # see more at http://trac.wxwidgets.org/ticket/9495
+check_rsd_a = MyCheckBox(panel_root, sizer_root, locale(u"ui_rsd_a"), 1)
+# Here it is a checkbox to configure true RSD value output.
+# It is activated by default and RSD is outputed.
 
 #============================|Text_Data_Output|=============================#
 

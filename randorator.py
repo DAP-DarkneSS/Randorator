@@ -115,7 +115,8 @@ def button_fmake():
     "log_verbo": vcheck_verbosity.get(),
     "log_algor": vcheck_algorithm.get(),
     "log_min_v": entry_mini.getbox(),
-    "log_max_v": entry_maxi.getbox()}
+    "log_max_v": entry_maxi.getbox(),
+    "log_rsd_a": vcheck_rsd_a.get()}
 # Here it is a dictionary with almost all output values.
     text = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
@@ -171,6 +172,9 @@ vcheck_algorithm = MyVCheck(root, locale(u"ui_truer"), 0)
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
+vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a"), 1)
+# Here it is a checkbox to configure true RSD value output.
+# It is activated by default and RSD is outputed.
 
 text_out=ScrolledText(root, height = 9, width = 9)
 text_out.pack(side = BOTTOM, fill = BOTH)
