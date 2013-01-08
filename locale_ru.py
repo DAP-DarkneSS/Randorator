@@ -5,7 +5,7 @@
 #=================================|Copying|=================================#
 
 # Randorator is an advanced graphical generator of random numbers.
-# Copyright (C) 2011-2012 Dmitriy A. Perlow <dap.darkness@gmail.com>
+# Copyright (C) 2011-2013 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 # This file is part of Randorator.
 
