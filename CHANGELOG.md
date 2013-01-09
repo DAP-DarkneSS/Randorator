@@ -1,3 +1,19 @@
+Mon Jan  7 19:36:17 2013 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
+
+- 0.2.2 was released:
+ * True RSD value could be shown in the output.
+ * Known bugs checking tests were implemented.
+ * Interval limits could be added to the output.
+ * Gui classes became able to add a combobox widget.
+ * Icon using was completely reworked.
+ * Platform checking functionality was moved to the kernel.
+ * Dictionaries became used to transfer values.
+ * Some announcements in stdout were implemented.
+ * Lots of bugs were fixed.
+ * Portable windows builds were moved to SourceForge:
+   https://sourceforge.net/projects/randorator/files/portable4win/
+ * The program web-site became available at http://randorator.sf.net/
+
 Thu Jul 26 21:42:01 2012 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 - 0.2.1 was released:
