@@ -33,31 +33,51 @@
 from math import sqrt
 #Импорт функции расчёта квадратного корня.
 
-def relstdev(matrix, n, mean, referance, fromzeroton):
+def relstdev(dict_val):
 #Функция получает список чисел, их количество, среднее значение,
 #максимально возможное RSD и список, соответствующий количеству чисел.
 
-    rsd = referance + 1
-    while rsd > referance:
-#Изначально RSD задаётся больше допустимого, чтобы программа вошла в цикл.
-        
+    matrix = dict_val["lst_numbz"]
+    referance = dict_val["str_rsd_p"]
+
+    def rsd_calc(fromzeroton, matrix, mean, n):
         summ = 0
         for i in fromzeroton:
             summ += ((matrix[i] - mean) ** 2)
         rsd = 100 * (sqrt(summ / (n - 1))) / abs(mean)
+        return(rsd)
 #Расчёт и суммирование квадратичных отклонений. Расчёт RSD.
 
-        if rsd > referance:
-            maxi = max(matrix)
-            mini = min(matrix)
-            increment = (maxi - mini) / 3
-            matrix[matrix.index(maxi)] -= increment
-            matrix[matrix.index(mini)] += increment
+    def rsd_decr(matrix, increment):
+        matrix[matrix.index(max(matrix))] -= increment
+        matrix[matrix.index(min(matrix))] += increment
 #Если рассчитанное значение больше заданного предела,
 #то число по позиции с максимальным значением уменьшается на инкремент,
 #рассчитанный из общих соображений. Чтобы не изменилось среднее значение,
 #число по позиции с минимальным значением увеличивается на инкремент.
-#Возвращение в начала цикла.
+        return(matrix)
+
+    if dict_val["log_rsd_w"]:
+        rsd_max = dict_val["str_rsd_p"] * 1.1
+        rsd_min = dict_val["str_rsd_p"] * 0.9
+    else:
+        rsd_max = dict_val["str_rsd_p"]
+        rsd_min = 0
+
+    k = 3
+    rsd = -1
+    while (rsd > rsd_max) or (rsd < rsd_min):
+        rsd = rsd_calc(dict_val["lst_index"], dict_val["lst_numbz"], dict_val["str_avera"], dict_val["str_quant"])
+        
+        maxi = max(matrix)
+        mini = min(matrix)
+        increment = (maxi - mini) / k
+
+        if rsd > rsd_max:
+            matrix = rsd_decr(matrix, increment)
+
+        if rsd < rsd_min:
+            pass
 
     dict_out = {
     "lst_matrix": matrix,

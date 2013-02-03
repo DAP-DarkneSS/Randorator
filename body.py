@@ -217,7 +217,14 @@ def randorator(dict_val):
                         mean = sum(matrix) / n
                     if mean != 0:
                             if rsd > 0:
-                                dict_rsd = relstdev(matrix, n, mean, rsd, fromzeroton)
+                                dict_torsd = {
+                                    "lst_numbz": matrix,
+                                    "str_quant": n,
+                                    "str_avera": mean,
+                                    "str_rsd_p": rsd,
+                                    "lst_index": fromzeroton,
+                                    "log_rsd_w": False}
+                                dict_rsd = relstdev(dict_torsd)
                                 rsd_used = True
                                 print(u"RSD value was selected and randorated.")
                                 matrix = dict_rsd["lst_matrix"]
