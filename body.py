@@ -34,12 +34,18 @@ def check_icon():
     from os import path
 # A module to get file path is loaded.
 
-    icon_file = u"randorator.ico"
-    a_icofile = path.dirname(__file__) + u'/' + icon_file
-# There are variants of the icon file location. The icon is licenced under
+    icon_file = "randorator.ico"
+# The icon is licenced under
 # CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
 # The author is Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
 # http://www.softicons.com/free-icons/toolbar-icons/48x48-free-object-icons-by-aha-soft/dice-icon
+    try:
+        a_icofile = path.dirname(__file__) + '/' + icon_file
+    except UnicodeDecodeError:
+        a_icofile = ""
+# There are variants of the icon file location. We have not to use
+# unicode strings and we should handle an exception because of
+# error with directories with non-Latin symbols in the names.
 
     def brute_icon(icon_file):
         try:
@@ -52,16 +58,21 @@ def check_icon():
 
     if brute_icon(icon_file):
         ci_output = icon_file
-    elif brute_icon(a_icofile):
+    elif (a_icofile != "") and (brute_icon(a_icofile)):
         ci_output = a_icofile
     else:
         ci_output = ""
 # The correct icon file location is searched.
 
     if ci_output != "":
-        print(ci_output + u" was loaded.")
+        try:
+            message = ci_output + " was loaded."
+        except UnicodeDecodeError:
+            message = u"Icon file from directory with non-Latin symbols in the name was loaded."
     else:
-        print(u"Icon file wasn't found :(")
+        message = u"Icon file wasn't found :("
+
+    print(message)
 # Here it is an announcement of icon file search result.
 
     return(ci_output)
