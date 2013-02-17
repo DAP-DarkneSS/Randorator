@@ -109,8 +109,9 @@ def randorator(dict_val):
 
     from simple import rando
     from average import average
-    from rsd import relstdev
-#Импорт функций создания списка случайных чисел и уменьшения RSD.
+# Modules to generate random numbers list are loaded.
+    from rsd import relstdev, rsd_calc
+# RSD adjusting and calculating modules are loaded.
     from math import log
 # Logarithm counting module is loaded.
 
@@ -292,9 +293,28 @@ def randorator(dict_val):
         rounding = 0
 # Here it is an easter egg ^,,^
 
-    if rsd_used and dict_val["log_rsd_a"]:
-        dict_txt["str_infoz"] += u"RSD, % = " + str(dict_rsd["num_rsd_q"]) + "\n"
-# If RSD is randorated and requested to show it will be outputed.
+    if dict_val["log_rsd_a"]:
+        rsd_out = [False, None]
+
+        if rsd_used:
+            rsd_out = [True, dict_rsd["num_rsd_q"]]
+# Use calculated RSD value when it exists.
+
+        else:
+            if (n > 1) and (mini * maxi >= 0):
+                    if not average_used:
+                        mean = sum(matrix) / n
+                    if mean != 0:
+                        rsd_out = [True, rsd_calc(fromzeroton, matrix, mean, n, True)]
+# Or calculate it if it is possible.
+
+            else:
+                errorz.append(u"Невозможно рассчитать RSD!")
+                print(u"RSD couldn't be calculated.")
+
+        if rsd_out[0]:
+            dict_txt["str_infoz"] += u"RSD, % = " + str(rsd_out[1]) + "\n"
+# If RSD is requested to show and could be get it will be outputed.
 
     if dict_val["log_verbo"] and (errorz != []):
         for i in xrange(len(errorz)):

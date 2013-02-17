@@ -213,9 +213,9 @@ else:
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
 # wx.CheckBox under windows doesn't suppoth the newline symbol:
 # see more at http://trac.wxwidgets.org/ticket/9495
-check_rsd_a = MyCheckBox(panel_root, sizer_root, locale(u"ui_rsd_a"), 1)
+check_rsd_a = MyCheckBox(panel_root, sizer_root, locale(u"ui_rsd_a"), 0)
 # Here it is a checkbox to configure true RSD value output.
-# It is activated by default and RSD is outputed.
+# It isn't activated by default and RSD isn't outputed.
 
 #============================|Text_Data_Output|=============================#
 

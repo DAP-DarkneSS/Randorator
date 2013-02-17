@@ -174,9 +174,9 @@ vcheck_algorithm = MyVCheck(root, locale(u"ui_truer"), 0)
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
-vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a"), 1)
+vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a"), 0)
 # Here it is a checkbox to configure true RSD value output.
-# It is activated by default and RSD is outputed.
+# It isn't activated by default and RSD isn't outputed.
 
 text_out=ScrolledText(root, height = 9, width = 9)
 text_out.pack(side = BOTTOM, fill = BOTH)
