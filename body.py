@@ -234,7 +234,7 @@ def randorator(dict_val):
                                     "str_avera": mean,
                                     "str_rsd_p": rsd,
                                     "lst_index": fromzeroton,
-                                    "log_rsd_w": False}
+                                    "log_rsd_w": dict_val["log_rsd_w"]}
                                 dict_rsd = relstdev(dict_torsd)
                                 rsd_used = True
                                 print(u"RSD value was selected and randorated.")
@@ -344,7 +344,8 @@ if __name__ == '__main__':
     "log_algor": False,
     "log_min_v": False,
     "log_max_v": False,
-    "log_rsd_a": True}
+    "log_rsd_a": True,
+    "log_rsd_w": False}
 # Here it is a blank dictionary with almost all output values.
         
     print u"Продвинутый графический генератор случайных чисел.\n"

@@ -116,7 +116,8 @@ def button_fmake(event):
     "log_algor": check_algorithm.IsChecked(),
     "log_min_v": sizer_mini.GetCurrentSelection(),
     "log_max_v": sizer_maxi.GetCurrentSelection(),
-    "log_rsd_a": check_rsd_a.IsChecked()}
+    "log_rsd_a": check_rsd_a.IsChecked(),
+    "log_rsd_w": sizer_rsd.GetCurrentSelection()}
 # Here it is a dictionary with almost all output values.
     dict_out = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
@@ -178,7 +179,7 @@ sizer_mini = MyTextCtrl(panel_root, sizer_root, locale(u"ui_minim"), ["", "+"])
 sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale(u"ui_maxim"), ["", "+"])
 sizer_n = MyTextCtrl(panel_root, sizer_root, locale(u"ui_quant"))
 sizer_mean = MyTextCtrl(panel_root, sizer_root, locale(u"ui_avera"))
-sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale(u"ui_rsd_p"))
+sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale(u"ui_rsd_p"), ["<", "~"])
 sizer_round = MyTextCtrl(panel_root, sizer_root, locale(u"ui_round"))
 # Рисуются упаковщики с описаниями значений и полями ввода.
 
