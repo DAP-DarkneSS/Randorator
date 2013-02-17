@@ -201,6 +201,24 @@ def randorator(dict_val):
 #Запись соответствующего сообщения об ошибке.
 
     if dict_val["str_avera"] != "":
+
+        if dict_val["str_minim"] == "":
+            if mean > 0:
+                mini = 0
+            else:
+                mini = 10 * mean
+            if (mean == 0) and (dict_val["str_maxim"] != ""):
+                mini = -1 * maxi
+        if dict_val["str_maxim"] == "":
+            if mean > 0:
+                maxi = 10 * mean
+            else:
+                maxi = 0
+            if (mean == 0) and (dict_val["str_minim"] != ""):
+               maxi = -1 * mini
+# If a limit value isn't set but an average value is set
+# the limit will be calculated according to the average.
+
         if (maxi > mean > mini):
             matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
             average_used = True
