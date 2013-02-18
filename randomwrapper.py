@@ -30,6 +30,7 @@
 # Here it is a simple wrapper to use some random functions transparently.
 
 from urllib2 import urlopen, URLError, HTTPError
+from socket import error
 # A site opening function and exceptions are imported.
 
 def truerando():
@@ -62,9 +63,10 @@ def checkthemall():
 
         else:
             wrapper = pseudorando()
-    except (URLError, HTTPError, ValueError):
+    except (URLError, HTTPError, ValueError, error):
 # URLError and HTTPError are Internet connection errors.
 # ValueError is generated when random.org is substituted by another site.
+# Socket error seems to be a pyinstaller or/and wine issue.
         wrapper = pseudorando()
     print(str(wrapper) + u" was used.")
     return(wrapper)
