@@ -161,10 +161,27 @@ def randorator(dict_val):
 #Число преобразуется в строку, если необходимо, округляется с добавлением нулей.
 #У числа, округлённого до целой части, отбрасывается ".0".
 
-    def mean_count(mean_old, quantiny, number_to_count):
-        return ((mean_old * quantiny - number_to_count) / (quantiny - 1))
-# Here it is a function to correct the mean value
-# when a number is set to be included to the output.
+    def check_limits(limits_add, str_avera, n, mini, maxi, mean):
+        dict_check = {}
+        limits_n = len(limits_add)
+        dict_check["log_avera"] = False
+        if str_avera != "":
+            if n > limits_n:
+                mean = ((mean * n) - sum(limits_add)) / (n - limits_n)
+# The mean value should be corrected.
+
+                dict_check["num_avera"] = mean
+                if maxi > mean > mini:
+                    dict_check["log_avera"] = True
+                    dict_check["str_error"] = u""
+# New average value should be checked.
+
+            if not dict_check["log_avera"]:
+                dict_check["str_error"] = u"Несовместимые параметры: количество, среднее, включение интервалов!"
+        dict_check["num_quant"] = max(0, (n - limits_n))
+        return(dict_check)
+# Here it is a funcion to transform input value in according
+# to correspond with interval limit(s) marked to be added.
 
     matrix = []
     errorz = []
@@ -176,23 +193,14 @@ def randorator(dict_val):
     if (dict_val["str_avera"] != ""):
         mean = punctu(dict_val["str_avera"])
     n = set_int_data(dict_val["str_quant"], 1)
-    if dict_val["log_min_v"]:
-        if (dict_val["str_avera"] != "") and (n > 1):
-            mean = mean_count(mean, n, mini)
-        n -= 1
-    if dict_val["log_max_v"]:
-        if (dict_val["str_avera"] != "") and (n > 1):
-            mean = mean_count(mean, n, maxi)
-        n -= 1
-# The numbers quantity and the mean value will be fixed
-# when maximum or minimum is set to be included to the output.
-
     rounding = set_int_data(dict_val["str_round"], -1)
-    m = n - 1
-    fromzeroton = xrange(n)
-    fromzerotom = xrange(m)
-#Создаются пустые списки и текст. Обрабатываются числовые параметры.
-#Вычисляется удобное число m. Создаются удобные списки.
+
+    limits_add = []
+    if dict_val["log_min_v"]:
+        limits_add.append(mini)
+    if dict_val["log_max_v"]:
+        limits_add.append(maxi)
+# Here it is a list with interval limit(s) marked to be added.
 
     if mini > maxi:
         maxi, mini = mini, maxi
@@ -220,20 +228,40 @@ def randorator(dict_val):
 # the limit will be calculated according to the average.
 
         if (maxi > mean > mini):
-            matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
             average_used = True
-            print(u"Average value was selected and randorated.")
         else:
-            matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
             errorz.append(u"Среднее значение вне заданного диапазона!")
             average_used = False
             print(u"Average value was selected but couldn't be randorated.")
     else:
-        matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
         average_used = False
         print(u"Average value wasn't selected.")
-#Выбор и применение функции создание списка чисел в зависимости от того, задано ли среднее значение.
+# The existence and the possibility of use of average value is checked.
 #Запись соответствующего сообщения об ошибке.
+
+    if limits_add != []:
+        if average_used:
+            dict_check = check_limits(limits_add, dict_val["str_avera"], n, mini, maxi, mean)
+            average_used = dict_check["log_avera"]
+            if average_used:
+                mean = dict_check["num_avera"]
+            if dict_check["str_error"] != u"":
+                errorz.append(dict_check["str_error"])
+        else:
+            dict_check = check_limits(limits_add, "", n, mini, maxi, None)
+        n = dict_check["num_quant"]
+
+    m = n - 1
+    fromzeroton = xrange(n)
+    fromzerotom = xrange(m)
+#Создаются пустые списки и текст. Обрабатываются числовые параметры.
+#Вычисляется удобное число m. Создаются удобные списки.
+
+    if average_used:
+        matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
+        print(u"Average value was selected and randorated.")
+    else:
+        matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
 
     rsd_used = False
     if dict_val["str_rsd_p"] != "":

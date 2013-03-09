@@ -167,6 +167,26 @@ def test_30():
 
 tests.append(test_30)
 
+#=================================|Test_40|=================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/40
+
+def test_40():
+    print u"Test #40: (min and max are added) and (n = Nill) and (mean != Nill)."
+    
+    dict_40 = dict(dict_def)
+    dict_40["str_minim"] = "0"
+    dict_40["str_maxim"] = "2"
+    dict_40["str_quant"] = ""
+    dict_40["str_avera"] = "1"
+    dict_40["log_min_v"] = True
+    dict_40["log_max_v"] = True
+
+    test_rando(dict_40)
+
+tests.append(test_40)
+
+
 #================================|Direct_Run|===============================#
 
 if __name__ == '__main__':
