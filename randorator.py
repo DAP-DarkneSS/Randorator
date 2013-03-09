@@ -118,7 +118,8 @@ def button_fmake():
     "log_min_v": entry_mini.getbox(),
     "log_max_v": entry_maxi.getbox(),
     "log_rsd_a": vcheck_rsd_a.get(),
-    "log_rsd_w": entry_rsd.getbox()}
+    "log_rsd_w": entry_rsd.getbox(),
+    "str_sortm": entry_sortm.get()}
 # Here it is a dictionary with almost all output values.
     dict_out = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
@@ -152,6 +153,7 @@ entry_n = MyEntry(root, locale(u"ui_quant"))
 entry_mean = MyEntry(root, locale(u"ui_avera"))
 entry_rsd = MyEntry(root, locale(u"ui_rsd_p"), ["<", "~"])
 entry_round = MyEntry(root, locale(u"ui_round"))
+entry_sortm = MyEntry(root, locale(u"ui_sortm"))
 #Создаётся необходимое количество объектов класса элементов ввода.
 
 frame_buttonz = Frame(root)

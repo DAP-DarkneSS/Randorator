@@ -47,7 +47,8 @@ dict_def = {
 "log_min_v": False,
 "log_max_v": False,
 "log_rsd_a": True,
-"log_rsd_w": False}
+"log_rsd_w": False,
+"str_sortm": ""}
 # Default values are set.
 
 def test_rando(dict_in):
