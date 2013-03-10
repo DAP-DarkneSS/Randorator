@@ -112,8 +112,8 @@ def randorator(dict_val):
 # Modules to generate random numbers list are loaded.
     from rsd import relstdev, rsd_calc
 # RSD adjusting and calculating modules are loaded.
-    from math import log
-# Logarithm counting module is loaded.
+    from math import log, copysign
+# Logarithm counting and sign copy functions are loaded.
 
     if dict_val["log_algor"]:
         from randomwrapper import shuffle
@@ -182,6 +182,36 @@ def randorator(dict_val):
         return(dict_check)
 # Here it is a funcion to transform input value in according
 # to correspond with interval limit(s) marked to be added.
+
+    def parse_sortm(str_sortm):
+        lst_sortm_in = str_sortm.split()
+# The string is splitted by spaces into strings list.
+
+        lst_sortm_out = []
+        for i in lst_sortm_in:
+            if u"-" in i:
+# A substring with a dash should be transformed.
+
+                 n = i.split(u"-")
+                 n0 = int(n[0])
+                 n1 = int(n[1])
+                 k = range(n0, n1, (int(copysign(1, (n1 - n0))))) + [n1]
+# Also we should add right interval limit to the range.
+
+                 lst_sortm_out += k
+            else:
+                 lst_sortm_out.append(int(i))
+        return(lst_sortm_out)
+# Here it is a function to parse input string with setted sorting mode.
+
+    def do_sortm(lst_numbz_in, str_sortm):
+        lst_sortm = parse_sortm(str_sortm)
+        lst_numbz_out = []
+        lst_numbz_in.sort()
+        for i in lst_sortm:
+            lst_numbz_out.append(lst_numbz_in[i - 1])
+        return(lst_numbz_out)
+# Here it is a function to apply setted sorting mode.
 
     matrix = []
     errorz = []
@@ -373,8 +403,20 @@ def randorator(dict_val):
         fromzerotom = xrange(m)
 # Proper values are restored.
 
-        if n > 2:
-            shuffle(matrix)
+        if dict_val["str_sortm"] != u"":
+            if dict_val["str_sortm"] == u"1-":
+                matrix.sort()
+            elif dict_val["str_sortm"] == u"-1":
+                matrix.sort()
+                matrix.reverse()
+            else:
+                try:
+                    matrix = do_sortm(matrix, dict_val["str_sortm"])
+                except (IndexError, ValueError, UnicodeEncodeError):
+                    dict_txt["str_infoz"] += u"Некорректный режим сортировки!" + "\n"
+        else:
+            if n > 2:
+                shuffle(matrix)
         for i in fromzerotom:
                 dict_txt["str_numbz"] += to_text(matrix[i], rounding) + "\n"
         if m >= 0:
