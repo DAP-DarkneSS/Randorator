@@ -41,28 +41,41 @@ windows = check_windows()
 #===========================|Text_Control_Class|============================#
 
 class MyTextCtrl:
-    def __init__(self, place_frame, place_sizer, string_class, choise_class = False):
+    def __init__(self, place_frame, place_sizer, string_class, choise_class = False, button_add = False):
 # Принимается frame прикрепления виджета, sizer упаковки и текст надписи.
-# A string value to add a combobox could be also inputed.
+# A string value to add a combobox or a button could be also inputed.
 
-        if choise_class:
+        def button_finfo(event):
+            wx.MessageBox(button_add, locale(u"ui_iftxt"), wx.OK | wx.ICON_INFORMATION)
+# Here it is a function to show information window.
+
+        if choise_class or button_add:
             x_box = 45
         else:
             x_box = 0
-        x_text = 130 - x_box
-# The text widget width will be fixed if a combobox is enabled.
+        x_text = 140 - x_box
+# The text widget width will be modified if a combobox or a button is enabled.
+
         self.sizer_class = wx.BoxSizer(wx.HORIZONTAL)
         place_sizer.Add(self.sizer_class)
 # Создаётся упаковщик с горизонтальным порядком заполнения и добавляется в переданный упаковщик.
         self.text_class = wx.StaticText(place_frame, label = string_class, size = (x_text, -1))
         if choise_class:
             self.box_class = wx.Choice(place_frame, size = (x_box, -1), choices = choise_class)
+        elif button_add:
+            self.button_class = wx.Button(place_frame, label = u"?", size = (x_box, -1))
+# The combobox widget or the button will be created if it is set.
+
         self.control_class = wx.TextCtrl(place_frame, size = (100, -1))
 # Описание значения и поле ввода.
         self.sizer_class.Add(self.text_class, flag = wx.ALIGN_CENTER_VERTICAL)
         if choise_class:
             self.sizer_class.Add(self.box_class)
-# The combobox widget will be added if it is set.
+        elif button_add:
+            self.sizer_class.Add(self.button_class)
+            place_frame.Bind(wx.EVT_BUTTON, button_finfo, self.button_class)
+# The combobox widget or the button will be shown if it is set.
+
         self.sizer_class.Add(self.control_class)
 # Описание (с выравниванием по вертикали) и поле упаковываются в соответствующий упаковщик.
     def GetValue(self):
@@ -95,7 +108,7 @@ class MyCheckBox:
 class MyButton:
     def __init__(self, place_frame, place_sizer, string_class, command_class):
 # Принимается frame прикрепления виджета, sizer упаковки, строковое значение для надписи и функция.
-        self.button_class = wx.Button(place_frame, label = string_class, size = (115, -1))
+        self.button_class = wx.Button(place_frame, label = string_class, size = (120, -1))
         place_sizer.Add(self.button_class)
         place_frame.Bind(wx.EVT_BUTTON, command_class, self.button_class)
 # Создаётся и добавляется в переданный упаковщик кнопка. Присваевается функция для выполнения.
@@ -181,8 +194,8 @@ sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale(u"ui_maxim"), ["", "+"])
 sizer_n = MyTextCtrl(panel_root, sizer_root, locale(u"ui_quant"))
 sizer_mean = MyTextCtrl(panel_root, sizer_root, locale(u"ui_avera"))
 sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale(u"ui_rsd_p"), ["<", "~"])
-sizer_round = MyTextCtrl(panel_root, sizer_root, locale(u"ui_round"))
-sizer_sortm = MyTextCtrl(panel_root, sizer_root, locale(u"ui_sortm"))
+sizer_round = MyTextCtrl(panel_root, sizer_root, locale(u"ui_round"), False, locale(u"ui_ifrnd"))
+sizer_sortm = MyTextCtrl(panel_root, sizer_root, locale(u"ui_sortm"), False, locale(u"ui_ifsrt"))
 # Рисуются упаковщики с описаниями значений и полями ввода.
 
 #=================================|Buttons|=================================#

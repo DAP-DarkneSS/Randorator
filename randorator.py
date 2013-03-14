@@ -32,6 +32,8 @@ from ScrolledText import ScrolledText
 #Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
 from ttk import Combobox
 # Combobox widget module is loaded.
+import tkMessageBox
+# A message box module is loaded to show help window.
 from body import randorator, check_icon, check_windows
 # Program kernel module is loaded.
 # Program icon existence checking module is loaded.
@@ -44,9 +46,13 @@ windows = check_windows()
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
-    def __init__(self, place_class, string_class, choise_class = False):
+    def __init__(self, place_class, string_class, choise_class = False, button_add = False):
 #При создании принимается место прикрепления виджета и строковое значение для надписи.
-# A string value to add a combobox could be also inputed.
+# A string value to add a combobox or a button could be also inputed.
+
+        def button_finfo():
+            tkMessageBox.showinfo(locale(u"ui_iftxt"), button_add)
+# Here it is a function to show information window.
 
         self.frame_class = Frame(place_class)
         self.frame_class.pack(side = TOP, fill = BOTH)
@@ -61,7 +67,11 @@ class MyEntry:
             self.box_class = Combobox(self.frame_class, values = choise_class, width = 2)
             self.box_class.set(choise_class[0])
             self.box_class.pack(side = RIGHT)
-# The combobox widget will be added if it is set.g
+        elif button_add:
+            self.button_class = Button(self.frame_class, text = u"?", command = button_finfo)
+            self.button_class.pack(side = RIGHT)
+# The combobox widget or the button will be created if it is set.
+
     def get(self):
         return(self.entry_class.get())
 #Метод .get() передаётся от элемента для ввода объекту описываемого класса.
@@ -152,8 +162,8 @@ entry_maxi = MyEntry(root, locale(u"ui_maxim"), ["", "+"])
 entry_n = MyEntry(root, locale(u"ui_quant"))
 entry_mean = MyEntry(root, locale(u"ui_avera"))
 entry_rsd = MyEntry(root, locale(u"ui_rsd_p"), ["<", "~"])
-entry_round = MyEntry(root, locale(u"ui_round"))
-entry_sortm = MyEntry(root, locale(u"ui_sortm"))
+entry_round = MyEntry(root, locale(u"ui_round"), False, locale(u"ui_ifrnd"))
+entry_sortm = MyEntry(root, locale(u"ui_sortm"), False, locale(u"ui_ifsrt"))
 #Создаётся необходимое количество объектов класса элементов ввода.
 
 frame_buttonz = Frame(root)
