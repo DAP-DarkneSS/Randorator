@@ -161,7 +161,7 @@ frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | 
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
 frame_root.SetTitle(locale(u"ui_title"))
 # Задаётся заголовок окна.
-window_icon = check_icon()
+window_icon = check_icon("ico")
 if window_icon != "":
     frame_root.SetIcon(wx.Icon(window_icon, type = wx.BITMAP_TYPE_ICO))
 # Window icon is loaded.

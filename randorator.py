@@ -34,15 +34,11 @@ from ttk import Combobox
 # Combobox widget module is loaded.
 import tkMessageBox
 # A message box module is loaded to show help window.
-from body import randorator, check_icon, check_windows
+from body import randorator, check_icon
 # Program kernel module is loaded.
 # Program icon existence checking module is loaded.
-# Windows platform checking module is loaded.
 from locale_ru import locale
 # Russian locale module is imported.
-
-windows = check_windows()
-# Here it is a value to check if the program is run under windows.
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
@@ -146,12 +142,8 @@ root.title(locale(u"ui_title"))
 #Задаётся заголовок.
 root.resizable(False, False)
 #Нельзя изменять размер окна.
-if windows:
-    window_icon = check_icon()
-    if window_icon != "":
-        root.iconbitmap(default = window_icon)
-# Window icon is loaded if the program is run under windows.
-# It doesn't work for linux.
+root.call('wm', 'iconphoto', root._w, PhotoImage(file = check_icon("gif")))
+# Window icon is loaded.
 
 label_title = Label(root, text = locale(u"ui_about"))
 label_title.pack()

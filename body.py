@@ -29,12 +29,12 @@
 
 # Here it is a function to find the icon file location.
 
-def check_icon():
+def check_icon(extension):
 
     from os import path
 # A module to get file path is loaded.
 
-    icon_file = "randorator.ico"
+    icon_file = "randorator." + extension
 # The icon is licenced under
 # CC Attribution 3.0 United States (http://creativecommons.org/licenses/by/3.0/us/).
 # The author is Aha-Soft (http://www.softicons.com/free-icons/designers/aha-soft)
