@@ -34,11 +34,19 @@ from ttk import Combobox
 # Combobox widget module is loaded.
 import tkMessageBox
 # A message box module is loaded to show help window.
-from body import randorator, check_icon
+from body import randorator, check_icon, check_windows
 # Program kernel module is loaded.
 # Program icon existence checking module is loaded.
+# Windows platform checking module is loaded.
 from locale_ru import locale
 # Russian locale module is imported.
+
+windows = check_windows()
+# Here it is a value to check if the program is run under windows.
+
+if windows:
+    from ttk import Button, Entry
+# Let tkinter GUI at windows be less ugly. It doesn't look natively at Linux.
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
@@ -64,7 +72,7 @@ class MyEntry:
             self.box_class.set(choise_class[0])
             self.box_class.pack(side = RIGHT)
         elif button_add:
-            self.button_class = Button(self.frame_class, text = u"?", command = button_finfo)
+            self.button_class = Button(self.frame_class, text = u"?", command = button_finfo, width = -1)
             self.button_class.pack(side = RIGHT)
 # The combobox widget or the button will be created if it is set.
 
@@ -103,7 +111,7 @@ class MyButton:
     def __init__(self, place_class, string_class, command_class):
 #При создании принимается место прикрепления виджета, строковое значение для надписи
 #и строковое для установления команды при нажатии.
-        self.button_class = Button(place_class, width = 14, text = string_class, command = command_class)
+        self.button_class = Button(place_class, width = 15, text = string_class, command = command_class)
         self.button_class.pack(side = LEFT)
 #Кнопка шириной в 14 пикселей прикрепляется к левому краю.
 
