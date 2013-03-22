@@ -71,6 +71,7 @@ class MyTextCtrl:
         self.sizer_class.Add(self.text_class, flag = wx.ALIGN_CENTER_VERTICAL)
         if choise_class:
             self.sizer_class.Add(self.box_class)
+            self.box_class.SetSelection(0)
         elif button_add:
             self.sizer_class.Add(self.button_class)
             place_frame.Bind(wx.EVT_BUTTON, button_finfo, self.button_class)
