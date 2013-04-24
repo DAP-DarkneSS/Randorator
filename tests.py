@@ -187,6 +187,25 @@ def test_40():
 
 tests.append(test_40)
 
+#=================================|Test_48|=================================#
+
+# https://github.com/DAP-DarkneSS/Randorator/issues/48
+
+def test_48():
+    print u"Test #48: (rsd ~ 1) and (n = 2)."
+
+    dict_48 = dict(dict_def)
+    dict_48["str_minim"] = ""
+    dict_48["str_maxim"] = ""
+    dict_48["str_quant"] = "2"
+    dict_48["str_avera"] = "11"
+    dict_48["str_rsd_p"] = "1"
+    dict_48["log_rsd_w"] = True
+
+    test_rando(dict_48)
+
+tests.append(test_48)
+
 
 #================================|Direct_Run|===============================#
 

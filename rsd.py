@@ -109,7 +109,7 @@ def rsd_incr(matrix, increment, mean, index):
                     closest_max = i
 # … and a number with minimum deviation and sign that differs to previous one.
 
-    if closest_min > closest_max:
+    if matrix[closest_min] > matrix[closest_max]:
         closest_min, closest_max = closest_max, closest_min
 # Values are swapped if needed.
 
