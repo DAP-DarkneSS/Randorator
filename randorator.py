@@ -190,7 +190,7 @@ vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a"), 0)
 # Here it is a checkbox to configure true RSD value output.
 # It isn't activated by default and RSD isn't outputed.
 
-text_out=ScrolledText(root, height = 9, width = 9)
+text_out = ScrolledText(root, height = 9, width = 9)
 text_out.pack(side = BOTTOM, fill = BOTH)
 #Текстовый виджет с полосой прокрутки растянут по ширине окна приложения.
 

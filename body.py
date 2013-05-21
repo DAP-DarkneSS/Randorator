@@ -192,15 +192,15 @@ def randorator(dict_val):
             if u"-" in i:
 # A substring with a dash should be transformed.
 
-                 n = i.split(u"-")
-                 n0 = int(n[0])
-                 n1 = int(n[1])
-                 k = range(n0, n1, (int(copysign(1, (n1 - n0))))) + [n1]
+                n = i.split(u"-")
+                n0 = int(n[0])
+                n1 = int(n[1])
+                k = range(n0, n1, (int(copysign(1, (n1 - n0))))) + [n1]
 # Also we should add right interval limit to the range.
 
-                 lst_sortm_out += k
+                lst_sortm_out += k
             else:
-                 lst_sortm_out.append(int(i))
+                lst_sortm_out.append(int(i))
         return(lst_sortm_out)
 # Here it is a function to parse input string with setted sorting mode.
 
@@ -253,7 +253,7 @@ def randorator(dict_val):
             else:
                 maxi = 0
             if (mean == 0) and (dict_val["str_minim"] != ""):
-               maxi = -1 * mini
+                maxi = -1 * mini
 # If a limit value isn't set but an average value is set
 # the limit will be calculated according to the average.
 
@@ -304,21 +304,21 @@ def randorator(dict_val):
                     if not average_used:
                         mean = sum(matrix) / n
                     if mean != 0:
-                            if rsd > 0:
-                                dict_torsd = {
-                                    "lst_numbz": matrix,
-                                    "str_quant": n,
-                                    "str_avera": mean,
-                                    "str_rsd_p": rsd,
-                                    "lst_index": fromzeroton,
-                                    "log_rsd_w": dict_val["log_rsd_w"]}
-                                dict_rsd = relstdev(dict_torsd)
-                                rsd_used = True
-                                print(u"RSD value was selected and randorated.")
-                                matrix = dict_rsd["lst_matrix"]
-                            else:
-                                errorz.append(u"RSD должно быть больше 0!")
-                                print(u"RSD value was selected but couldn't be randorated.")
+                        if rsd > 0:
+                            dict_torsd = {
+                                "lst_numbz": matrix,
+                                "str_quant": n,
+                                "str_avera": mean,
+                                "str_rsd_p": rsd,
+                                "lst_index": fromzeroton,
+                                "log_rsd_w": dict_val["log_rsd_w"]}
+                            dict_rsd = relstdev(dict_torsd)
+                            rsd_used = True
+                            print(u"RSD value was selected and randorated.")
+                            matrix = dict_rsd["lst_matrix"]
+                        else:
+                            errorz.append(u"RSD должно быть больше 0!")
+                            print(u"RSD value was selected but couldn't be randorated.")
                 else:
                     errorz.append(u"RSD не может быть рассчитано для интервала, включающего 0!")
                     print(u"RSD value was selected but couldn't be randorated.")
@@ -378,10 +378,10 @@ def randorator(dict_val):
 
         else:
             if (n > 1) and (mini * maxi >= 0):
-                    if not average_used:
-                        mean = sum(matrix) / n
-                    if mean != 0:
-                        rsd_out = [True, rsd_calc(fromzeroton, matrix, mean, n, True)]
+                if not average_used:
+                    mean = sum(matrix) / n
+                if mean != 0:
+                    rsd_out = [True, rsd_calc(fromzeroton, matrix, mean, n, True)]
 # Or calculate it if it is possible.
 
             else:
@@ -418,9 +418,9 @@ def randorator(dict_val):
             if n > 2:
                 shuffle(matrix)
         for i in fromzerotom:
-                dict_txt["str_numbz"] += to_text(matrix[i], rounding) + "\n"
+            dict_txt["str_numbz"] += to_text(matrix[i], rounding) + "\n"
         if m >= 0:
-                dict_txt["str_numbz"] += to_text(matrix[m], rounding)
+            dict_txt["str_numbz"] += to_text(matrix[m], rounding)
 #Cписок c количеством элементов больше 3 перемешивается и преобразуется в текст.
 #Каждое число с красной строки. Округление при необходимости.
     
