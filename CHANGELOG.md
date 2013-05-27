@@ -1,3 +1,16 @@
+Mon May 27 21:24:00 2013 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
+
+- 0.2.3 was released:
+ * A shell scripts to make win portable builds via wine were written.
+ * RSD could be set via approximately direct value.
+ * RSD value could always be added to the output.
+ * Limits defaults became calculated in according to set value.
+ * Output could be sorted.
+ * Tkinter GUI at windows became less ugly.
+ * Tkinter GUI could set window icon at Linux.
+ * Lots of bugs were fixed.
+ * Fixed up in according to Google advices.
+
 Mon Jan  7 19:36:17 2013 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 - 0.2.2 was released:
