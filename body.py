@@ -393,8 +393,11 @@ def randorator(dict_val):
 # If RSD is requested to show and could be get it will be outputed.
 
     if dict_val["log_verbo"] and (errorz != []):
+        TempList = []
         for i in xrange(len(errorz)):
-            dict_txt["str_infoz"] += errorz[i] + "\n"
+            TempList.append(errorz[i])
+            TempList.append("\n")
+        dict_txt["str_infoz"] = dict_txt["str_infoz"].join(TempList)
 #Если задано, и ошибки есть, они переносятся в текст.
 
     if matrix != []:
@@ -417,10 +420,13 @@ def randorator(dict_val):
         else:
             if n > 2:
                 shuffle(matrix)
+        TempList = []
         for i in fromzerotom:
-            dict_txt["str_numbz"] += to_text(matrix[i], rounding) + "\n"
+            TempList.append(to_text(matrix[i], rounding))
+            TempList.append("\n")
         if m >= 0:
-            dict_txt["str_numbz"] += to_text(matrix[m], rounding)
+            TempList.append(to_text(matrix[m], rounding))
+        dict_txt["str_numbz"] = dict_txt["str_numbz"].join(TempList)
 #Cписок c количеством элементов больше 3 перемешивается и преобразуется в текст.
 #Каждое число с красной строки. Округление при необходимости.
     
