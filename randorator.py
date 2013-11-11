@@ -38,7 +38,7 @@ from body import randorator, check_icon, check_windows
 # Program kernel module is loaded.
 # Program icon existence checking module is loaded.
 # Windows platform checking module is loaded.
-from locale_ru import locale
+from i18n.ru import locale
 # Russian locale module is imported.
 
 windows = check_windows()
