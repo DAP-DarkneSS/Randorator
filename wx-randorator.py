@@ -32,7 +32,7 @@ from body import randorator, check_icon, check_windows
 # Загружается основной модуль программы и графическая библиотека.
 # Program icon existence checking module is loaded.
 # Windows platform checking module is loaded.
-from i18n.ru import locale
+from i18n.locator import locale
 # Russian locale module is imported.
 
 windows = check_windows()

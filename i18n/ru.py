@@ -31,6 +31,7 @@
 
 dict_str = {
     u"ui_title": u"Randorator",
+    u"ui_lcerr": u"Неверный идентификатор перевода!",
     u"ui_about": u"Продвинутый графический\nгенератор случайных чисел",
     u"ui_minim": u" Минимум:",
     u"ui_maxim": u" Максимум:",
@@ -50,14 +51,3 @@ dict_str = {
     u"ui_ifrnd": u"Количество цифр после разделителя целой и дробной части.",
     u"ui_ifsrt": u"Сортировка задаётся вводом номеров чисел через пробел, номер определяется положением числа в списке, где первый номер имеет наименьшее значение.\n\nДопускается ввод диапазонов номеров через дефис.\n\n-1 задаёт сортировку от большего к меньшему,\nа 1- — от меньшего к большему."}
 # There are lists of locale keys and values.
-
-#============================|Locale_Function|==============================#
-
-def locale(str_in):
-    if str_in in dict_str:
-        return(dict_str[str_in])
-# If the key exists the corresponding value will be returned.
-
-    else:
-        return(u"Неверный идентификатор перевода!")
-# Else the error message will be returned.

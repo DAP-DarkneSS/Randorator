@@ -25,6 +25,29 @@
 
 # You could contact me with e-mail or jabber dap.darkness@gmail.com
 
-#===============================|Description|===============================#
+#=============================|Locale_Import|===============================#
 
-# Here it is a blank file to import modules from a subdirectory.
+from locale import getdefaultlocale
+
+CurrentLocale = getdefaultlocale()
+print("Current locale is " + CurrentLocale[0] + ". Current encoding is " + CurrentLocale[1] + ".")
+# Here it is an announcement of the current locale & encoding.
+
+if "ru" in CurrentLocale[0].lower():
+    print("Let's speak Russian.")
+    from ru import dict_str
+else:
+    print("Let's speak English.")
+    from en import dict_str
+# If "ru" isn't a country or a language, English will be chosen.
+
+#============================|Locale_Function|==============================#
+
+def locale(str_in):
+    if str_in in dict_str:
+        return(dict_str[str_in])
+# If the key exists the corresponding value will be returned.
+
+    else:
+        return(dict_str[u"ui_lcerr"])
+# Else the error message will be returned.
