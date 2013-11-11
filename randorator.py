@@ -27,6 +27,11 @@
 
 #=================================|Import|==================================#
 
+# ***
+import threading
+import time
+import socket
+# ***
 from Tkinter import *
 from ScrolledText import ScrolledText
 #Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
@@ -116,6 +121,18 @@ class MyButton:
 #Кнопка шириной в 14 пикселей прикрепляется к левому краю.
 
 def button_fmake():
+
+    dict_out = {}
+
+    def computeWithGUIAntifreeze():
+        threading.Thread(target=compute).start()
+
+    def compute():
+        anysock = sock
+        anyaddr = addr
+        dict_out = randorator(dict_val)
+        print(dict_out)
+
 #Функция для кнопки. Записывается без аргументов!
     text_out.delete(1.0, END)
 #Очистка текстового поля.
@@ -135,7 +152,15 @@ def button_fmake():
     "log_rsd_w": entry_rsd.getbox(),
     "str_sortm": entry_sortm.get()}
 # Here it is a dictionary with almost all output values.
-    dict_out = randorator(dict_val)
+# ***
+##    dict_out = randorator(dict_val)
+    computeWithGUIAntifreeze()
+s
+    while dict_out == {}:
+        time.sleep(1)
+        print(dict_out)
+        root.update_idletasks()
+# ***
 # The output dictionary is transfered to the external function to get text back.
     text_out.insert(END, dict_out["str_infoz"] + dict_out["str_numbz"])
 # The text is put into the field.
