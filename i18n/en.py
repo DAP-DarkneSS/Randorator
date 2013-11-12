@@ -41,13 +41,14 @@ dict_str = {
     u"ui_round": u" Rounding:",
     u"ui_gen_b": u"Generate!",
     u"ui_exi_b": u"Quit",
-    u"ui_clipb": u"Automatically copy",
-    u"ui_punct": u'Numbers with "." ("," by default)',
-    u"ui_error": u"Errors notifications",
-    u"ui_truer": u"True random numbers over\nthe Internet, slowly",
-    u"ui_rsd_a": u"Display real RSD",
+    u"ui_clipb": u"Automatically copy values",
+    u"ui_punct": u"Numbers with '.' (',' by default)",
+    u"ui_error": u"Output errors notifications",
+    u"ui_truer": u"True random numbers over\nthe Internet, may be slow",
+    u"ui_true1": u"True random numbers, slowly",
+    u"ui_rsd_a": u"Output real RSD value",
     u"ui_sortm": u" Sorting:",
     u"ui_iftxt": u"Help",
-    u"ui_ifrnd": u"The number of digits after the decimal mark.",
-    u"ui_ifsrt": u"Sorting is set via numbers entered through space, number is determined by the position of a number in a list, where the first number has a minimum value.\n\nYou can enter a range of numbers separated by a hyphen.\n\n-1 specifies the sort from maximum to minimum\nand 1- — from minimum to maximum."}
+    u"ui_ifrnd": u"The quantity of digits after the decimal mark.",
+    u"ui_ifsrt": u"Sorting is set via numbers entered through space, number is determined by the position of a value in a list, where the first number has a minimum value.\n\nYou can enter a range of numbers separated by a hyphen.\n\n-1 specifies the sort from maximum to minimum\nand 1- — from minimum to maximum."}
 # There are lists of locale keys and values.

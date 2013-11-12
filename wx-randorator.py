@@ -221,7 +221,7 @@ check_verbosity = MyCheckBox(panel_root, sizer_root, locale(u"ui_error"), 1)
 # Чекбокс для включения/выключения вывода сообщений об ошибках.
 # Активен – выводить.
 if windows:
-    check_algorithm = MyCheckBox(panel_root, sizer_root, u"Истинно случайные, медленно", 0)
+    check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_true1"), 0)
 else:
     check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_truer"), 0)
 # Here it is a checkbox to enable true random numbers generation.
