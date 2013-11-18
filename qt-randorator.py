@@ -47,8 +47,24 @@ class MyLineEdit:
                  ComboBoxToAdd = False,
                  ButtonToAdd = False):
 
-        def functionForButton(PlaceWidget, StringToShow):
-            QtGui.QMessageBox.information(PlaceWidget, u"Help", StringToShow)
+        class MyAnotherButton(QtGui.QPushButton):
+            def __init__(self,
+                         PlaceWidget,
+                         PlaceLayout,
+                         XBonus,
+                         StringToShow):
+                QtGui.QWidget.__init__(self, PlaceWidget)
+
+                self.StringToShow = StringToShow
+                self.clicked.connect(self.functionForButton)
+# Connects only method only without arguments only in init.
+
+                self.setText(u"?")
+                self.setFixedWidth(XBonus)
+                PlaceLayout.addWidget(self)
+
+            def functionForButton(self):
+                QtGui.QMessageBox.information(self, u"Help", self.StringToShow)
 
         if ComboBoxToAdd or ButtonToAdd:
             self.XBonus = 35
@@ -71,10 +87,7 @@ class MyLineEdit:
             self.Layout.addWidget(self.ComboBox)
 
         if ButtonToAdd:
-            self.Button = QtGui.QPushButton(u"?", PlaceWidget)
-            self.Button.setFixedWidth(self.XBonus)
-            PlaceWidget.connect(self.Button, QtCore.SIGNAL("clicked()"), QtCore.SLOT(functionForButton(PlaceWidget, ButtonToAdd)))
-            self.Layout.addWidget(self.Button)
+            self.Button = MyAnotherButton(PlaceWidget, self.Layout, self.XBonus, ButtonToAdd)
 
         self.Edit = QtGui.QLineEdit()
         self.Edit.setFixedWidth(100)
