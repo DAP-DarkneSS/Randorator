@@ -2,3 +2,7 @@
 *.kdev4*
 *~
 *.kate-swp
+dist
+buid
+*.log
+*.zip
