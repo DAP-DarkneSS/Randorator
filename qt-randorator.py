@@ -89,9 +89,16 @@ class MyLineEdit:
         if ButtonToAdd:
             self.Button = MyAnotherButton(PlaceWidget, self.Layout, self.XBonus, ButtonToAdd)
 
-        self.Edit = QtGui.QLineEdit()
-        self.Edit.setFixedWidth(100)
-        self.Layout.addWidget(self.Edit)
+        self.LineEdit = QtGui.QLineEdit()
+        self.LineEdit.setFixedWidth(100)
+        self.Layout.addWidget(self.LineEdit)
+
+    def text(self):
+        return(self.LineEdit.text())
+
+    def currentIndex(self):
+        return(self.ComboBox.currentIndex())
+# Here it is a method to get user decision from a combobox as a logical value.
 
 #==============================|Button_Class|===============================#
 
@@ -99,8 +106,12 @@ class MyPushButton(QtGui.QPushButton):
     def __init__(self,
                  PlaceWidget,
                  PlaceLayout,
-                 StringToShow):
+                 StringToShow,
+                 DictToGet = False):
         QtGui.QWidget.__init__(self, PlaceWidget)
+
+        if not DictToGet:
+            self.clicked.connect(quit)
 
         self.setText(StringToShow)
         self.setFixedWidth(115)
@@ -120,6 +131,9 @@ class MyCheckBox:
 
         if LogicalToSet:
             self.CheckBox.setCheckState(QtCore.Qt.Checked)
+
+    def checkStateSet(self):
+        return(self.CheckBox.checkStateSet())
 
 #=============================|Program_Window|==============================#
 
@@ -152,10 +166,10 @@ MyLineEditSortm = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_sortm"), False,
 LayoutButtonz = QtGui.QHBoxLayout()
 LayoutRoot.addLayout(LayoutButtonz)
 
-MyPushButtonMake = MyPushButton(WidgetRoot, LayoutButtonz, locale(u"ui_gen_b"))
+MyPushButtonMake = MyPushButton(WidgetRoot, LayoutButtonz, locale(u"ui_gen_b"), DictToGet = {})
+MyPushButtonMake.setDisabled(True)
 
 MyPushButtonExit = MyPushButton(WidgetRoot, LayoutButtonz, locale(u"ui_exi_b"))
-WidgetRoot.connect(MyPushButtonExit, QtCore.SIGNAL('clicked()'), QtGui.qApp, QtCore.SLOT('quit()'))
 
 #===============================|Check_Boxes|=======s========================#
 
@@ -169,6 +183,22 @@ MyCheckBoxAlgorithm = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_truer"), 0)
 MyCheckBoxRsdA      = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_rsd_a"), 0)
 ## Here it is a checkbox to configure true RSD value output.
 ## It isn't activated by default and RSD isn't outputed.
+
+#DictToGet = {
+            #"str_minim": MyLineEditMini.text(),
+            #"str_maxim": MyLineEditMaxi.text(),
+            #"str_quant": MyLineEditN.text(),
+            #"str_avera": MyLineEditMean.text(),
+            #"str_rsd_p": MyLineEditRsd.text(),
+            #"str_round": MyLineEditRound.text(),
+            #"log_punct": MyCheckBoxPunctu.checkStateSet(),
+            #"log_verbo": MyCheckBoxVerbosity.checkStateSet(),
+            #"log_algor": MyCheckBoxAlgorithm.checkStateSet(),
+            #"log_min_v": MyLineEditMini.currentIndex(),
+            #"log_max_v": MyLineEditMaxi.currentIndex(),
+            #"log_rsd_a": MyCheckBoxRsdA.checkStateSet(),
+            #"log_rsd_w": MyLineEditRsd.currentIndex(),
+            #"str_sortm": MyLineEditSortm.text()}
 
 #============================|Text_Data_Output|=============================#
 
