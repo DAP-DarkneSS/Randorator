@@ -25,25 +25,15 @@
 
 # You could contact me with e-mail or jabber dap.darkness@gmail.com
 
-#=============================|Locale_Import|===============================#
-
-from locale import getdefaultlocale
-
-CurrentLocale = getdefaultlocale()
-print("Current locale is " + CurrentLocale[0] + ". Current encoding is " + CurrentLocale[1] + ".")
-# Here it is an announcement of the current locale & encoding.
-
-if "ru" in CurrentLocale[0].lower():
-    print("Let's speak Russian.")
-    from ru import dict_str
-else:
-    print("Let's speak English.")
-    from en import dict_str
-# If "ru" isn't a country or a language, English will be chosen.
-
 #============================|Locale_Function|==============================#
 
-def locale(str_in):
+def locale(str_in, Language):
+
+    if Language == u"ru":
+        from ru import dict_str
+    else:
+        from en import dict_str
+
     if str_in in dict_str:
         return(dict_str[str_in])
 # If the key exists the corresponding value will be returned.

@@ -60,6 +60,7 @@ Settingz = {
     "str_avera": u"",
     "str_rsd_p": u"",
     "str_round": u"",
+    "log_clipb": True,
     "log_punct": True,
     "log_verbo": True,
     "log_algor": False,
@@ -122,13 +123,11 @@ if not (DecimalMarkConf in [u".", u","]):
     DecimalMarkConf = localeconv()[u"decimal_point"]
 
 if DecimalMarkConf == u",":
-    Settingz[u"log_punct"] = True
-else:
     Settingz[u"log_punct"] = False
 
 #==================================|Setup|==================================#
 
-for i in ["log_verbo", "log_algor", "log_min_v", "log_max_v", "log_rsd_a", "log_rsd_w"]:
+for i in ["log_clipb", "log_verbo", "log_algor", "log_min_v", "log_max_v", "log_rsd_a", "log_rsd_w"]:
     Settingz[i] = parseIt(Confirator, u"Variables", i, Settingz[i], u"bool")
 
 for i in ["str_minim", "str_maxim", "str_quant", "str_avera", "str_rsd_p", "str_round", "str_sortm"]:
