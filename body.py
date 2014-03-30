@@ -68,9 +68,9 @@ def check_icon(extension):
         try:
             message = ci_output + " was loaded."
         except UnicodeDecodeError:
-            message = u"Icon file from directory with non-Latin symbols in the name was loaded."
+            message = icon_file + " was loaded from directory with non-Latin symbols in the name."
     else:
-        message = u"Icon file wasn't found :("
+        message = icon_file + " wasn't found :("
 
     print(message)
 # Here it is an announcement of icon file search result.
