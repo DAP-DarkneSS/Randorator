@@ -60,7 +60,7 @@ Settingz = {
     "str_avera": u"",
     "str_rsd_p": u"",
     "str_round": u"",
-    "log_punct": False,
+    "log_punct": True,
     "log_verbo": True,
     "log_algor": False,
     "log_min_v": False,
@@ -113,9 +113,22 @@ else:
     if "ru" in CurrentLocale[0].lower():
         Settingz["str_langu"] = u"ru"
 
+#===============================|Decimal_Mark|==============================#
+
+DecimalMarkConf = parseIt(Confirator, u"Variables", u"str_punct", u"")
+
+if not (DecimalMarkConf in [u".", u","]):
+    from locale import localeconv
+    DecimalMarkConf = localeconv()[u"decimal_point"]
+
+if DecimalMarkConf == u",":
+    Settingz[u"log_punct"] = True
+else:
+    Settingz[u"log_punct"] = False
+
 #==================================|Setup|==================================#
 
-for i in ["log_punct", "log_verbo", "log_algor", "log_min_v", "log_max_v", "log_rsd_a", "log_rsd_w"]:
+for i in ["log_verbo", "log_algor", "log_min_v", "log_max_v", "log_rsd_a", "log_rsd_w"]:
     Settingz[i] = parseIt(Confirator, u"Variables", i, Settingz[i], u"bool")
 
 for i in ["str_minim", "str_maxim", "str_quant", "str_avera", "str_rsd_p", "str_round", "str_sortm"]:

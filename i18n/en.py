@@ -42,7 +42,7 @@ dict_str = {
     u"ui_gen_b": u"Generate!",
     u"ui_exi_b": u"Quit",
     u"ui_clipb": u"Automatically copy values",
-    u"ui_punct": u"Numbers with '.' (',' by default)",
+    u"ui_punct": u"Numbers with '.' (else: ',')",
     u"ui_error": u"Output errors notifications",
     u"ui_truer": u"True random numbers over\nthe Internet, may be slow",
     u"ui_true1": u"True random numbers, slowly",
