@@ -27,26 +27,21 @@
 
 #=================================|Import|==================================#
 
+# [ HACK: If not global — SyntaxError: import * is not allowed in function
+# 'UserInterface' because it contains a nested function with free variables.
+
 from Tkinter import *
-from ScrolledText import ScrolledText
-#Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
+
+# SyntaxError: import * is not allowed in function… End of HACK ].
+
+# [ HACK: If not global — NameError: free variable 'Entry' referenced
+# before assignment in enclosing scope.
+
 from ttk import Combobox
 # Combobox widget module is loaded.
 import tkMessageBox
 # A message box module is loaded to show help window.
-from body import randorator, check_icon, check_windows
-# Program kernel module is loaded.
-# Program icon existence checking module is loaded.
-# Windows platform checking module is loaded.
 from i18n.locator import locale
-# Russian locale module is imported.
-
-windows = check_windows()
-# Here it is a value to check if the program is run under windows.
-
-if windows:
-    from ttk import Button, Entry
-# Let tkinter GUI at windows be less ugly. It doesn't look natively at Linux.
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
@@ -55,7 +50,7 @@ class MyEntry:
 # A string value to add a combobox or a button could be also inputed.
 
         def button_finfo():
-            tkMessageBox.showinfo(locale(u"ui_iftxt"), button_add)
+            tkMessageBox.showinfo(locale(u"ui_iftxt", Settingz["str_langu"]), button_add)
 # Here it is a function to show information window.
 
         self.frame_class = Frame(place_class)
@@ -115,84 +110,111 @@ class MyButton:
         self.button_class.pack(side = LEFT)
 #Кнопка шириной в 14 пикселей прикрепляется к левому краю.
 
-def button_fmake():
+# NameError: free variable referenced before assignment… End of HACK ].
+
+def UserInterface(Settingz):
+
+    from ScrolledText import ScrolledText
+#Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
+
+    from body import randorator, check_icon, check_windows
+# Program kernel module is loaded.
+# Program icon existence checking module is loaded.
+# Windows platform checking module is loaded.
+
+    def button_fmake():
 #Функция для кнопки. Записывается без аргументов!
-    text_out.delete(1.0, END)
+        text_out.delete(1.0, END)
 #Очистка текстового поля.
-    dict_val = {
-    "str_minim": entry_mini.get(),
-    "str_maxim": entry_maxi.get(),
-    "str_quant": entry_n.get(),
-    "str_avera": entry_mean.get(),
-    "str_rsd_p": entry_rsd.get(),
-    "str_round": entry_round.get(),
-    "log_punct": vcheck_punctuation.get(),
-    "log_verbo": vcheck_verbosity.get(),
-    "log_algor": vcheck_algorithm.get(),
-    "log_min_v": entry_mini.getbox(),
-    "log_max_v": entry_maxi.getbox(),
-    "log_rsd_a": vcheck_rsd_a.get(),
-    "log_rsd_w": entry_rsd.getbox(),
-    "str_sortm": entry_sortm.get()}
+        dict_val = {
+        "str_minim": entry_mini.get(),
+        "str_maxim": entry_maxi.get(),
+        "str_quant": entry_n.get(),
+        "str_avera": entry_mean.get(),
+        "str_rsd_p": entry_rsd.get(),
+        "str_round": entry_round.get(),
+        "log_punct": vcheck_punctuation.get(),
+        "log_verbo": vcheck_verbosity.get(),
+        "log_algor": vcheck_algorithm.get(),
+        "log_min_v": entry_mini.getbox(),
+        "log_max_v": entry_maxi.getbox(),
+        "log_rsd_a": vcheck_rsd_a.get(),
+        "log_rsd_w": entry_rsd.getbox(),
+        "str_sortm": entry_sortm.get()}
 # Here it is a dictionary with almost all output values.
-    dict_out = randorator(dict_val)
+        dict_out = randorator(dict_val)
 # The output dictionary is transfered to the external function to get text back.
-    text_out.insert(END, dict_out["str_infoz"] + dict_out["str_numbz"])
+        text_out.insert(END, dict_out["str_infoz"] + dict_out["str_numbz"])
 # The text is put into the field.
-    if vcheck_copy.get():
-        root.clipboard_clear()
-        root.clipboard_append(dict_out["str_numbz"])
+        if vcheck_copy.get():
+            root.clipboard_clear()
+            root.clipboard_append(dict_out["str_numbz"])
 #Если не указано иное, очищается буфер обмена, копируются полученные значения.
 
-root=Tk()
+    windows = check_windows()
+# Here it is a value to check if the program is run under windows.
+
+    if windows:
+        from ttk import Button, Entry
+# Let tkinter GUI at windows be less ugly. It doesn't look natively at Linux.
+
+    root=Tk()
 #Создаётся окно приложения.
-root.title(locale(u"ui_title"))
+    root.title(locale(u"ui_title", Settingz["str_langu"]))
 #Задаётся заголовок.
-root.resizable(False, False)
+    root.resizable(False, False)
 #Нельзя изменять размер окна.
-root.call('wm', 'iconphoto', root._w, PhotoImage(file = check_icon("gif")))
+    root.call('wm', 'iconphoto', root._w, PhotoImage(file = check_icon("gif")))
 # Window icon is loaded.
 
-label_title = Label(root, text = locale(u"ui_about"))
-label_title.pack()
+    label_title = Label(root, text = locale(u"ui_about", Settingz["str_langu"]))
+    label_title.pack()
 #Надпись с описанием программы.
 
-entry_mini = MyEntry(root, locale(u"ui_minim"), ["", "+"])
-entry_maxi = MyEntry(root, locale(u"ui_maxim"), ["", "+"])
-entry_n = MyEntry(root, locale(u"ui_quant"))
-entry_mean = MyEntry(root, locale(u"ui_avera"))
-entry_rsd = MyEntry(root, locale(u"ui_rsd_p"), ["<", "~"])
-entry_round = MyEntry(root, locale(u"ui_round"), False, locale(u"ui_ifrnd"))
-entry_sortm = MyEntry(root, locale(u"ui_sortm"), False, locale(u"ui_ifsrt"))
+    entry_mini = MyEntry(root, locale(u"ui_minim", Settingz["str_langu"]), ["", "+"])
+    entry_maxi = MyEntry(root, locale(u"ui_maxim", Settingz["str_langu"]), ["", "+"])
+    entry_n = MyEntry(root, locale(u"ui_quant", Settingz["str_langu"]))
+    entry_mean = MyEntry(root, locale(u"ui_avera", Settingz["str_langu"]))
+    entry_rsd = MyEntry(root, locale(u"ui_rsd_p", Settingz["str_langu"]), ["<", "~"])
+    entry_round = MyEntry(root, locale(u"ui_round", Settingz["str_langu"]), False, locale(u"ui_ifrnd", Settingz["str_langu"]))
+    entry_sortm = MyEntry(root, locale(u"ui_sortm", Settingz["str_langu"]), False, locale(u"ui_ifsrt", Settingz["str_langu"]))
 #Создаётся необходимое количество объектов класса элементов ввода.
 
-frame_buttonz = Frame(root)
-frame_buttonz.pack(side = TOP, fill = BOTH)
+    frame_buttonz = Frame(root)
+    frame_buttonz.pack(side = TOP, fill = BOTH)
 #Рамка для кнопок. 
-button_make = MyButton(frame_buttonz, locale(u"ui_gen_b"), button_fmake)
+    button_make = MyButton(frame_buttonz, locale(u"ui_gen_b", Settingz["str_langu"]), button_fmake)
 #Кнопка генерирования.
-button_exit = MyButton(frame_buttonz, locale(u"ui_exi_b"), root.destroy)
+    button_exit = MyButton(frame_buttonz, locale(u"ui_exi_b", Settingz["str_langu"]), root.destroy)
 #Кнопка выхода из приложения.
 
-vcheck_copy = MyVCheck(root, locale(u"ui_clipb"), 1)
+    vcheck_copy = MyVCheck(root, locale(u"ui_clipb", Settingz["str_langu"]), 1)
 #Чекбокс для включения/выключения автоматического копирования значений.
 #Активен – копировать.
-vcheck_punctuation = MyVCheck(root, locale(u"ui_punct"), 0)
+    vcheck_punctuation = MyVCheck(root, locale(u"ui_punct", Settingz["str_langu"]), 0)
 #Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
-vcheck_verbosity = MyVCheck(root, locale(u"ui_error"), 1)
+    vcheck_verbosity = MyVCheck(root, locale(u"ui_error", Settingz["str_langu"]), 1)
 #Чекбокс для включения/выключения вывода сообщений об ошибках.
 #Активен – выводить.
-vcheck_algorithm = MyVCheck(root, locale(u"ui_truer"), 0)
+    vcheck_algorithm = MyVCheck(root, locale(u"ui_truer", Settingz["str_langu"]), 0)
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
-vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a"), 0)
+    vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a", Settingz["str_langu"]), 0)
 # Here it is a checkbox to configure true RSD value output.
 # It isn't activated by default and RSD isn't outputed.
 
-text_out = ScrolledText(root, height = 9, width = 9)
-text_out.pack(side = BOTTOM, fill = BOTH)
+    text_out = ScrolledText(root, height = 9, width = 9)
+    text_out.pack(side = BOTTOM, fill = BOTH)
 #Текстовый виджет с полосой прокрутки растянут по ширине окна приложения.
 
-root.mainloop()
+    root.mainloop()
 #Окончание текста приложения.
+
+#================================|Direct_Run|===============================#
+
+if __name__ == '__main__':
+
+    from randorator import Settingz
+
+    UserInterface(Settingz)

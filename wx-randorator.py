@@ -35,7 +35,6 @@ def UserInterface(Settingz):
 # Program icon existence checking module is loaded.
 # Windows platform checking module is loaded.
     from i18n.locator import locale
-# Russian locale module is imported.
 
     windows = check_windows()
 # Here it is a value to check if the program is run under windows.
@@ -43,12 +42,12 @@ def UserInterface(Settingz):
 #===========================|Text_Control_Class|============================#
 
     class MyTextCtrl:
-        def __init__(self, place_frame, place_sizer, string_class, choise_class = False, button_add = False):
+        def __init__(self, place_frame, place_sizer, string_class, DefaultValue, choise_class = False, button_add = False, DefaultSelection = False):
 # Принимается frame прикрепления виджета, sizer упаковки и текст надписи.
 # A string value to add a combobox or a button could be also inputed.
 
             def button_finfo(event):
-                wx.MessageBox(button_add, locale(u"ui_iftxt"), wx.OK | wx.ICON_INFORMATION)
+                wx.MessageBox(button_add, locale(u"ui_iftxt", Settingz["str_langu"]), wx.OK | wx.ICON_INFORMATION)
 # Here it is a function to show information window.
 
             if choise_class or button_add:
@@ -69,11 +68,12 @@ def UserInterface(Settingz):
 # The combobox widget or the button will be created if it is set.
 
             self.control_class = wx.TextCtrl(place_frame, size = (100, -1))
+            self.control_class.SetValue(DefaultValue)
 # Описание значения и поле ввода.
             self.sizer_class.Add(self.text_class, flag = wx.ALIGN_CENTER_VERTICAL)
             if choise_class:
                 self.sizer_class.Add(self.box_class)
-                self.box_class.SetSelection(0)
+                self.box_class.SetSelection(DefaultSelection)
             elif button_add:
                 self.sizer_class.Add(self.button_class)
                 place_frame.Bind(wx.EVT_BUTTON, button_finfo, self.button_class)
@@ -192,13 +192,19 @@ def UserInterface(Settingz):
 
 #=============================|Text_Data_Input|=============================#
 
-    sizer_mini = MyTextCtrl(panel_root, sizer_root, locale(u"ui_minim", Settingz["str_langu"]), ["", "+"])
-    sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale(u"ui_maxim", Settingz["str_langu"]), ["", "+"])
-    sizer_n = MyTextCtrl(panel_root, sizer_root, locale(u"ui_quant", Settingz["str_langu"]))
-    sizer_mean = MyTextCtrl(panel_root, sizer_root, locale(u"ui_avera", Settingz["str_langu"]))
-    sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale(u"ui_rsd_p", Settingz["str_langu"]), ["<", "~"])
-    sizer_round = MyTextCtrl(panel_root, sizer_root, locale(u"ui_round", Settingz["str_langu"]), False, locale(u"ui_ifrnd", Settingz["str_langu"]))
-    sizer_sortm = MyTextCtrl(panel_root, sizer_root, locale(u"ui_sortm", Settingz["str_langu"]), False, locale(u"ui_ifsrt", Settingz["str_langu"]))
+    sizer_mini = MyTextCtrl(panel_root, sizer_root, locale(u"ui_minim", Settingz["str_langu"]), Settingz["str_minim"], ["", "+"], False, Settingz["log_min_v"])
+
+    sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale(u"ui_maxim", Settingz["str_langu"]), Settingz["str_maxim"], ["", "+"], False, Settingz["log_max_v"])
+
+    sizer_n = MyTextCtrl(panel_root, sizer_root, locale(u"ui_quant", Settingz["str_langu"]), Settingz["str_quant"])
+
+    sizer_mean = MyTextCtrl(panel_root, sizer_root, locale(u"ui_avera", Settingz["str_langu"]),  Settingz["str_avera"])
+
+    sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale(u"ui_rsd_p", Settingz["str_langu"]), Settingz["str_rsd_p"], ["<", "~"], False, Settingz["log_rsd_w"])
+
+    sizer_round = MyTextCtrl(panel_root, sizer_root, locale(u"ui_round", Settingz["str_langu"]), Settingz["str_round"], False, locale(u"ui_ifrnd", Settingz["str_langu"]))
+
+    sizer_sortm = MyTextCtrl(panel_root, sizer_root, locale(u"ui_sortm", Settingz["str_langu"]), Settingz["str_sortm"], False, locale(u"ui_ifsrt", Settingz["str_langu"]))
 # Рисуются упаковщики с описаниями значений и полями ввода.
 
 #=================================|Buttons|=================================#
