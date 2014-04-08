@@ -73,31 +73,34 @@ Settingz = {
 #====================================|UI|===================================#
 Interfacez = []
 
-try:
-    from wx import App
-    Interfacez.append(u"wx")
-except:
-    print("WxWidgets (WxPython) user interface isn't available.")
+if __name__ == '__main__':
+# If global all UI dll will be packaged via pyinstaller.
 
-try:
-    from Tkinter import Tk
-    Interfacez.append(u"tk")
-except:
-    print("Tcl/Tk (Tkinter) user interface isn't available.")
+    try:
+        from wx import App
+        Interfacez.append(u"wx")
+    except:
+        print("WxWidgets (WxPython) user interface isn't available.")
 
-Interfacez.append(u"cl")
+    try:
+        from Tkinter import Tk
+        Interfacez.append(u"tk")
+    except:
+        print("Tcl/Tk (Tkinter) user interface isn't available.")
 
-try:
-    from PyQt4 import QtCore
-    Interfacez.append(u"qt")
-except:
-    print("Qt4 (PyQt) user interface isn't available.")
+    Interfacez.append(u"cl")
 
-InterfaceConf = (parseIt(Confirator, u"Interface", u"str_usint", u"")).lower()
+    try:
+        from PyQt4 import QtCore
+        Interfacez.append(u"qt")
+    except:
+        print("Qt4 (PyQt) user interface isn't available.")
 
-if InterfaceConf in Interfacez:
-    print(InterfaceConf + " user interface will be used.")
-    Settingz["str_usint"] = InterfaceConf
+    InterfaceConf = (parseIt(Confirator, u"Interface", u"str_usint", u"")).lower()
+
+    if InterfaceConf in Interfacez:
+        print(InterfaceConf + " user interface will be used.")
+        Settingz["str_usint"] = InterfaceConf
 
 #=================================|Language|================================#
 
@@ -132,3 +135,18 @@ for i in ["log_clipb", "log_verbo", "log_algor", "log_min_v", "log_max_v", "log_
 
 for i in ["str_minim", "str_maxim", "str_quant", "str_avera", "str_rsd_p", "str_round", "str_sortm"]:
     Settingz[i] = parseIt(Confirator, u"Variables", i, u"")
+
+#================================|Direct_Run|===============================#
+
+if __name__ == '__main__':
+
+    if Settingz["str_usint"] == u"tk":
+        from tk_randorator import UserInterface
+    elif Settingz["str_usint"] == u"cl":
+        from body import UserInterface
+    elif Settingz["str_usint"] == u"qt":
+        from qt_randorator import UserInterface
+    else:
+        from wx_randorator import UserInterface
+
+    UserInterface(Settingz)

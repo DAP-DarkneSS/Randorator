@@ -1,0 +1,60 @@
+--- randorator.py	2014-04-08 22:16:43.170254200 +0300
++++ randorator.py	2014-04-08 22:16:50.307254200 +0300
+@@ -70,6 +70,38 @@
+     "log_rsd_w": False,
+     "str_sortm": u""}
+ 
++#====================================|UI|===================================#
++Interfacez = []
++
++if __name__ == '__main__':
++# If global all UI dll will be packaged via pyinstaller.
++
++    try:
++        from wx import App
++        Interfacez.append(u"wx")
++    except:
++        print("WxWidgets (WxPython) user interface isn't available.")
++
++    try:
++        from Tkinter import Tk
++        Interfacez.append(u"tk")
++    except:
++        print("Tcl/Tk (Tkinter) user interface isn't available.")
++
++    Interfacez.append(u"cl")
++
++    try:
++        from PyQt4 import QtCore
++        Interfacez.append(u"qt")
++    except:
++        print("Qt4 (PyQt) user interface isn't available.")
++
++    InterfaceConf = (parseIt(Confirator, u"Interface", u"str_usint", u"")).lower()
++
++    if InterfaceConf in Interfacez:
++        print(InterfaceConf + " user interface will be used.")
++        Settingz["str_usint"] = InterfaceConf
++
+ #=================================|Language|================================#
+ 
+ LanguageConf = (parseIt(Confirator, u"Interface", u"str_langu", u"")).lower()
+@@ -103,3 +135,18 @@
+ 
+ for i in ["str_minim", "str_maxim", "str_quant", "str_avera", "str_rsd_p", "str_round", "str_sortm"]:
+     Settingz[i] = parseIt(Confirator, u"Variables", i, u"")
++
++#================================|Direct_Run|===============================#
++
++if __name__ == '__main__':
++
++    if Settingz["str_usint"] == u"tk":
++        from tk_randorator import UserInterface
++    elif Settingz["str_usint"] == u"cl":
++        from body import UserInterface
++    elif Settingz["str_usint"] == u"qt":
++        from qt_randorator import UserInterface
++    else:
++        from wx_randorator import UserInterface
++
++    UserInterface(Settingz)

@@ -10,14 +10,16 @@ PROJECT_DIR=~/Documents/Python/Randorator
 SPEC=tools/wx-randorator.spec
 
 cd $PROJECT_DIR
+cat tools/0.patch | patch -p0 --fuzz=0
 $WINE_EXEC $PYTHON_EXEC $PYINSTALLER $SPEC
+cat tools/1.patch | patch -p0 --fuzz=0
 
 VER=`git describe | sed "s/^v//g" | tr "-" "."`
 DIST_DIR=randorator-$VER-pyinstaller-wxwidgets
 
 mv tools/dist/wx-randorator tools/dist/randorator
 mv tools/dist $DIST_DIR
-cp COPYING* *.md randorator.ico $DIST_DIR/randorator
+cp COPYING* *.md randorator.ico randorator.ini $DIST_DIR/randorator
 
 rm logdict*.log
 rm -rf tools/build

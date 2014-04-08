@@ -10,14 +10,16 @@ PROJECT_DIR=~/Documents/Python/Randorator
 SPEC=tools/qt-randorator.spec
 
 cd $PROJECT_DIR
+cat tools/0.patch | patch -p0 --fuzz=0
 $WINE_EXEC $PYTHON_EXEC $PYINSTALLER $SPEC
+cat tools/1.patch | patch -p0 --fuzz=0
 
 VER=`git describe | sed "s/^v//g" | tr "-" "."`
 DIST_DIR=randorator-$VER-pyinstaller-pyqt
 
 mv tools/dist/qt-randorator tools/dist/randorator
 mv tools/dist $DIST_DIR
-cp COPYING COPYING.RU *.md randorator.gif $DIST_DIR/randorator
+cp COPYING COPYING.RU *.md randorator.gif randorator.ini $DIST_DIR/randorator
 
 rm logdict*.log
 rm -rf tools/build
