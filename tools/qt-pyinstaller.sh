@@ -19,7 +19,7 @@ DIST_DIR=randorator-$VER-pyinstaller-pyqt
 
 mv tools/dist/qt-randorator tools/dist/randorator
 mv tools/dist $DIST_DIR
-cp COPYING COPYING.RU *.md randorator.gif randorator.ini $DIST_DIR/randorator
+cp COPYING* *.md randorator.gif randorator.ini $DIST_DIR/randorator
 
 rm logdict*.log
 rm -rf tools/build

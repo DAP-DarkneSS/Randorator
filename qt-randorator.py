@@ -147,40 +147,40 @@ LayoutRoot = QtGui.QVBoxLayout()
 
 #==================================|Title|==================================#
 
-TextTitle = QtGui.QLabel(locale(u"ui_about"), WidgetRoot)
+TextTitle = QtGui.QLabel(locale(u"ui_about", "en"), WidgetRoot)
 TextTitle.setAlignment(QtCore.Qt.AlignCenter)
 LayoutRoot.addWidget(TextTitle)
 
 #=============================|Text_Data_Input|=============================#
 
-MyLineEditMini  = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_minim"), ["", "+"])
-MyLineEditMaxi  = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_maxim"), ["", "+"])
-MyLineEditN     = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_quant"))
-MyLineEditMean  = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_avera"))
-MyLineEditRsd   = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_rsd_p"), ["<", "~"])
-MyLineEditRound = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_round"), False, locale(u"ui_ifrnd"))
-MyLineEditSortm = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_sortm"), False, locale(u"ui_ifsrt"))
+MyLineEditMini  = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_minim", "en"), ["", "+"])
+MyLineEditMaxi  = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_maxim", "en"), ["", "+"])
+MyLineEditN     = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_quant", "en"))
+MyLineEditMean  = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_avera", "en"))
+MyLineEditRsd   = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_rsd_p", "en"), ["<", "~"])
+MyLineEditRound = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_round", "en"), False, locale(u"ui_ifrnd", "en"))
+MyLineEditSortm = MyLineEdit(WidgetRoot, LayoutRoot, locale(u"ui_sortm", "en"), False, locale(u"ui_ifsrt", "en"))
 
 #=================================|Buttons|=================================#
 
 LayoutButtonz = QtGui.QHBoxLayout()
 LayoutRoot.addLayout(LayoutButtonz)
 
-MyPushButtonMake = MyPushButton(WidgetRoot, LayoutButtonz, locale(u"ui_gen_b"), DictToGet = {})
+MyPushButtonMake = MyPushButton(WidgetRoot, LayoutButtonz, locale(u"ui_gen_b", "en"), DictToGet = {})
 MyPushButtonMake.setDisabled(True)
 
-MyPushButtonExit = MyPushButton(WidgetRoot, LayoutButtonz, locale(u"ui_exi_b"))
+MyPushButtonExit = MyPushButton(WidgetRoot, LayoutButtonz, locale(u"ui_exi_b", "en"))
 
 #===============================|Check_Boxes|=======s========================#
 
-MyCheckBoxCopy      = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_clipb"), 1)
-MyCheckBoxPunctu    = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_punct"), 0)
-MyCheckBoxVerbosity = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_error"), 1)
-MyCheckBoxAlgorithm = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_truer"), 0)
+MyCheckBoxCopy      = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_clipb", "en"), 1)
+MyCheckBoxPunctu    = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_punct", "en"), 0)
+MyCheckBoxVerbosity = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_error", "en"), 1)
+MyCheckBoxAlgorithm = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_truer", "en"), 0)
 ## Here it is a checkbox to enable true random numbers generation.
 ## randomdotorg is licenced under GPLv3 and/or any later. The creator is
 ## Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
-MyCheckBoxRsdA      = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_rsd_a"), 0)
+MyCheckBoxRsdA      = MyCheckBox(WidgetRoot, LayoutRoot, locale(u"ui_rsd_a", "en"), 0)
 ## Here it is a checkbox to configure true RSD value output.
 ## It isn't activated by default and RSD isn't outputed.
 
