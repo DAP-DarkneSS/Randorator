@@ -442,9 +442,16 @@ def randorator(dict_val):
 if __name__ == '__main__':
 # Проверка, запускается ли файл как самостоятельное приложение.
 
-    def my_input(string):
-        print string
-        return(raw_input())
+    from i18n.locator import locale
+    from randorator import Settingz
+
+    def my_input(LocaleID, DefaultValue):
+        if DefaultValue ==  u"":
+            print(locale(LocaleID, Settingz["str_langu"]))
+            OutputValue = raw_input()
+        else:
+            OutputValue = DefaultValue
+        return(OutputValue)
 
     dict_val = {
     "str_minim": "",
@@ -454,7 +461,7 @@ if __name__ == '__main__':
     "str_rsd_p": "",
     "str_round": "",
     "log_punct": False,
-    "log_verbo": True,
+    "log_verbo": False,
     "log_algor": False,
     "log_min_v": False,
     "log_max_v": False,
@@ -463,22 +470,24 @@ if __name__ == '__main__':
     "str_sortm": ""}
 # Here it is a blank dictionary with almost all output values.
         
-    print u"Продвинутый графический генератор случайных чисел.\n"
-    print u"Ввод параметров подтверждайте Enter, пустые параметры разрешены.\n"
-    dict_val["str_minim"] = my_input(u"Минимально допустимое значение:")
-    dict_val["str_maxim"] = my_input(u"Максимально допустимое значение:")
-    dict_val["str_quant"] = my_input(u"Количество генерируемых чисел:")
-    dict_val["str_avera"] = my_input(u"Среднее значение:")
-    dict_val["str_rsd_p"] = my_input(u"Максимальное RSD в %:")
-    punctu = my_input(u"Разделитель целой и дробной части (. или ,):")
-    dict_val["str_round"] = my_input(u"Количество цифер после запятой:")
-    algorithm = my_input(u"Истинно случайные числа через интернет, медленно (True[1]/False[0], 0 is default):")
+    print(locale(u"ui_about", Settingz["str_langu"]) + u"\n")
+    print u"Please press Enter after option typed, blank values are allowed.\n"
+
+    dict_val["str_minim"] = my_input(u"ui_minim", Settingz["str_minim"])
+    dict_val["str_maxim"] = my_input(u"ui_maxim", Settingz["str_maxim"])
+    dict_val["str_quant"] = my_input(u"ui_quant", Settingz["str_quant"])
+    dict_val["str_avera"] = my_input(u"ui_avera", Settingz["str_avera"])
+    dict_val["str_rsd_p"] = my_input(u"ui_rsd_p", Settingz["str_rsd_p"])
+    dict_val["str_round"] = my_input(u"ui_round", Settingz["str_round"])
+    dict_val["str_sortm"] = my_input(u"ui_sortm", Settingz["str_round"])
 # Импорт параметров.
 
-    if punctu == ".":
-        dict_val["log_punct"] = True
-    if (algorithm == "True") or (algorithm == "1"):
-        dict_val["log_algor"] = True
+    dict_val["log_punct"] = Settingz["log_punct"]
+    dict_val["log_algor"] = Settingz["log_algor"]
+    dict_val["log_min_v"] = Settingz["log_min_v"]
+    dict_val["log_max_v"] = Settingz["log_max_v"]
+    dict_val["log_rsd_a"] = Settingz["log_rsd_a"]
+    dict_val["log_rsd_w"] = Settingz["log_rsd_w"]
 # Logical data are refined.
 
     while True:
@@ -487,7 +496,8 @@ if __name__ == '__main__':
 # Вход в бесконечный цикл, получение снегерированных данных.
 
         try:
-            my_input(u"\nEnter для повторной генерации. Ctrl+C для выхода.")
+            print(u"\nEnter to regenerate. Ctrl+C to exit.")
+            raw_input()
 # При любом вводе цикл возвращается в начало.
 
         except KeyboardInterrupt:
