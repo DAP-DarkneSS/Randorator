@@ -45,7 +45,7 @@ from i18n.locator import locale
 
 class MyEntry:
 #Класс для уменьшений объёма кода однотипных элементов для ввода параметров.
-    def __init__(self, place_class, string_class, choise_class = False, button_add = False):
+    def __init__(self, place_class, string_class, DefaultValue, choise_class = False, button_add = False):
 #При создании принимается место прикрепления виджета и строковое значение для надписи.
 # A string value to add a combobox or a button could be also inputed.
 
@@ -61,6 +61,7 @@ class MyEntry:
 #В ней – надписи для описания вводимых значений выровнены по левому краю.
         self.entry_class = Entry(self.frame_class, width = 15)
         self.entry_class.pack(side = RIGHT)
+        self.entry_class.insert(0, DefaultValue)
 #И элементы для ввода значений шириной в 15 знаков выровнены по правому краю.
         if choise_class:
             self.box_class = Combobox(self.frame_class, values = choise_class, width = 2)
@@ -171,13 +172,19 @@ def UserInterface(Settingz):
     label_title.pack()
 #Надпись с описанием программы.
 
-    entry_mini = MyEntry(root, locale(u"ui_minim", Settingz["str_langu"]), ["", "+"])
-    entry_maxi = MyEntry(root, locale(u"ui_maxim", Settingz["str_langu"]), ["", "+"])
-    entry_n = MyEntry(root, locale(u"ui_quant", Settingz["str_langu"]))
-    entry_mean = MyEntry(root, locale(u"ui_avera", Settingz["str_langu"]))
-    entry_rsd = MyEntry(root, locale(u"ui_rsd_p", Settingz["str_langu"]), ["<", "~"])
-    entry_round = MyEntry(root, locale(u"ui_round", Settingz["str_langu"]), False, locale(u"ui_ifrnd", Settingz["str_langu"]))
-    entry_sortm = MyEntry(root, locale(u"ui_sortm", Settingz["str_langu"]), False, locale(u"ui_ifsrt", Settingz["str_langu"]))
+    entry_mini = MyEntry(root, locale(u"ui_minim", Settingz["str_langu"]), Settingz["str_minim"], ["", "+"])
+
+    entry_maxi = MyEntry(root, locale(u"ui_maxim", Settingz["str_langu"]), Settingz["str_maxim"], ["", "+"])
+
+    entry_n = MyEntry(root, locale(u"ui_quant", Settingz["str_langu"]), Settingz["str_quant"])
+
+    entry_mean = MyEntry(root, locale(u"ui_avera", Settingz["str_langu"]),  Settingz["str_avera"])
+
+    entry_rsd = MyEntry(root, locale(u"ui_rsd_p", Settingz["str_langu"]), Settingz["str_rsd_p"], ["<", "~"])
+
+    entry_round = MyEntry(root, locale(u"ui_round", Settingz["str_langu"]), Settingz["str_round"], False, locale(u"ui_ifrnd", Settingz["str_langu"]))
+
+    entry_sortm = MyEntry(root, locale(u"ui_sortm", Settingz["str_langu"]), Settingz["str_sortm"], False, locale(u"ui_ifsrt", Settingz["str_langu"]))
 #Создаётся необходимое количество объектов класса элементов ввода.
 
     frame_buttonz = Frame(root)
@@ -188,19 +195,19 @@ def UserInterface(Settingz):
     button_exit = MyButton(frame_buttonz, locale(u"ui_exi_b", Settingz["str_langu"]), root.destroy)
 #Кнопка выхода из приложения.
 
-    vcheck_copy = MyVCheck(root, locale(u"ui_clipb", Settingz["str_langu"]), 1)
+    vcheck_copy = MyVCheck(root, locale(u"ui_clipb", Settingz["str_langu"]), Settingz["log_clipb"])
 #Чекбокс для включения/выключения автоматического копирования значений.
 #Активен – копировать.
-    vcheck_punctuation = MyVCheck(root, locale(u"ui_punct", Settingz["str_langu"]), 0)
+    vcheck_punctuation = MyVCheck(root, locale(u"ui_punct", Settingz["str_langu"]), Settingz["log_punct"])
 #Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
-    vcheck_verbosity = MyVCheck(root, locale(u"ui_error", Settingz["str_langu"]), 1)
+    vcheck_verbosity = MyVCheck(root, locale(u"ui_error", Settingz["str_langu"]), Settingz["log_verbo"])
 #Чекбокс для включения/выключения вывода сообщений об ошибках.
 #Активен – выводить.
-    vcheck_algorithm = MyVCheck(root, locale(u"ui_truer", Settingz["str_langu"]), 0)
+    vcheck_algorithm = MyVCheck(root, locale(u"ui_truer", Settingz["str_langu"]), Settingz["log_algor"])
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
-    vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a", Settingz["str_langu"]), 0)
+    vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a", Settingz["str_langu"]), Settingz["log_rsd_a"])
 # Here it is a checkbox to configure true RSD value output.
 # It isn't activated by default and RSD isn't outputed.
 
