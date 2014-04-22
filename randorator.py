@@ -29,6 +29,7 @@
 
 from ConfigParser import SafeConfigParser
 from body import check_icon
+# Configuration file parser and existence checker are imported.
 
 #=================================|Parser|==================================#
 
@@ -37,10 +38,12 @@ def parseIt(Config, Section, Value, FallBack, Type = u"str"):
     try:
         if Type == u"bool":
             OutPut = Config.getboolean(Section, Value)
+# Logical values are parsed by special method.
         else:
             OutPut = Config.get(Section, Value)
     except:
         OutPut = FallBack
+# If any exception is rised fallback value will be returned.
 
     return(OutPut)
 
@@ -74,7 +77,6 @@ Settingz = {
 Interfacez = []
 
 if __name__ == '__main__':
-# If global all UI dll will be packaged via pyinstaller.
 
     try:
         from wx import App
@@ -116,6 +118,7 @@ else:
     print("Current locale is " + CurrentLocale[0] + ". Current encoding is " + CurrentLocale[1] + ".")
     if "ru" in CurrentLocale[0].lower():
         Settingz["str_langu"] = u"ru"
+# If interface language isn't configured system settings will be parsed.
 
 #===============================|Decimal_Mark|==============================#
 
@@ -127,6 +130,7 @@ if not (DecimalMarkConf in [u".", u","]):
 
 if DecimalMarkConf == u",":
     Settingz[u"log_punct"] = False
+# If decimal mark isn't configured system settings will be parsed.
 
 #==================================|Setup|==================================#
 
