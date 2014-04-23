@@ -109,8 +109,8 @@ def randorator(dict_val):
 
     from simple import rando
     from average import average
+    from rsd import randorateGauss, relstdev, rsd_calc
 # Modules to generate random numbers list are loaded.
-    from rsd import relstdev, rsd_calc
 # RSD adjusting and calculating modules are loaded.
     from math import log, copysign
 # Logarithm counting and sign copy functions are loaded.
@@ -287,13 +287,8 @@ def randorator(dict_val):
 #Создаются пустые списки и текст. Обрабатываются числовые параметры.
 #Вычисляется удобное число m. Создаются удобные списки.
 
-    if average_used:
-        matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
-        print(u"Average value was selected and randorated.")
-    else:
-        matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
-
     rsd_used = False
+    rsd_used2 = False
     if dict_val["str_rsd_p"] != "":
         if (not dict_val["log_max_v"]) and (not dict_val["log_min_v"]):
 # RSD adjustment with maximum or minimum included to the output isn't implemented.
@@ -302,20 +297,18 @@ def randorator(dict_val):
                 if (mini * maxi >= 0):
                     rsd = punctu(dict_val["str_rsd_p"])
                     if not average_used:
-                        mean = sum(matrix) / n
+                        mean = (mini + maxi) / 2
                     if mean != 0:
                         if rsd > 0:
-                            dict_torsd = {
-                                "lst_numbz": matrix,
-                                "str_quant": n,
-                                "str_avera": mean,
-                                "str_rsd_p": rsd,
-                                "lst_index": fromzeroton,
-                                "log_rsd_w": dict_val["log_rsd_w"]}
-                            dict_rsd = relstdev(dict_torsd)
                             rsd_used = True
-                            print(u"RSD value was selected and randorated.")
-                            matrix = dict_rsd["lst_matrix"]
+                            if dict_val["log_rsd_w"]:
+                                matrix = randorateGauss(fromzeroton, mean, (mean * rsd / 100))
+                                print(u"RSD value was selected and randorated.")
+                                rsd_used2 = True
+                                if dict_val["log_algor"]:
+                                    errorz.append(u"No true random if precise RSD value!")
+# rsd_used2 indicates if matrix has been already randorated.
+# rsd_used indicates if rsd algorithms will be used at all.
                         else:
                             errorz.append(u"RSD должно быть больше 0!")
                             print(u"RSD value was selected but couldn't be randorated.")
@@ -329,8 +322,28 @@ def randorator(dict_val):
         else:
             errorz.append(u"Оптимизация по RSD отключена при добавлении границы интервала!")
             print(u"RSD value was selected but couldn't be randorated.")
-#Если требуется, уменьшается RSD. Задания на одно число игнорируются.
-#Запись соответствующих сообщений об ошибке.
+# If fixed RSD value is set and can be used Gauß distribution will be randorated.
+
+    if (not rsd_used2):
+        if average_used:
+            matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
+            print(u"Average value was selected and randorated.")
+        else:
+            matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
+
+    if rsd_used:
+        if not average_used:
+            mean = sum(matrix) / n
+        dict_torsd = {
+            "lst_numbz": matrix,
+            "str_quant": n,
+            "str_avera": mean,
+            "str_rsd_p": rsd,
+            "lst_index": fromzeroton,
+            "log_rsd_w": dict_val["log_rsd_w"]}
+        dict_rsd = relstdev(dict_torsd)
+        rsd_used = True
+# RSD value is adjusted.
 
     if dict_val["log_min_v"]:
         matrix.append(mini)
