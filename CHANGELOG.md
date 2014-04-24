@@ -1,3 +1,15 @@
+Thu Apr 24 07:04:25 2014 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
+
+- 0.2.4 was released:
+ * Configuration file was implemented.
+ * Configurated values are shown in UI.
+ * Locales support was implemented.
+ * English locale will be loaded if system locale isn't Russian.
+ * Gauß distribution will be used if precise RSD value is set.
+ * `randorator` now will run the best UI of available ones.
+ * System decimal point became used by default.
+ * Workaround for minor bug with line breaks in the output was added.
+
 Mon May 27 21:24:00 2013 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 - 0.2.3 was released:
