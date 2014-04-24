@@ -104,7 +104,7 @@ def rsd_incr(matrix, increment, mean, index):
             closest_max = deviat_sig.index(-1 * deviat_sig[closest_min])
 # The truest way is to decrease a number with absolute minimum deviation…
 
-            for i in xrange((closest_max + 1), len(matrix)):
+            for i in range((closest_max + 1), len(matrix)):
                 if (deviat_sig[i] == deviat_sig[closest_max]) and (deviat_val[i] < deviat_val[closest_max]):
                     closest_max = i
 # … and a number with minimum deviation and sign that differs to previous one.

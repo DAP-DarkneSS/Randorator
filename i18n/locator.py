@@ -29,15 +29,15 @@
 
 def locale(str_in, Language):
 
-    if Language == u"ru":
-        from ru import dict_str
+    if Language == "ru":
+        from .ru import dict_str
     else:
-        from en import dict_str
+        from .en import dict_str
 
     if str_in in dict_str:
         return(dict_str[str_in])
 # If the key exists the corresponding value will be returned.
 
     else:
-        return(dict_str[u"ui_lcerr"])
+        return(dict_str["ui_lcerr"])
 # Else the error message will be returned.

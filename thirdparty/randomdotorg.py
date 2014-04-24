@@ -32,8 +32,8 @@ __license__ = "GPL-3"
 
 
 import random
-import urllib
-import urllib2
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
 
 
 def _fetch_randomorg(service, **kwargs):
@@ -44,10 +44,10 @@ def _fetch_randomorg(service, **kwargs):
     url = "http://random.org/%s/?%s"
     options = dict(format='plain', num=1, col=1, min=0, base=10) # default options
     options.update(kwargs)
-    url = url % (service, urllib.urlencode(options))
+    url = url % (service, urllib.parse.urlencode(options))
     headers = {'User-Agent': 'RandomDotOrg.py/%s + %s' % (__version__, __url__)}
-    req = urllib2.Request(url, headers=headers)
-    return urllib2.urlopen(req).read().splitlines()
+    req = urllib.request.Request(url, headers=headers)
+    return urllib.request.urlopen(req).read().splitlines()
 
 
 class RandomDotOrg(random.Random):
@@ -73,7 +73,7 @@ class RandomDotOrg(random.Random):
         >>> random.seed(randomdotorg.RandomDotOrg().get_seed())
         """
         intlist =  _fetch_randomorg('integers', num=4, max=99999)
-        return long(''.join(number.rjust(5, '0') for number in intlist))
+        return int(''.join(number.rjust(5, '0') for number in intlist))
 
     def write_random_bytes(self, fileobj, num_bytes=256):
         """Writes the specified number of bytes to the file object passed.
@@ -97,7 +97,7 @@ class RandomDotOrg(random.Random):
         else:
             nints = ammount * 5
         pool = _fetch_randomorg('integers', num=nints, max=999)
-        grouped = (pool[i:i+5] for i in xrange(0, nints, 5))
+        grouped = (pool[i:i+5] for i in range(0, nints, 5))
         result = [float('0.%s' % ''.join(number.rjust(3, '0')
                                          for number in intlist))
                   for intlist in grouped]
@@ -112,7 +112,7 @@ class RandomDotOrg(random.Random):
         if k <= 0:
             raise ValueError('number of bits must be greater than zero')
         bits = _fetch_randomorg('integers', num=k, max=1, base=2)
-        return long(''.join(bits), 2)
+        return int(''.join(bits), 2)
 
     #--- Stub & Not implemented methods
     def _stub(self, *args, **kwds):
@@ -161,9 +161,9 @@ class RandomDotOrg(random.Random):
         """Chooses k unique random elements from a population sequence."""
         n = len(population)
         if not 0 <= k <= n:
-            raise ValueError, "sample larger than population"
+            raise ValueError("sample larger than population")
         order = _fetch_randomorg('sequences', max=n - 1)
-        result = [population[int(order[n])] for n in xrange(k)]
+        result = [population[int(order[n])] for n in range(k)]
         return result
 
     def randrange(self, start, stop=None, step=1, ammount=None):
@@ -175,7 +175,7 @@ class RandomDotOrg(random.Random):
         """
         if stop is None:
             start, stop = 0, start
-        xr = xrange(start, stop, step)
+        xr = range(start, stop, step)
         n = len(xr)
         if n == 0:
             raise ValueError('range is empty')
@@ -195,24 +195,24 @@ if __name__ == '__main__':
     def track_quota(quota=None):
         if quota is None:
             quota = r.get_quota()
-            print "Current random.org quota:", quota
+            print("Current random.org quota:", quota)
         else:
             old_quota, quota = quota, r.get_quota()
-            print "Quota spent: ", old_quota - quota
+            print("Quota spent: ", old_quota - quota)
         return quota
 
     quota = track_quota()
     L = ['duck', 'dog', 'cat', 'cow', 'gnu', 'chicken']
-    print "Random element from L:", r.choice(L)
+    print("Random element from L:", r.choice(L))
     quota = track_quota(quota)
-    print "3 distinct random elements from L:", r.sample(L, 3)
+    print("3 distinct random elements from L:", r.sample(L, 3))
     quota = track_quota(quota)
     r.shuffle(L)
-    print "shuffle entire L in random order:", L
+    print("shuffle entire L in random order:", L)
     quota = track_quota(quota)
-    print "3 ints between [2, 33) step 3:", r.randrange(2, 33, 3, ammount=3)
+    print("3 ints between [2, 33) step 3:", r.randrange(2, 33, 3, ammount=3))
     quota = track_quota(quota)
-    print "int between 10 and 20 (inclusive):", r.randint(10, 20)
+    print("int between 10 and 20 (inclusive):", r.randint(10, 20))
     quota = track_quota(quota)
-    print "3 floats in range [0, 1):", r.random(ammount=3)
+    print("3 floats in range [0, 1):", r.random(ammount=3))
     quota = track_quota(quota)

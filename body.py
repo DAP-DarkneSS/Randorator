@@ -173,11 +173,11 @@ def randorator(dict_val):
                 dict_check["num_avera"] = mean
                 if maxi > mean > mini:
                     dict_check["log_avera"] = True
-                    dict_check["str_error"] = u""
+                    dict_check["str_error"] = ""
 # New average value should be checked.
 
             if not dict_check["log_avera"]:
-                dict_check["str_error"] = u"Несовместимые параметры: количество, среднее, включение интервалов!"
+                dict_check["str_error"] = "Несовместимые параметры: количество, среднее, включение интервалов!"
         dict_check["num_quant"] = max(0, (n - limits_n))
         return(dict_check)
 # Here it is a funcion to transform input value in according
@@ -189,10 +189,10 @@ def randorator(dict_val):
 
         lst_sortm_out = []
         for i in lst_sortm_in:
-            if u"-" in i:
+            if "-" in i:
 # A substring with a dash should be transformed.
 
-                n = i.split(u"-")
+                n = i.split("-")
                 n0 = int(n[0])
                 n1 = int(n[1])
                 k = range(n0, n1, (int(copysign(1, (n1 - n0))))) + [n1]
@@ -216,8 +216,8 @@ def randorator(dict_val):
     matrix = []
     errorz = []
     dict_txt  = {
-    "str_numbz": u"",
-    "str_infoz": u""}
+    "str_numbz": "",
+    "str_infoz": ""}
     mini = set_float_data(dict_val["str_minim"])
     maxi = set_float_data(dict_val["str_maxim"])
     if (dict_val["str_avera"] != ""):
@@ -234,7 +234,7 @@ def randorator(dict_val):
 
     if mini > maxi:
         maxi, mini = mini, maxi
-        errorz.append(u"Минимальное значение больше максимального!")
+        errorz.append("Минимальное значение больше максимального!")
 #Если при вводе были перепутаны границы, то они меняются местами.
 #Запись соответствующего сообщения об ошибке.
 
@@ -260,12 +260,12 @@ def randorator(dict_val):
         if (maxi > mean > mini):
             average_used = True
         else:
-            errorz.append(u"Среднее значение вне заданного диапазона!")
+            errorz.append("Среднее значение вне заданного диапазона!")
             average_used = False
-            print(u"Average value was selected but couldn't be randorated.")
+            print("Average value was selected but couldn't be randorated.")
     else:
         average_used = False
-        print(u"Average value wasn't selected.")
+        print("Average value wasn't selected.")
 # The existence and the possibility of use of average value is checked.
 #Запись соответствующего сообщения об ошибке.
 
@@ -275,15 +275,15 @@ def randorator(dict_val):
             average_used = dict_check["log_avera"]
             if average_used:
                 mean = dict_check["num_avera"]
-            if dict_check["str_error"] != u"":
+            if dict_check["str_error"] != "":
                 errorz.append(dict_check["str_error"])
         else:
             dict_check = check_limits(limits_add, "", n, mini, maxi, None)
         n = dict_check["num_quant"]
 
     m = n - 1
-    fromzeroton = xrange(n)
-    fromzerotom = xrange(m)
+    fromzeroton = range(n)
+    fromzerotom = range(m)
 #Создаются пустые списки и текст. Обрабатываются числовые параметры.
 #Вычисляется удобное число m. Создаются удобные списки.
 
@@ -303,31 +303,31 @@ def randorator(dict_val):
                             rsd_used = True
                             if dict_val["log_rsd_w"]:
                                 matrix = randorateGauss(fromzeroton, mean, (mean * rsd / 100))
-                                print(u"RSD value was selected and randorated.")
+                                print("RSD value was selected and randorated.")
                                 rsd_used2 = True
                                 if dict_val["log_algor"]:
-                                    errorz.append(u"No true random if precise RSD value!")
+                                    errorz.append("No true random if precise RSD value!")
 # rsd_used2 indicates if matrix has been already randorated.
 # rsd_used indicates if rsd algorithms will be used at all.
                         else:
-                            errorz.append(u"RSD должно быть больше 0!")
-                            print(u"RSD value was selected but couldn't be randorated.")
+                            errorz.append("RSD должно быть больше 0!")
+                            print("RSD value was selected but couldn't be randorated.")
                 else:
-                    errorz.append(u"RSD не может быть рассчитано для интервала, включающего 0!")
-                    print(u"RSD value was selected but couldn't be randorated.")
+                    errorz.append("RSD не может быть рассчитано для интервала, включающего 0!")
+                    print("RSD value was selected but couldn't be randorated.")
             else:
-                errorz.append(u"RSD не может быть рассчитано менее чем для двух чисел!")
-                print(u"RSD value was selected but couldn't be randorated.")
+                errorz.append("RSD не может быть рассчитано менее чем для двух чисел!")
+                print("RSD value was selected but couldn't be randorated.")
 
         else:
-            errorz.append(u"Оптимизация по RSD отключена при добавлении границы интервала!")
-            print(u"RSD value was selected but couldn't be randorated.")
+            errorz.append("Оптимизация по RSD отключена при добавлении границы интервала!")
+            print("RSD value was selected but couldn't be randorated.")
 # If fixed RSD value is set and can be used Gauß distribution will be randorated.
 
     if (not rsd_used2):
         if average_used:
             matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
-            print(u"Average value was selected and randorated.")
+            print("Average value was selected and randorated.")
         else:
             matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
 
@@ -365,7 +365,7 @@ def randorator(dict_val):
         log_mini = log(mini, 10)
         if (log_mini > 11) or (log(maxi, 10) < -4):
             if rounding != -1:
-                errorz.append(u"Округление больших и маленьких чисел не поддерживается!")
+                errorz.append("Округление больших и маленьких чисел не поддерживается!")
                 rounding = -1
 # Rounding of small and big numbers doesn't work.
 
@@ -373,12 +373,12 @@ def randorator(dict_val):
             round_max = (-1 * log_mini) + 11
             if rounding > round_max:
                 rounding = int(round_max)
-                errorz.append(u"Не более " + str(rounding) + u" цифер после запятой!")
+                errorz.append("Не более " + str(rounding) + " цифер после запятой!")
 # If rounding is set more than the maximum value
 # that could be applied the rounding is truncated.
 
     else:
-        errorz.append(u"Кого бы поделить на ноль?")
+        errorz.append("Кого бы поделить на ноль?")
         rounding = 0
 # Here it is an easter egg ^,,^
 
@@ -398,11 +398,11 @@ def randorator(dict_val):
 # Or calculate it if it is possible.
 
             else:
-                errorz.append(u"Невозможно рассчитать RSD!")
-                print(u"RSD couldn't be calculated.")
+                errorz.append("Невозможно рассчитать RSD!")
+                print("RSD couldn't be calculated.")
 
         if rsd_out[0]:
-            dict_txt["str_infoz"] += u"RSD, % = " + str(rsd_out[1])
+            dict_txt["str_infoz"] += "RSD, % = " + str(rsd_out[1])
 # If RSD is requested to show and could be get it will be outputed.
 # NOTE I don't really understand why this code is required but it is:
             if errorz != []:
@@ -413,7 +413,7 @@ def randorator(dict_val):
 
     if dict_val["log_verbo"] and (errorz != []):
         TempList = []
-        for i in xrange(len(errorz)):
+        for i in range(len(errorz)):
             TempList.append(errorz[i])
             TempList.append("\n")
         dict_txt["str_infoz"] = dict_txt["str_infoz"].join(TempList)
@@ -422,20 +422,20 @@ def randorator(dict_val):
     if matrix != []:
         n = len(matrix)
         m = n - 1
-        fromzerotom = xrange(m)
+        fromzerotom = range(m)
 # Proper values are restored.
 
-        if dict_val["str_sortm"] != u"":
-            if dict_val["str_sortm"] == u"1-":
+        if dict_val["str_sortm"] != "":
+            if dict_val["str_sortm"] == "1-":
                 matrix.sort()
-            elif dict_val["str_sortm"] == u"-1":
+            elif dict_val["str_sortm"] == "-1":
                 matrix.sort()
                 matrix.reverse()
             else:
                 try:
                     matrix = do_sortm(matrix, dict_val["str_sortm"])
                 except (IndexError, ValueError, UnicodeEncodeError):
-                    dict_txt["str_infoz"] += u"Некорректный режим сортировки!" + "\n"
+                    dict_txt["str_infoz"] += "Некорректный режим сортировки!" + "\n"
         else:
             if n > 2:
                 shuffle(matrix)
@@ -465,9 +465,9 @@ if __name__ == '__main__':
     from randorator import Settingz
 
     def my_input(LocaleID, DefaultValue):
-        if DefaultValue ==  u"":
+        if DefaultValue ==  "":
             print(locale(LocaleID, Settingz["str_langu"]))
-            OutputValue = raw_input()
+            OutputValue = input()
         else:
             OutputValue = DefaultValue
         return(OutputValue)
@@ -489,16 +489,16 @@ if __name__ == '__main__':
     "str_sortm": ""}
 # Here it is a blank dictionary with almost all output values.
         
-    print(locale(u"ui_about", Settingz["str_langu"]) + u"\n")
-    print u"Please press Enter after option typed, blank values are allowed.\n"
+    print(locale("ui_about", Settingz["str_langu"]) + "\n")
+    print("Please press Enter after option typed, blank values are allowed.\n")
 
-    dict_val["str_minim"] = my_input(u"ui_minim", Settingz["str_minim"])
-    dict_val["str_maxim"] = my_input(u"ui_maxim", Settingz["str_maxim"])
-    dict_val["str_quant"] = my_input(u"ui_quant", Settingz["str_quant"])
-    dict_val["str_avera"] = my_input(u"ui_avera", Settingz["str_avera"])
-    dict_val["str_rsd_p"] = my_input(u"ui_rsd_p", Settingz["str_rsd_p"])
-    dict_val["str_round"] = my_input(u"ui_round", Settingz["str_round"])
-    dict_val["str_sortm"] = my_input(u"ui_sortm", Settingz["str_round"])
+    dict_val["str_minim"] = my_input("ui_minim", Settingz["str_minim"])
+    dict_val["str_maxim"] = my_input("ui_maxim", Settingz["str_maxim"])
+    dict_val["str_quant"] = my_input("ui_quant", Settingz["str_quant"])
+    dict_val["str_avera"] = my_input("ui_avera", Settingz["str_avera"])
+    dict_val["str_rsd_p"] = my_input("ui_rsd_p", Settingz["str_rsd_p"])
+    dict_val["str_round"] = my_input("ui_round", Settingz["str_round"])
+    dict_val["str_sortm"] = my_input("ui_sortm", Settingz["str_round"])
 # Импорт параметров.
 
     dict_val["log_punct"] = Settingz["log_punct"]
@@ -511,15 +511,15 @@ if __name__ == '__main__':
 
     while True:
         dict_out = randorator(dict_val)
-        print(u"\nСгенерировано:\n" + dict_out["str_infoz"] + dict_out["str_numbz"])
+        print("\nСгенерировано:\n" + dict_out["str_infoz"] + dict_out["str_numbz"])
 # Вход в бесконечный цикл, получение снегерированных данных.
 
         try:
-            print(u"\nEnter to regenerate. Ctrl+C to exit.")
-            raw_input()
+            print("\nEnter to regenerate. Ctrl+C to exit.")
+            input()
 # При любом вводе цикл возвращается в начало.
 
         except KeyboardInterrupt:
-            print "\n\n\tBye!\n"
+            print("\n\n\tBye!\n")
             quit()
 # В случае клавиатурного прерывания программа завершается.

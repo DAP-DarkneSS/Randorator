@@ -27,16 +27,16 @@
 
 #=================================|Import|==================================#
 
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 from body import check_icon
 # Configuration file parser and existence checker are imported.
 
 #=================================|Parser|==================================#
 
-def parseIt(Config, Section, Value, FallBack, Type = u"str"):
+def parseIt(Config, Section, Value, FallBack, Type = "str"):
 
     try:
-        if Type == u"bool":
+        if Type == "bool":
             OutPut = Config.getboolean(Section, Value)
 # Logical values are parsed by special method.
         else:
@@ -55,14 +55,14 @@ Confirator.read(check_icon("ini"))
 #=================================|Defaults|================================#
 
 Settingz = {
-    "str_usint": u"wx",
-    "str_langu": u"en",
-    "str_minim": u"",
-    "str_maxim": u"",
-    "str_quant": u"",
-    "str_avera": u"",
-    "str_rsd_p": u"",
-    "str_round": u"",
+    "str_usint": "wx",
+    "str_langu": "en",
+    "str_minim": "",
+    "str_maxim": "",
+    "str_quant": "",
+    "str_avera": "",
+    "str_rsd_p": "",
+    "str_round": "",
     "log_clipb": True,
     "log_punct": True,
     "log_verbo": True,
@@ -71,7 +71,7 @@ Settingz = {
     "log_max_v": False,
     "log_rsd_a": False,
     "log_rsd_w": False,
-    "str_sortm": u""}
+    "str_sortm": ""}
 
 #====================================|UI|===================================#
 Interfacez = []
@@ -80,25 +80,25 @@ if __name__ == '__main__':
 
     try:
         from wx import App
-        Interfacez.append(u"wx")
+        Interfacez.append("wx")
     except:
         print("WxWidgets (WxPython) user interface isn't available.")
 
     try:
-        from Tkinter import Tk
-        Interfacez.append(u"tk")
+        from tkinter import Tk
+        Interfacez.append("tk")
     except:
         print("Tcl/Tk (Tkinter) user interface isn't available.")
 
-    Interfacez.append(u"cl")
+    Interfacez.append("cl")
 
     try:
         from PyQt4 import QtCore
-        Interfacez.append(u"qt")
+        Interfacez.append("qt")
     except:
         print("Qt4 (PyQt) user interface isn't available.")
 
-    InterfaceConf = (parseIt(Confirator, u"Interface", u"str_usint", u"")).lower()
+    InterfaceConf = (parseIt(Confirator, "Interface", "str_usint", "")).lower()
 
     if InterfaceConf in Interfacez:
         print(InterfaceConf + " user interface will be used.")
@@ -106,9 +106,9 @@ if __name__ == '__main__':
 
 #=================================|Language|================================#
 
-LanguageConf = (parseIt(Confirator, u"Interface", u"str_langu", u"")).lower()
+LanguageConf = (parseIt(Confirator, "Interface", "str_langu", "")).lower()
 
-if LanguageConf in [u"en", u"ru"]:
+if LanguageConf in ["en", "ru"]:
     print("Let's speak " + LanguageConf + ".")
     Settingz["str_langu"] = LanguageConf
 
@@ -117,38 +117,38 @@ else:
     CurrentLocale = getdefaultlocale()
     print("Current locale is " + CurrentLocale[0] + ". Current encoding is " + CurrentLocale[1] + ".")
     if "ru" in CurrentLocale[0].lower():
-        Settingz["str_langu"] = u"ru"
+        Settingz["str_langu"] = "ru"
 # If interface language isn't configured system settings will be parsed.
 
 #===============================|Decimal_Mark|==============================#
 
-DecimalMarkConf = parseIt(Confirator, u"Variables", u"str_punct", u"")
+DecimalMarkConf = parseIt(Confirator, "Variables", "str_punct", "")
 
-if not (DecimalMarkConf in [u".", u","]):
+if not (DecimalMarkConf in [".", ","]):
     from locale import localeconv
-    DecimalMarkConf = localeconv()[u"decimal_point"]
+    DecimalMarkConf = localeconv()["decimal_point"]
 
-if DecimalMarkConf == u",":
-    Settingz[u"log_punct"] = False
+if DecimalMarkConf == ",":
+    Settingz["log_punct"] = False
 # If decimal mark isn't configured system settings will be parsed.
 
 #==================================|Setup|==================================#
 
 for i in ["log_clipb", "log_verbo", "log_algor", "log_min_v", "log_max_v", "log_rsd_a", "log_rsd_w"]:
-    Settingz[i] = parseIt(Confirator, u"Variables", i, Settingz[i], u"bool")
+    Settingz[i] = parseIt(Confirator, "Variables", i, Settingz[i], "bool")
 
 for i in ["str_minim", "str_maxim", "str_quant", "str_avera", "str_rsd_p", "str_round", "str_sortm"]:
-    Settingz[i] = parseIt(Confirator, u"Variables", i, u"")
+    Settingz[i] = parseIt(Confirator, "Variables", i, "")
 
 #================================|Direct_Run|===============================#
 
 if __name__ == '__main__':
 
-    if Settingz["str_usint"] == u"tk":
+    if Settingz["str_usint"] == "tk":
         from tk_randorator import UserInterface
-    elif Settingz["str_usint"] == u"cl":
+    elif Settingz["str_usint"] == "cl":
         from body import UserInterface
-    elif Settingz["str_usint"] == u"qt":
+    elif Settingz["str_usint"] == "qt":
         from qt_randorator import UserInterface
     else:
         from wx_randorator import UserInterface

@@ -30,16 +30,16 @@
 # [ HACK: If not global — SyntaxError: import * is not allowed in function
 # 'UserInterface' because it contains a nested function with free variables.
 
-from Tkinter import *
+from tkinter import *
 
 # SyntaxError: import * is not allowed in function… End of HACK ].
 
 # [ HACK: If not global — NameError: free variable 'Entry' referenced
 # before assignment in enclosing scope.
 
-from ttk import Combobox
+from tkinter.ttk import Combobox
 # Combobox widget module is loaded.
-import tkMessageBox
+from tkinter import messagebox
 # A message box module is loaded to show help window.
 from i18n.locator import locale
 
@@ -50,7 +50,7 @@ class MyEntry:
 # A string value to add a combobox or a button could be also inputed.
 
         def button_finfo():
-            tkMessageBox.showinfo(locale(u"ui_iftxt", Settingz["str_langu"]), button_add)
+            messagebox.showinfo(locale("ui_iftxt", Settingz["str_langu"]), button_add)
 # Here it is a function to show information window.
 
         self.frame_class = Frame(place_class)
@@ -68,7 +68,7 @@ class MyEntry:
             self.box_class.set(choise_class[0])
             self.box_class.pack(side = RIGHT)
         elif button_add:
-            self.button_class = Button(self.frame_class, text = u"?", command = button_finfo, width = -1)
+            self.button_class = Button(self.frame_class, text = "?", command = button_finfo, width = -1)
             self.button_class.pack(side = RIGHT)
 # The combobox widget or the button will be created if it is set.
 
@@ -115,7 +115,7 @@ class MyButton:
 
 def UserInterface(Settingz):
 
-    from ScrolledText import ScrolledText
+    from tkinter.scrolledtext import ScrolledText
 #Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
 
     from body import randorator, check_icon, check_windows
@@ -156,58 +156,58 @@ def UserInterface(Settingz):
 # Here it is a value to check if the program is run under windows.
 
     if windows:
-        from ttk import Button, Entry
+        from tkinter.ttk import Button, Entry
 # Let tkinter GUI at windows be less ugly. It doesn't look natively at Linux.
 
     root=Tk()
 #Создаётся окно приложения.
-    root.title(locale(u"ui_title", Settingz["str_langu"]))
+    root.title(locale("ui_title", Settingz["str_langu"]))
 #Задаётся заголовок.
     root.resizable(False, False)
 #Нельзя изменять размер окна.
     root.call('wm', 'iconphoto', root._w, PhotoImage(file = check_icon("gif")))
 # Window icon is loaded.
 
-    label_title = Label(root, text = locale(u"ui_about", Settingz["str_langu"]))
+    label_title = Label(root, text = locale("ui_about", Settingz["str_langu"]))
     label_title.pack()
 #Надпись с описанием программы.
 
-    entry_mini = MyEntry(root, locale(u"ui_minim", Settingz["str_langu"]), Settingz["str_minim"], ["", "+"])
+    entry_mini = MyEntry(root, locale("ui_minim", Settingz["str_langu"]), Settingz["str_minim"], ["", "+"])
 
-    entry_maxi = MyEntry(root, locale(u"ui_maxim", Settingz["str_langu"]), Settingz["str_maxim"], ["", "+"])
+    entry_maxi = MyEntry(root, locale("ui_maxim", Settingz["str_langu"]), Settingz["str_maxim"], ["", "+"])
 
-    entry_n = MyEntry(root, locale(u"ui_quant", Settingz["str_langu"]), Settingz["str_quant"])
+    entry_n = MyEntry(root, locale("ui_quant", Settingz["str_langu"]), Settingz["str_quant"])
 
-    entry_mean = MyEntry(root, locale(u"ui_avera", Settingz["str_langu"]),  Settingz["str_avera"])
+    entry_mean = MyEntry(root, locale("ui_avera", Settingz["str_langu"]),  Settingz["str_avera"])
 
-    entry_rsd = MyEntry(root, locale(u"ui_rsd_p", Settingz["str_langu"]), Settingz["str_rsd_p"], ["<", "~"])
+    entry_rsd = MyEntry(root, locale("ui_rsd_p", Settingz["str_langu"]), Settingz["str_rsd_p"], ["<", "~"])
 
-    entry_round = MyEntry(root, locale(u"ui_round", Settingz["str_langu"]), Settingz["str_round"], False, locale(u"ui_ifrnd", Settingz["str_langu"]))
+    entry_round = MyEntry(root, locale("ui_round", Settingz["str_langu"]), Settingz["str_round"], False, locale("ui_ifrnd", Settingz["str_langu"]))
 
-    entry_sortm = MyEntry(root, locale(u"ui_sortm", Settingz["str_langu"]), Settingz["str_sortm"], False, locale(u"ui_ifsrt", Settingz["str_langu"]))
+    entry_sortm = MyEntry(root, locale("ui_sortm", Settingz["str_langu"]), Settingz["str_sortm"], False, locale("ui_ifsrt", Settingz["str_langu"]))
 #Создаётся необходимое количество объектов класса элементов ввода.
 
     frame_buttonz = Frame(root)
     frame_buttonz.pack(side = TOP, fill = BOTH)
 #Рамка для кнопок. 
-    button_make = MyButton(frame_buttonz, locale(u"ui_gen_b", Settingz["str_langu"]), button_fmake)
+    button_make = MyButton(frame_buttonz, locale("ui_gen_b", Settingz["str_langu"]), button_fmake)
 #Кнопка генерирования.
-    button_exit = MyButton(frame_buttonz, locale(u"ui_exi_b", Settingz["str_langu"]), root.destroy)
+    button_exit = MyButton(frame_buttonz, locale("ui_exi_b", Settingz["str_langu"]), root.destroy)
 #Кнопка выхода из приложения.
 
-    vcheck_copy = MyVCheck(root, locale(u"ui_clipb", Settingz["str_langu"]), Settingz["log_clipb"])
+    vcheck_copy = MyVCheck(root, locale("ui_clipb", Settingz["str_langu"]), Settingz["log_clipb"])
 #Чекбокс для включения/выключения автоматического копирования значений.
 #Активен – копировать.
-    vcheck_punctuation = MyVCheck(root, locale(u"ui_punct", Settingz["str_langu"]), Settingz["log_punct"])
+    vcheck_punctuation = MyVCheck(root, locale("ui_punct", Settingz["str_langu"]), Settingz["log_punct"])
 #Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
-    vcheck_verbosity = MyVCheck(root, locale(u"ui_error", Settingz["str_langu"]), Settingz["log_verbo"])
+    vcheck_verbosity = MyVCheck(root, locale("ui_error", Settingz["str_langu"]), Settingz["log_verbo"])
 #Чекбокс для включения/выключения вывода сообщений об ошибках.
 #Активен – выводить.
-    vcheck_algorithm = MyVCheck(root, locale(u"ui_truer", Settingz["str_langu"]), Settingz["log_algor"])
+    vcheck_algorithm = MyVCheck(root, locale("ui_truer", Settingz["str_langu"]), Settingz["log_algor"])
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
-    vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a", Settingz["str_langu"]), Settingz["log_rsd_a"])
+    vcheck_rsd_a = MyVCheck(root, locale("ui_rsd_a", Settingz["str_langu"]), Settingz["log_rsd_a"])
 # Here it is a checkbox to configure true RSD value output.
 # It isn't activated by default and RSD isn't outputed.
 

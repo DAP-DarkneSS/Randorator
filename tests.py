@@ -64,7 +64,7 @@ tests = []
 # https://github.com/DAP-DarkneSS/Randorator/issues/1
 
 def test_1():
-    print u"Test #1: not (min < mean < max)."
+    print("Test #1: not (min < mean < max).")
     
     dict_1 = dict(dict_def)
 # The dictionary is truly copied.
@@ -81,7 +81,7 @@ tests.append(test_1)
 # https://github.com/DAP-DarkneSS/Randorator/issues/4
 
 def test_4():
-    print u"Test #4: (mean = 0) and (rsd != Nill)."
+    print("Test #4: (mean = 0) and (rsd != Nill).")
     
     dict_4 = dict(dict_def)
     dict_4["str_minim"] = "-1"
@@ -98,7 +98,7 @@ tests.append(test_4)
 # https://github.com/DAP-DarkneSS/Randorator/issues/12
 
 def test_12():
-    print u"Test #12 (at least one number should be generated): n = Nill."
+    print("Test #12 (at least one number should be generated): n = Nill.")
     
     dict_12 = dict(dict_def)
     dict_12["str_quant"] = ""
@@ -112,7 +112,7 @@ tests.append(test_12)
 # https://github.com/DAP-DarkneSS/Randorator/issues/24
 
 def test_24():
-    print u"Test #24 (zero rounding must work): rounding = 0."
+    print("Test #24 (zero rounding must work): rounding = 0.")
     
     dict_24 = dict(dict_def)
     dict_24["str_round"] = "0"
@@ -126,7 +126,7 @@ tests.append(test_24)
 # https://github.com/DAP-DarkneSS/Randorator/issues/25
 
 def test_25():
-    print u"Test #25 (rounding should be limited): rounding = 20."
+    print("Test #25 (rounding should be limited): rounding = 20.")
     
     dict_25 = dict(dict_def)
     dict_25["str_minim"] = "0"
@@ -142,7 +142,7 @@ tests.append(test_25)
 # https://github.com/DAP-DarkneSS/Randorator/issues/29
 
 def test_29():
-    print u"Test #29 (no rounding by default): rounding = Nill."
+    print("Test #29 (no rounding by default): rounding = Nill.")
     
     dict_29 = dict(dict_def)
     dict_29["str_round"] = ""
@@ -156,7 +156,7 @@ tests.append(test_29)
 # https://github.com/DAP-DarkneSS/Randorator/issues/30
 
 def test_30():
-    print u"Test #30: (not min < mean < max) and (n > 1) and (rsd != Nill)."
+    print("Test #30: (not min < mean < max) and (n > 1) and (rsd != Nill).")
     
     dict_30 = dict(dict_def)
     dict_30["str_minim"] = "0"
@@ -173,7 +173,7 @@ tests.append(test_30)
 # https://github.com/DAP-DarkneSS/Randorator/issues/40
 
 def test_40():
-    print u"Test #40: (min and max are added) and (n = Nill) and (mean != Nill)."
+    print("Test #40: (min and max are added) and (n = Nill) and (mean != Nill).")
     
     dict_40 = dict(dict_def)
     dict_40["str_minim"] = "0"
@@ -192,7 +192,7 @@ tests.append(test_40)
 # https://github.com/DAP-DarkneSS/Randorator/issues/48
 
 def test_48():
-    print u"Test #48: (rsd ~ 1) and (n = 2)."
+    print("Test #48: (rsd ~ 1) and (n = 2).")
 
     dict_48 = dict(dict_def)
     dict_48["str_minim"] = ""
@@ -210,8 +210,8 @@ tests.append(test_48)
 #================================|Direct_Run|===============================#
 
 if __name__ == '__main__':
-    print u"Testing...\n-------\n"
+    print("Testing...\n-------\n")
     for test in tests:
         test()
-        print u"-------\n"
+        print("-------\n")
 # All tests will be run if this file is directly executed.

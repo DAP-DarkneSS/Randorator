@@ -47,7 +47,7 @@ def UserInterface(Settingz):
 # A string value to add a combobox or a button could be also inputed.
 
             def button_finfo(event):
-                wx.MessageBox(button_add, locale(u"ui_iftxt", Settingz["str_langu"]), wx.OK | wx.ICON_INFORMATION)
+                wx.MessageBox(button_add, locale("ui_iftxt", Settingz["str_langu"]), wx.OK | wx.ICON_INFORMATION)
 # Here it is a function to show information window.
 
             if choise_class or button_add:
@@ -64,7 +64,7 @@ def UserInterface(Settingz):
             if choise_class:
                 self.box_class = wx.Choice(place_frame, size = (x_box, -1), choices = choise_class)
             elif button_add:
-                self.button_class = wx.Button(place_frame, label = u"?", size = (x_box, -1))
+                self.button_class = wx.Button(place_frame, label = "?", size = (x_box, -1))
 # The combobox widget or the button will be created if it is set.
 
             self.control_class = wx.TextCtrl(place_frame, size = (100, -1))
@@ -162,7 +162,7 @@ def UserInterface(Settingz):
 
     frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX)
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
-    frame_root.SetTitle(locale(u"ui_title", Settingz["str_langu"]))
+    frame_root.SetTitle(locale("ui_title", Settingz["str_langu"]))
 # Задаётся заголовок окна.
     window_icon = check_icon("ico")
     if window_icon != "":
@@ -184,7 +184,7 @@ def UserInterface(Settingz):
 
     text_title = wx.StaticText(panel_root, style = wx.ALIGN_CENTER | wx.EXPAND)
 # Текстовый виджет c выравниванием по центру, растянут по ширине.
-    text_title.SetLabel(locale(u"ui_about", Settingz["str_langu"]))
+    text_title.SetLabel(locale("ui_about", Settingz["str_langu"]))
 # Задаётся текст виджета.
 
     sizer_root.Add(text_title, flag = wx.ALIGN_CENTER)
@@ -192,19 +192,19 @@ def UserInterface(Settingz):
 
 #=============================|Text_Data_Input|=============================#
 
-    sizer_mini = MyTextCtrl(panel_root, sizer_root, locale(u"ui_minim", Settingz["str_langu"]), Settingz["str_minim"], ["", "+"], False, Settingz["log_min_v"])
+    sizer_mini = MyTextCtrl(panel_root, sizer_root, locale("ui_minim", Settingz["str_langu"]), Settingz["str_minim"], ["", "+"], False, Settingz["log_min_v"])
 
-    sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale(u"ui_maxim", Settingz["str_langu"]), Settingz["str_maxim"], ["", "+"], False, Settingz["log_max_v"])
+    sizer_maxi = MyTextCtrl(panel_root, sizer_root, locale("ui_maxim", Settingz["str_langu"]), Settingz["str_maxim"], ["", "+"], False, Settingz["log_max_v"])
 
-    sizer_n = MyTextCtrl(panel_root, sizer_root, locale(u"ui_quant", Settingz["str_langu"]), Settingz["str_quant"])
+    sizer_n = MyTextCtrl(panel_root, sizer_root, locale("ui_quant", Settingz["str_langu"]), Settingz["str_quant"])
 
-    sizer_mean = MyTextCtrl(panel_root, sizer_root, locale(u"ui_avera", Settingz["str_langu"]),  Settingz["str_avera"])
+    sizer_mean = MyTextCtrl(panel_root, sizer_root, locale("ui_avera", Settingz["str_langu"]),  Settingz["str_avera"])
 
-    sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale(u"ui_rsd_p", Settingz["str_langu"]), Settingz["str_rsd_p"], ["<", "~"], False, Settingz["log_rsd_w"])
+    sizer_rsd = MyTextCtrl(panel_root, sizer_root, locale("ui_rsd_p", Settingz["str_langu"]), Settingz["str_rsd_p"], ["<", "~"], False, Settingz["log_rsd_w"])
 
-    sizer_round = MyTextCtrl(panel_root, sizer_root, locale(u"ui_round", Settingz["str_langu"]), Settingz["str_round"], False, locale(u"ui_ifrnd", Settingz["str_langu"]))
+    sizer_round = MyTextCtrl(panel_root, sizer_root, locale("ui_round", Settingz["str_langu"]), Settingz["str_round"], False, locale("ui_ifrnd", Settingz["str_langu"]))
 
-    sizer_sortm = MyTextCtrl(panel_root, sizer_root, locale(u"ui_sortm", Settingz["str_langu"]), Settingz["str_sortm"], False, locale(u"ui_ifsrt", Settingz["str_langu"]))
+    sizer_sortm = MyTextCtrl(panel_root, sizer_root, locale("ui_sortm", Settingz["str_langu"]), Settingz["str_sortm"], False, locale("ui_ifsrt", Settingz["str_langu"]))
 # Рисуются упаковщики с описаниями значений и полями ввода.
 
 #=================================|Buttons|=================================#
@@ -213,32 +213,32 @@ def UserInterface(Settingz):
     sizer_root.Add(sizer_buttonz)
 # Создаётся упаковщик для кнопок и добавляется в корневой упаковщик.
 
-    button_make = MyButton(panel_root, sizer_buttonz, locale(u"ui_gen_b", Settingz["str_langu"]), button_fmake)
+    button_make = MyButton(panel_root, sizer_buttonz, locale("ui_gen_b", Settingz["str_langu"]), button_fmake)
 # Кнопка запуска генерирования.
-    button_exit = MyButton(panel_root, sizer_buttonz, locale(u"ui_exi_b", Settingz["str_langu"]), button_fexit)
+    button_exit = MyButton(panel_root, sizer_buttonz, locale("ui_exi_b", Settingz["str_langu"]), button_fexit)
 # Кнопка выхода из приложения.
 
 #===============================|Check_Boxes|===============================#
 
-    check_copy = MyCheckBox(panel_root, sizer_root, locale(u"ui_clipb", Settingz["str_langu"]), Settingz["log_clipb"])
+    check_copy = MyCheckBox(panel_root, sizer_root, locale("ui_clipb", Settingz["str_langu"]), Settingz["log_clipb"])
 # Чекбокс для включения/выключения автоматического копирования значений.
 # Активен — копировать.
 
-    check_punctu = MyCheckBox(panel_root, sizer_root, locale(u"ui_punct", Settingz["str_langu"]), Settingz["log_punct"])
+    check_punctu = MyCheckBox(panel_root, sizer_root, locale("ui_punct", Settingz["str_langu"]), Settingz["log_punct"])
 # Чекбокс для переключения между точками и запятыми. Неактивен – запятые.
-    check_verbosity = MyCheckBox(panel_root, sizer_root, locale(u"ui_error", Settingz["str_langu"]), Settingz["log_verbo"])
+    check_verbosity = MyCheckBox(panel_root, sizer_root, locale("ui_error", Settingz["str_langu"]), Settingz["log_verbo"])
 # Чекбокс для включения/выключения вывода сообщений об ошибках.
 # Активен – выводить.
     if windows:
-        check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_true1", Settingz["str_langu"]), Settingz["log_algor"])
+        check_algorithm = MyCheckBox(panel_root, sizer_root, locale("ui_true1", Settingz["str_langu"]), Settingz["log_algor"])
     else:
-        check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_truer", Settingz["str_langu"]), Settingz["log_algor"])
+        check_algorithm = MyCheckBox(panel_root, sizer_root, locale("ui_truer", Settingz["str_langu"]), Settingz["log_algor"])
 # Here it is a checkbox to enable true random numbers generation.
 # randomdotorg is licenced under GPLv3 and/or any later. The creator is
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
 # wx.CheckBox under windows doesn't suppoth the newline symbol:
 # see more at http://trac.wxwidgets.org/ticket/9495
-    check_rsd_a = MyCheckBox(panel_root, sizer_root, locale(u"ui_rsd_a", Settingz["str_langu"]), Settingz["log_rsd_a"])
+    check_rsd_a = MyCheckBox(panel_root, sizer_root, locale("ui_rsd_a", Settingz["str_langu"]), Settingz["log_rsd_a"])
 # Here it is a checkbox to configure true RSD value output.
 # It isn't activated by default and RSD isn't outputed.
 

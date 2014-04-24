@@ -29,7 +29,8 @@
 
 # Here it is a simple wrapper to use some random functions transparently.
 
-from urllib2 import urlopen, URLError, HTTPError
+from urllib.request import urlopen
+from urllib.error import URLError, HTTPError
 from socket import error
 # A site opening function and exceptions are imported.
 
@@ -53,7 +54,7 @@ def checkthemall():
 # Clovis Fabricio. See more at http://code.google.com/p/randomdotorg/
 
             rorg_quota = wrapper.get_quota()
-            print(str(rorg_quota) + u" of random.org quota left over.")
+            print(str(rorg_quota) + " of random.org quota left over.")
 # Here it is an announcement of the random.org quota left over.
 
             if rorg_quota < 90:
@@ -68,7 +69,7 @@ def checkthemall():
 # ValueError is generated when random.org is substituted by another site.
 # Socket error seems to be a pyinstaller or/and wine issue.
         wrapper = pseudorando()
-    print(str(wrapper) + u" was used.")
+    print(str(wrapper) + " was used.")
     return(wrapper)
 # Else the wrapper will became synonym of pseudorandom random generation module.
 # There is an announcement of the module was used.
