@@ -405,7 +405,7 @@ def randorator(dict_val):
             dict_txt["str_infoz"] += u"RSD, % = " + str(rsd_out[1])
 # If RSD is requested to show and could be get it will be outputed.
 # NOTE I don't really understand why this code is required but it is:
-            if errorz != []:
+            if ((errorz != []) and (dict_val["log_verbo"])):
                 dict_txt["str_infoz"] = "\n" + dict_txt["str_infoz"]
             else:
                 dict_txt["str_infoz"] = dict_txt["str_infoz"] + "\n"
