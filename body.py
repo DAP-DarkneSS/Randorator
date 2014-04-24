@@ -402,8 +402,14 @@ def randorator(dict_val):
                 print(u"RSD couldn't be calculated.")
 
         if rsd_out[0]:
-            dict_txt["str_infoz"] += u"RSD, % = " + str(rsd_out[1]) + "\n"
+            dict_txt["str_infoz"] += u"RSD, % = " + str(rsd_out[1])
 # If RSD is requested to show and could be get it will be outputed.
+# NOTE I don't really understand why this code is required but it is:
+            if errorz != []:
+                dict_txt["str_infoz"] = "\n" + dict_txt["str_infoz"]
+            else:
+                dict_txt["str_infoz"] = dict_txt["str_infoz"] + "\n"
+# End of NOTE
 
     if dict_val["log_verbo"] and (errorz != []):
         TempList = []
