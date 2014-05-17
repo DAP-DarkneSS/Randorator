@@ -27,7 +27,12 @@
 
 #=================================|Import|==================================#
 
-from configparser import SafeConfigParser
+from sys import version
+# To support Python 2 & 3.
+if version < '3':
+    from ConfigParser import SafeConfigParser
+else:
+    from configparser import SafeConfigParser
 from body import check_icon
 # Configuration file parser and existence checker are imported.
 
@@ -85,8 +90,11 @@ if __name__ == '__main__':
         print("WxWidgets (WxPython) user interface isn't available.")
 
     try:
-        from tkinter import Tk
-        Interfacez.append("tk")
+        if version < '3':
+            from Tkinter import Tk
+        else:
+            from tkinter import Tk
+        Interfacez.append(u"tk")
     except:
         print("Tcl/Tk (Tkinter) user interface isn't available.")
 

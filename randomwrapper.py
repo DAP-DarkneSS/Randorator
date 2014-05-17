@@ -29,8 +29,13 @@
 
 # Here it is a simple wrapper to use some random functions transparently.
 
-from urllib.request import urlopen
-from urllib.error import URLError, HTTPError
+from sys import version
+# To support Python 2 & 3.
+if version < '3':
+    from urllib2 import urlopen, URLError, HTTPError
+else:
+    from urllib.request import urlopen
+    from urllib.error import URLError, HTTPError
 from socket import error
 # A site opening function and exceptions are imported.
 
