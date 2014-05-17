@@ -30,17 +30,26 @@
 # [ HACK: If not global — SyntaxError: import * is not allowed in function
 # 'UserInterface' because it contains a nested function with free variables.
 
-from Tkinter import *
+from sys import version
+# To support Python 2 & 3.
+if version < '3':
+    from Tkinter import *
+else:
+    from tkinter import *
 
 # SyntaxError: import * is not allowed in function… End of HACK ].
 
 # [ HACK: If not global — NameError: free variable 'Entry' referenced
 # before assignment in enclosing scope.
 
-from ttk import Combobox
+if version < '3':
+    from ttk import Combobox
 # Combobox widget module is loaded.
-import tkMessageBox
+    import tkMessageBox as messagebox
 # A message box module is loaded to show help window.
+else:
+    from tkinter.ttk import Combobox
+    from tkinter import messagebox
 from i18n.locator import locale
 
 class MyEntry:
@@ -50,7 +59,7 @@ class MyEntry:
 # A string value to add a combobox or a button could be also inputed.
 
         def button_finfo():
-            tkMessageBox.showinfo(locale(u"ui_iftxt", Settingz["str_langu"]), button_add)
+            messagebox.showinfo(locale(u"ui_iftxt", Settingz["str_langu"]), button_add)
 # Here it is a function to show information window.
 
         self.frame_class = Frame(place_class)
@@ -115,7 +124,10 @@ class MyButton:
 
 def UserInterface(Settingz):
 
-    from ScrolledText import ScrolledText
+    if version < '3':
+        from ScrolledText import ScrolledText
+    else:
+        from tkinter.scrolledtext import ScrolledText
 #Загружается графическая библиотека и модуль, содержащий текстовый виджет с полосой прокрутки.
 
     from body import randorator, check_icon, check_windows
@@ -156,7 +168,10 @@ def UserInterface(Settingz):
 # Here it is a value to check if the program is run under windows.
 
     if windows:
-        from ttk import Button, Entry
+        if version < '3':
+            from ttk import Button, Entry
+        else:
+            from tkinter.ttk import Button, Entry
 # Let tkinter GUI at windows be less ugly. It doesn't look natively at Linux.
 
     root=Tk()

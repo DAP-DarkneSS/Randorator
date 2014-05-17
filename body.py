@@ -114,6 +114,8 @@ def randorator(dict_val):
 # RSD adjusting and calculating modules are loaded.
     from math import log, copysign
 # Logarithm counting and sign copy functions are loaded.
+    from sys import version
+# To support Python 2 & 3.
 
     if dict_val["log_algor"]:
         from randomwrapper import shuffle
@@ -282,8 +284,12 @@ def randorator(dict_val):
         n = dict_check["num_quant"]
 
     m = n - 1
-    fromzeroton = xrange(n)
-    fromzerotom = xrange(m)
+    if version < '3':
+        fromzeroton = xrange(n)
+        fromzerotom = xrange(m)
+    else:
+        fromzeroton = range(n)
+        fromzerotom = range(m)
 #Создаются пустые списки и текст. Обрабатываются числовые параметры.
 #Вычисляется удобное число m. Создаются удобные списки.
 
@@ -413,7 +419,11 @@ def randorator(dict_val):
 
     if dict_val["log_verbo"] and (errorz != []):
         TempList = []
-        for i in xrange(len(errorz)):
+        if version < '3':
+            ErrorzIndex = xrange(len(errorz))
+        else:
+            ErrorzIndex = range(len(errorz))
+        for i in ErrorzIndex:
             TempList.append(errorz[i])
             TempList.append("\n")
         dict_txt["str_infoz"] = dict_txt["str_infoz"].join(TempList)
@@ -422,7 +432,10 @@ def randorator(dict_val):
     if matrix != []:
         n = len(matrix)
         m = n - 1
-        fromzerotom = xrange(m)
+        if version < '3':
+            fromzerotom = xrange(m)
+        else:
+            fromzerotom = range(m)
 # Proper values are restored.
 
         if dict_val["str_sortm"] != u"":
@@ -467,7 +480,10 @@ if __name__ == '__main__':
     def my_input(LocaleID, DefaultValue):
         if DefaultValue ==  u"":
             print(locale(LocaleID, Settingz["str_langu"]))
-            OutputValue = raw_input()
+            if version < '3':
+                OutputValue = raw_input()
+            else:
+                OutputValue = input()
         else:
             OutputValue = DefaultValue
         return(OutputValue)
@@ -516,10 +532,13 @@ if __name__ == '__main__':
 
         try:
             print(u"\nEnter to regenerate. Ctrl+C to exit.")
-            raw_input()
+            if version < '3':
+                raw_input()
+            else:
+                input()
 # При любом вводе цикл возвращается в начало.
 
         except KeyboardInterrupt:
-            print "\n\n\tBye!\n"
+            print("\n\n\tBye!\n")
             quit()
 # В случае клавиатурного прерывания программа завершается.
