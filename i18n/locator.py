@@ -26,9 +26,8 @@
 # You could contact me with e-mail or jabber dap.darkness@gmail.com
 
 #============================|Locale_Function|==============================#
-from sys import version
-if version >= '3':
-    from __future__ import absolute_import
+
+from __future__ import absolute_import
 # To support Python 2 & 3.
 
 def locale(str_in, Language):
