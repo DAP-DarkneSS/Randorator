@@ -60,7 +60,7 @@ Confirator.read(check_icon("ini"))
 #=================================|Defaults|================================#
 
 Settingz = {
-    "str_usint": u"wx",
+    "str_usint": u"",
     "str_langu": u"en",
     "str_minim": u"",
     "str_maxim": u"",
@@ -109,8 +109,10 @@ if __name__ == '__main__':
     InterfaceConf = (parseIt(Confirator, u"Interface", u"str_usint", u"")).lower()
 
     if InterfaceConf in Interfacez:
-        print(InterfaceConf + " user interface will be used.")
         Settingz["str_usint"] = InterfaceConf
+    else:
+        Settingz["str_usint"] = Interfacez[0]
+    print(Settingz["str_usint"] + " user interface will be used.")
 
 #=================================|Language|================================#
 
