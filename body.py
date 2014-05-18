@@ -107,21 +107,17 @@ def check_windows():
 def randorator(dict_val):
 # The function gets the dictionary with input values.
 
-    from simple import rando
     from average import average
-    from rsd import randorateGauss, relstdev, rsd_calc
+    from randomwrapper import gaussWrapped, uniformWrapped
+    from rsd import relstdev, rsd_calc
 # Modules to generate random numbers list are loaded.
 # RSD adjusting and calculating modules are loaded.
     from math import log, copysign
 # Logarithm counting and sign copy functions are loaded.
     from sys import version
 # To support Python 2 & 3.
-
-    if dict_val["log_algor"]:
-        from randomwrapper import shuffle
-    else:
-        from random import shuffle
-# Here it is an import of a list shuffling function from the chosen module.
+    from random import shuffle
+# Here it is an import of a list shuffling function.
 
     def punctu(txt):
         try:
@@ -308,11 +304,9 @@ def randorator(dict_val):
                         if rsd > 0:
                             rsd_used = True
                             if dict_val["log_rsd_w"]:
-                                matrix = randorateGauss(fromzeroton, mean, (mean * rsd / 100))
+                                matrix = gaussWrapped(mean, (mean * rsd / 100), n, dict_val["log_algor"], fromzeroton)
                                 print(u"RSD value was selected and randorated.")
                                 rsd_used2 = True
-                                if dict_val["log_algor"]:
-                                    errorz.append(u"No true random if precise RSD value!")
 # rsd_used2 indicates if matrix has been already randorated.
 # rsd_used indicates if rsd algorithms will be used at all.
                         else:
@@ -332,10 +326,12 @@ def randorator(dict_val):
 
     if (not rsd_used2):
         if average_used:
-            matrix = average(mini, maxi, n, mean, m, fromzerotom, dict_val["log_algor"])
+            matrix = average(mini, maxi, n, mean, m, fromzerotom)
             print(u"Average value was selected and randorated.")
+            if dict_val["log_algor"]:
+                errorz.append(u"No true random if no precise RSD value!")
         else:
-            matrix = rando(mini, maxi, fromzeroton, dict_val["log_algor"])
+            matrix = uniformWrapped(mini, maxi, n, dict_val["log_algor"], fromzeroton)
 
     if rsd_used:
         if not average_used:

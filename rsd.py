@@ -137,15 +137,6 @@ def check_k(k, ref):
     k[1] = ref
     return(k)
 
-#===================================|Gauß|===================================#
-
-def randorateGauss(IndexList, Mean, StandardDeviation):
-    from random import gauss
-    OutputMatrix = []
-    for i in IndexList:
-        OutputMatrix.append(gauss(Mean, StandardDeviation))
-    return(OutputMatrix)
-
 #=================================|Kernel|==================================#
 
 # Here it is a function to adjust RSD value in compliance with the criteria specified.
