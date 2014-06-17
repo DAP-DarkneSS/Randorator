@@ -163,6 +163,9 @@ def relstdev(dict_val):
     op_margin = 0.1
 # There is a precison of "exact" RSD value.
 
+    dict_val["str_avera"] = sum(matrix) / len(matrix)
+# Here it isn't a module to set average value but to set deviation!
+
     if dict_val["log_rsd_w"]:
         rsd_cra = rsd_calc(None, matrix, dict_val["str_avera"], dict_val["str_quant"], False)
         rsd_max = dict_val["str_rsd_p"] * (1 + op_margin)
