@@ -3,6 +3,6 @@
 *~
 *.kate-swp
 dist
-buid
+build
 *.log
 *.zip

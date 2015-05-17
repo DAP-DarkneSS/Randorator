@@ -38,9 +38,13 @@ def UserInterface(Settingz):
 
 # WxPython version dependent hacks.
     from wxversion import getInstalled
-    if int(getInstalled()[0][0]) < 3:
-        WxPython3 = False
-    else:
+    try:
+        if int(getInstalled()[0][0]) < 3:
+            WxPython3 = False
+        else:
+            WxPython3 = True
+    except:
+# Strange Windows portable issue.
         WxPython3 = True
 
     windows = check_windows()

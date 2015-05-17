@@ -7,27 +7,32 @@ PYTHON_EXEC=$PYTHON_DIR/python.exe
 PYINSTALLER=$PYTHON_DIR/Lib/site-packages/pyinstaller-2.0/pyinstaller.py
 
 PROJECT_DIR=~/Documents/Python/Randorator
-SPEC=tools/qt-randorator.spec
+SPEC=$PROJECT_DIR/tools/pyinstaller/qt-randorator.spec
 
 cd $PROJECT_DIR
-cat tools/0.patch | patch -p1
+cat tools/stuff/0.patch | patch -p1
 $WINE_EXEC $PYTHON_EXEC $PYINSTALLER $SPEC
-cat tools/1.patch | patch -p0 --fuzz=0
+cat tools/stuff/1.patch | patch -p0
 
 VER=`git describe | sed "s/^v//g" | tr "-" "."`
-DIST_DIR=randorator-$VER-pyinstaller-pyqt
+DIST=randorator-$VER-pyinstaller-pyqt
+DIST_DIR=$PROJECT_DIR/build/$DIST/randorator
 
-mv tools/dist/qt-randorator tools/dist/randorator
-mv tools/dist $DIST_DIR
-cp COPYING* *.md randorator.gif randorator.ini $DIST_DIR/randorator
+rm -rf $DIST_DIR
+mkdir -p $PROJECT_DIR/build/$DIST
+mv tools/pyinstaller/dist/qt-randorator $DIST_DIR
+cp COPYING* *.md randorator.gif randorator.ini $DIST_DIR
 
-rm logdict*.log
-rm -rf tools/build
-cd $DIST_DIR/randorator
+rm build/logdict*.log
+rm -rf tools/pyinstaller/build
+rm -rf tools/pyinstaller/dist
+cd $DIST_DIR
 rm -rf _ssl.pyd unicodedata.pyd _hashlib.pyd pyexpat.pyd QtOpenGL4.dll QtSvg4.dll QtXml4.dll qt4_plugins/accessible qt4_plugins/accessible qt4_plugins/graphicssystems qt4_plugins/iconengines qt4_plugins/imageformats/qico4.dll qt4_plugins/imageformats/qjpeg4.dll qt4_plugins/imageformats/qmng4.dll qt4_plugins/imageformats/qsvg4.dll qt4_plugins/imageformats/qtga4.dll qt4_plugins/imageformats/qtiff4.dll
 
 # cd ..
-# zip -r -9 ../$DIST_DIR.zip randorator
+# rm -rf ../../dist/$DIST.zip
+# mkdir -p ../../dist
+# zip -r9 ../../dist/$DIST.zip randorator
 
 # cd randorator
 $WINE_EXEC qt-randorator.exe
