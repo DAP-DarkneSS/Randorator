@@ -5,7 +5,7 @@
 #=================================|Copying|=================================#
 
 # Randorator is an advanced graphical generator of random numbers.
-# Copyright (C) 2011-2014 Dmitriy A. Perlow <dap.darkness@gmail.com>
+# Copyright (C) 2011-2015 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 # This file is part of Randorator.
 
@@ -35,6 +35,13 @@ def UserInterface(Settingz):
 # Program icon existence checking module is loaded.
 # Windows platform checking module is loaded.
     from i18n.locator import locale
+
+# WxPython version dependent hacks.
+    from wxversion import getInstalled
+    if int(getInstalled()[0][0]) < 3:
+        WxPython3 = False
+    else:
+        WxPython3 = True
 
     windows = check_windows()
 # Here it is a value to check if the program is run under windows.
@@ -173,7 +180,8 @@ def UserInterface(Settingz):
 # На корневой фрейм добавляется корневая панель,
 # чтобы можно было переключаться между элементами по нажатию кнопки Tab.
 # Применяется соответствующий стиль, хотя работает и без него.
-    panel_root.SetBackgroundColour(wx.NullColor)
+    if not WxPython3:
+        panel_root.SetBackgroundColour(wx.NullColor)
 # Окно заливается цветом по умолчанию для корректной отрисовки под windows.
 
     sizer_root = wx.BoxSizer(wx.VERTICAL)
@@ -229,7 +237,7 @@ def UserInterface(Settingz):
     check_verbosity = MyCheckBox(panel_root, sizer_root, locale(u"ui_error", Settingz["str_langu"]), Settingz["log_verbo"])
 # Чекбокс для включения/выключения вывода сообщений об ошибках.
 # Активен – выводить.
-    if windows:
+    if ((not WxPython3) and windows):
         check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_true1", Settingz["str_langu"]), Settingz["log_algor"])
     else:
         check_algorithm = MyCheckBox(panel_root, sizer_root, locale(u"ui_truer", Settingz["str_langu"]), Settingz["log_algor"])
