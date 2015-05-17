@@ -10,7 +10,7 @@ PROJECT_DIR=~/Documents/Python/Randorator
 SPEC=tools/randorator.spec
 
 cd $PROJECT_DIR
-cat tools/0.patch | patch -p0 --fuzz=0
+cat tools/0.patch | patch -p1
 $WINE_EXEC $PYTHON_EXEC $PYINSTALLER $SPEC
 cat tools/1.patch | patch -p0 --fuzz=0
 
