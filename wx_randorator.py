@@ -264,7 +264,7 @@ def UserInterface(Settingz):
 #=============================|Program_Window|==============================#
 
     window_size = panel_root.GetBestSize()
-    if windows:
+    if ((not WxPython3) and windows):
         window_size[0] += ((235 - 230) + 1)
         window_size[1] += ((400 - 377) + 1)
 # Size should be enlaged to fix wx/windows bug.
