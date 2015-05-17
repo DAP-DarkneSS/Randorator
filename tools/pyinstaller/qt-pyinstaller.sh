@@ -20,13 +20,12 @@ DIST_DIR=$PROJECT_DIR/build/$DIST/randorator
 
 rm -rf $DIST_DIR
 mkdir -p $PROJECT_DIR/build/$DIST
-mv tools/pyinstaller/dist/qt-randorator $DIST_DIR
+mv dist/qt-randorator $DIST_DIR
 cp COPYING* *.md randorator.gif randorator.ini $DIST_DIR
 
-rm build/logdict*.log
-rm -rf tools/pyinstaller/build
-rm -rf tools/pyinstaller/dist
+rm -rf build/qt-randorator
 cd $DIST_DIR
+rm -rf _ctypes.pyd bz2.pyd pywintypes27.dll select.pyd win32api.pyd win32pipe.pyd
 rm -rf _ssl.pyd unicodedata.pyd _hashlib.pyd pyexpat.pyd QtOpenGL4.dll QtSvg4.dll QtXml4.dll qt4_plugins/accessible qt4_plugins/accessible qt4_plugins/graphicssystems qt4_plugins/iconengines qt4_plugins/imageformats/qico4.dll qt4_plugins/imageformats/qjpeg4.dll qt4_plugins/imageformats/qmng4.dll qt4_plugins/imageformats/qsvg4.dll qt4_plugins/imageformats/qtga4.dll qt4_plugins/imageformats/qtiff4.dll
 
 # cd ..

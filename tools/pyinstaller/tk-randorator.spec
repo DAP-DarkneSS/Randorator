@@ -1,6 +1,8 @@
 # -*- mode: python -*-
-a = Analysis([os.path.join(HOMEPATH,'support\\_mountzlib.py'), os.path.join(HOMEPATH,'support\\useUnicode.py'), 'tk_randorator.py'],
-             pathex=['D:\\D\\DAP-DarkneSS-Randorator-2d70e46'])
+a = Analysis(['tk_randorator.py'],
+             hiddenimports=[],
+             hookspath=None,
+             runtime_hooks=None)
 pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,

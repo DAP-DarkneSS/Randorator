@@ -4,7 +4,7 @@ WINE_EXEC=wine
 
 PYTHON_DIR=~/.wine/drive_c/Python27
 PYTHON_EXEC=$PYTHON_DIR/python.exe
-PYINSTALLER=$PYTHON_DIR/Lib/site-packages/pyinstaller-2.0/pyinstaller.py
+PYINSTALLER=$PYTHON_DIR/Lib/site-packages/PyInstaller-2.1/pyinstaller.py
 
 PROJECT_DIR=~/Documents/Python/Randorator
 SPEC=$PROJECT_DIR/tools/pyinstaller/wx-randorator.spec
@@ -20,13 +20,12 @@ DIST_DIR=$PROJECT_DIR/build/$DIST/randorator
 
 rm -rf $DIST_DIR
 mkdir -p $PROJECT_DIR/build/$DIST
-mv tools/pyinstaller/dist/wx-randorator $DIST_DIR
+mv dist/wx-randorator $DIST_DIR
 cp COPYING* *.md randorator.ico randorator.ini $DIST_DIR
 
-rm build/logdict*.log
-rm -rf tools/pyinstaller/build
-rm -rf tools/pyinstaller/dist
+rm -rf build/wx-randorator
 cd $DIST_DIR
+rm -rf _ctypes.pyd bz2.pyd pywintypes27.dll select.pyd win32api.pyd win32pipe.pyd
 rm gdiplus.dll _ssl.pyd unicodedata.pyd _hashlib.pyd pyexpat.pyd
 
 cd ..
