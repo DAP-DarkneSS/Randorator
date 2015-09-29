@@ -236,6 +236,13 @@ def randorator(dict_val):
         limits_add.append(maxi)
 # Here it is a list with interval limit(s) marked to be added.
 
+    if dict_val["log_horiz"]:
+        NumbersSeparator = "\t"
+# Horizontal numbers output into one row.
+    else:
+        NumbersSeparator = "\n"
+# Vertical numbers output into one column.
+
     if mini > maxi:
         maxi, mini = mini, maxi
         errorz.append(u"Минимальное значение больше максимального!")
@@ -457,7 +464,7 @@ def randorator(dict_val):
         TempList = []
         for i in fromzerotom:
             TempList.append(to_text(matrix[i], rounding))
-            TempList.append("\n")
+            TempList.append(NumbersSeparator)
         if m >= 0:
             TempList.append(to_text(matrix[m], rounding))
         dict_txt["str_numbz"] = dict_txt["str_numbz"].join(TempList)

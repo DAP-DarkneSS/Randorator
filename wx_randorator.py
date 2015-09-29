@@ -65,7 +65,7 @@ def UserInterface(Settingz):
                 x_box = 45
             else:
                 x_box = 0
-            x_text = 140 - x_box
+            x_text = 150 - x_box
 # The text widget width will be modified if a combobox or a button is enabled.
 
             self.sizer_class = wx.BoxSizer(wx.HORIZONTAL)
@@ -78,7 +78,7 @@ def UserInterface(Settingz):
                 self.button_class = wx.Button(place_frame, label = u"?", size = (x_box, -1))
 # The combobox widget or the button will be created if it is set.
 
-            self.control_class = wx.TextCtrl(place_frame, size = (100, -1))
+            self.control_class = wx.TextCtrl(place_frame, size = (90, -1))
             self.control_class.SetValue(DefaultValue)
 # Описание значения и поле ввода.
             self.sizer_class.Add(self.text_class, flag = wx.ALIGN_CENTER_VERTICAL)
@@ -145,6 +145,7 @@ def UserInterface(Settingz):
         "log_max_v": sizer_maxi.GetCurrentSelection(),
         "log_rsd_a": check_rsd_a.IsChecked(),
         "log_rsd_w": sizer_rsd.GetCurrentSelection(),
+        "log_horiz": check_horizontal_output.IsChecked(),
         "str_sortm": sizer_sortm.GetValue()}
 # Here it is a dictionary with almost all output values.
         dict_out = randorator(dict_val)
@@ -256,6 +257,8 @@ def UserInterface(Settingz):
     check_rsd_a = MyCheckBox(panel_root, sizer_root, locale(u"ui_rsd_a", Settingz["str_langu"]), Settingz["log_rsd_a"])
 # Here it is a checkbox to configure true RSD value output.
 # It isn't activated by default and RSD isn't outputed.
+    check_horizontal_output = MyCheckBox(panel_root, sizer_root, locale(u"ui_horiz", Settingz["str_langu"]), Settingz["log_horiz"])
+# Horizontal (default&True) / vertical numbers output checkbox.
 
 #============================|Text_Data_Output|=============================#
 

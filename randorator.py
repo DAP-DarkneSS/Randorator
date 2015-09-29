@@ -77,6 +77,7 @@ Settingz = {
     "log_max_v": False,
     "log_rsd_a": False,
     "log_rsd_w": False,
+    "log_horiz": True,
     "str_sortm": u""}
 
 #====================================|UI|===================================#
@@ -147,7 +148,7 @@ if DecimalMarkConf == u",":
 
 Settingz["log_ontop"] = parseIt(Confirator, u"Interface", "log_ontop", Settingz["log_ontop"], u"bool")
 
-for i in ["log_clipb", "log_verbo", "log_algor", "log_min_v", "log_max_v", "log_rsd_a", "log_rsd_w"]:
+for i in ["log_clipb", "log_verbo", "log_algor", "log_min_v", "log_max_v", "log_rsd_a", "log_rsd_w", "log_horiz"]:
     Settingz[i] = parseIt(Confirator, u"Variables", i, Settingz[i], u"bool")
 
 for i in ["str_minim", "str_maxim", "str_quant", "str_avera", "str_rsd_p", "str_round", "str_sortm"]:

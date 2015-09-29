@@ -47,6 +47,7 @@ dict_str = {
     u"ui_truer": u"True random numbers over\nthe Internet, may be slow",
     u"ui_true1": u"True random numbers, slowly",
     u"ui_rsd_a": u"Output real RSD value",
+    u"ui_horiz": u"Horizontal numbers output",
     u"ui_sortm": u" Sorting:",
     u"ui_iftxt": u"Help",
     u"ui_ifrnd": u"The quantity of digits after the decimal mark.",

@@ -153,6 +153,7 @@ def UserInterface(Settingz):
         "log_max_v": entry_maxi.getbox(),
         "log_rsd_a": vcheck_rsd_a.get(),
         "log_rsd_w": entry_rsd.getbox(),
+        "log_horiz": vcheck_horizontal_output.get(),
         "str_sortm": entry_sortm.get()}
 # Here it is a dictionary with almost all output values.
         dict_out = randorator(dict_val)
@@ -228,6 +229,8 @@ def UserInterface(Settingz):
     vcheck_rsd_a = MyVCheck(root, locale(u"ui_rsd_a", Settingz["str_langu"]), Settingz["log_rsd_a"])
 # Here it is a checkbox to configure true RSD value output.
 # It isn't activated by default and RSD isn't outputed.
+    vcheck_horizontal_output = MyVCheck(root, locale(u"ui_horiz", Settingz["str_langu"]), Settingz["log_horiz"])
+# Horizontal (default&True) / vertical numbers output checkbox.
 
     text_out = ScrolledText(root, height = 9, width = 9)
     text_out.pack(side = BOTTOM, fill = BOTH)
