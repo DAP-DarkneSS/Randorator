@@ -186,6 +186,8 @@ def randorator(dict_val):
 # to correspond with interval limit(s) marked to be added.
 
     def parse_sortm(str_sortm):
+        str_sortm = str_sortm.replace(","," ")
+# Let comma be the valid separating character.
         lst_sortm_in = str_sortm.split()
 # The string is splitted by spaces into strings list.
 

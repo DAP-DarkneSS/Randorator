@@ -50,5 +50,5 @@ dict_str = {
     u"ui_sortm": u" Sorting:",
     u"ui_iftxt": u"Help",
     u"ui_ifrnd": u"The quantity of digits after the decimal mark.",
-    u"ui_ifsrt": u"Sorting is set via numbers entered through space, number is determined by the position of a value in a list, where the first number has a minimum value.\n\nYou can enter a range of numbers separated by a hyphen.\n\n-1 specifies the sort from maximum to minimum\nand 1- — from minimum to maximum."}
+    u"ui_ifsrt": u"Sorting is set via numbers entered through space or comma, number is determined by the position of a value in a list, where the first number has a minimum value.\n\nYou can enter a range of numbers separated by a hyphen.\n\n-1 specifies the sort from maximum to minimum\nand 1- — from minimum to maximum."}
 # There are lists of locale keys and values.
