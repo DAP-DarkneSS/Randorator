@@ -182,6 +182,9 @@ def UserInterface(Settingz):
 #Нельзя изменять размер окна.
     root.call('wm', 'iconphoto', root._w, PhotoImage(file = check_icon("gif")))
 # Window icon is loaded.
+    if Settingz["log_ontop"]:
+        root.attributes("-topmost", True)
+# Window always on top behavior if configured.
 
     label_title = Label(root, text = locale(u"ui_about", Settingz["str_langu"]))
     label_title.pack()

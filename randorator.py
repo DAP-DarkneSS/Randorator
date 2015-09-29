@@ -62,6 +62,7 @@ Confirator.read(check_icon("ini"))
 Settingz = {
     "str_usint": u"",
     "str_langu": u"en",
+    "log_ontop": True,
     "str_minim": u"",
     "str_maxim": u"",
     "str_quant": u"",
@@ -143,6 +144,8 @@ if DecimalMarkConf == u",":
 # If decimal mark isn't configured system settings will be parsed.
 
 #==================================|Setup|==================================#
+
+Settingz["log_ontop"] = parseIt(Confirator, u"Interface", "log_ontop", Settingz["log_ontop"], u"bool")
 
 for i in ["log_clipb", "log_verbo", "log_algor", "log_min_v", "log_max_v", "log_rsd_a", "log_rsd_w"]:
     Settingz[i] = parseIt(Confirator, u"Variables", i, Settingz[i], u"bool")

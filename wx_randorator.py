@@ -173,6 +173,9 @@ def UserInterface(Settingz):
 
     frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX)
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
+    if Settingz["log_ontop"]:
+        frame_root.SetWindowStyleFlag(wx.STAY_ON_TOP)
+# Window always on top behavior if configured.
     frame_root.SetTitle(locale(u"ui_title", Settingz["str_langu"]))
 # Задаётся заголовок окна.
     window_icon = check_icon("ico")
