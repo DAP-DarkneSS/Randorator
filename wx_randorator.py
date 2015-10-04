@@ -173,10 +173,11 @@ def UserInterface(Settingz):
     app_root = wx.App(0)
 # Инициация тулкита. Zero to disable output window creating under windows.
 
-    frame_root = wx.Frame(parent = None, style = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX)
+    FrameStyle = wx.MINIMIZE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX
+    frame_root = wx.Frame(parent = None, style = FrameStyle)
 # Создаётся окно: его можно сворачивать, есть системное меню и кнопка закрытия.
     if Settingz["log_ontop"]:
-        frame_root.SetWindowStyleFlag(wx.STAY_ON_TOP)
+        frame_root.SetWindowStyleFlag(FrameStyle | wx.STAY_ON_TOP)
 # Window always on top behavior if configured.
     frame_root.SetTitle(locale(u"ui_title", Settingz["str_langu"]))
 # Задаётся заголовок окна.
