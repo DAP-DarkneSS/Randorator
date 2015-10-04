@@ -116,6 +116,8 @@ def randorator(dict_val):
 # Logarithm counting and sign copy functions are loaded.
     from sys import version
 # To support Python 2 & 3.
+    from i18n.locator import locale
+# Localization.
 
     if dict_val["log_algor"]:
         from randomwrapper import shuffle
@@ -179,7 +181,7 @@ def randorator(dict_val):
 # New average value should be checked.
 
             if not dict_check["log_avera"]:
-                dict_check["str_error"] = u"Несовместимые параметры: количество, среднее, включение интервалов!"
+                dict_check["str_error"] = u"core_error_incompatibility"
         dict_check["num_quant"] = max(0, (n - limits_n))
         return(dict_check)
 # Here it is a funcion to transform input value in according
@@ -217,6 +219,15 @@ def randorator(dict_val):
         return(lst_numbz_out)
 # Here it is a function to apply setted sorting mode.
 
+    def wrapError(ErrorID, Language, ErrorzList):
+        '''Prints error text and transfers it into UI.'''
+        ErrorText = locale(ErrorID, Language)
+        print(ErrorText)
+        if ErrorID.startswith(u"core_error"):
+# Let's not show information messages at UI.
+            ErrorzList.append(ErrorText)
+        return(ErrorzList)
+
     matrix = []
     errorz = []
     dict_txt  = {
@@ -245,7 +256,7 @@ def randorator(dict_val):
 
     if mini > maxi:
         maxi, mini = mini, maxi
-        errorz.append(u"Минимальное значение больше максимального!")
+        wrapError(u"core_error_min>max", dict_val["str_langu"], errorz)
 #Если при вводе были перепутаны границы, то они меняются местами.
 #Запись соответствующего сообщения об ошибке.
 
@@ -271,12 +282,11 @@ def randorator(dict_val):
         if (maxi > mean > mini):
             average_used = True
         else:
-            errorz.append(u"Среднее значение вне заданного диапазона!")
             average_used = False
-            print(u"Average value was selected but couldn't be randorated.")
+            wrapError(u"core_error_incompatible_average", dict_val["str_langu"], errorz)
     else:
         average_used = False
-        print(u"Average value wasn't selected.")
+        wrapError(u"core_error_no_average", dict_val["str_langu"], errorz)
 # The existence and the possibility of use of average value is checked.
 #Запись соответствующего сообщения об ошибке.
 
@@ -287,7 +297,7 @@ def randorator(dict_val):
             if average_used:
                 mean = dict_check["num_avera"]
             if dict_check["str_error"] != u"":
-                errorz.append(dict_check["str_error"])
+                wrapError(dict_check["str_error"], dict_val["str_langu"], errorz)
         else:
             dict_check = check_limits(limits_add, "", n, mini, maxi, None)
         n = dict_check["num_quant"]
@@ -483,7 +493,6 @@ def randorator(dict_val):
 if __name__ == '__main__':
 # Проверка, запускается ли файл как самостоятельное приложение.
 
-    from i18n.locator import locale
     from randorator import Settingz
 
     def my_input(LocaleID, DefaultValue):
@@ -498,6 +507,7 @@ if __name__ == '__main__':
         return(OutputValue)
 
     dict_val = {
+    "str_langu": Settingz["str_langu"],
     "str_minim": "",
     "str_maxim": "",
     "str_quant": "",
@@ -511,6 +521,7 @@ if __name__ == '__main__':
     "log_max_v": False,
     "log_rsd_a": True,
     "log_rsd_w": False,
+    "log_horiz": False,
     "str_sortm": ""}
 # Here it is a blank dictionary with almost all output values.
         

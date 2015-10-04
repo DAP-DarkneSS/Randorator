@@ -30,6 +30,14 @@
 # Here it is a russian locale module.
 
 dict_str = {
+    u"core_error_incompatibility":
+        u"Incompatible parameters: quantity, average, limits of range included!",
+    u"core_error_min>max":
+        u"Minimal value is more than maximim one!",
+    u"core_error_incompatible_average":
+        u"Average is incompatible with limits of range!",
+    u"core_error_no_average":
+        u"Average value wasn't selected.",
     u"ui_title": u"Randorator",
     u"ui_lcerr": u"Unknown translation ID!",
     u"ui_about": u"Advanced graphical\ngenerator of random numbers",

@@ -30,6 +30,14 @@
 # Here it is a russian locale module.
 
 dict_str = {
+    u"core_error_incompatibility":
+        u"Несовместимые параметры: количество, среднее, включение интервалов!",
+    u"core_error_min>max":
+        u"Минимальное значение больше максимального!",
+    u"core_error_incompatible_average":
+        u"Среднее значение несовместимо с границами интервала!",
+    u"core_error_no_average":
+        u"Среднее значение не задано.",
     u"ui_title": u"Randorator",
     u"ui_lcerr": u"Неверный идентификатор перевода!",
     u"ui_about": u"Продвинутый графический\nгенератор случайных чисел",
