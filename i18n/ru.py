@@ -36,7 +36,7 @@ dict_str = {
         u"Минимальное значение больше максимального!",
     u"core_error_incompatible_average":
         u"Среднее значение несовместимо с границами интервала!",
-    u"core_error_no_average":
+    u"core_info_no_average":
         u"Среднее значение не задано.",
     u"ui_title": u"Randorator",
     u"ui_lcerr": u"Неверный идентификатор перевода!",

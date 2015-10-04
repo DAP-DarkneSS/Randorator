@@ -286,7 +286,7 @@ def randorator(dict_val):
             wrapError(u"core_error_incompatible_average", dict_val["str_langu"], errorz)
     else:
         average_used = False
-        wrapError(u"core_error_no_average", dict_val["str_langu"], errorz)
+        wrapError(u"core_info_no_average", dict_val["str_langu"], errorz)
 # The existence and the possibility of use of average value is checked.
 #Запись соответствующего сообщения об ошибке.
 

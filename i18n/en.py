@@ -36,7 +36,7 @@ dict_str = {
         u"Minimal value is more than maximim one!",
     u"core_error_incompatible_average":
         u"Average is incompatible with limits of range!",
-    u"core_error_no_average":
+    u"core_info_no_average":
         u"Average value wasn't selected.",
     u"ui_title": u"Randorator",
     u"ui_lcerr": u"Unknown translation ID!",
