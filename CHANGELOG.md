@@ -1,3 +1,18 @@
+Sun Oct  4 13:53:19 2015 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
+- 0.2.5 was released:
+ * Implemented WxPython 3 support that fixed scrolling slider disappearance.
+ * Implemented initial Python 3(.3) support (strings are only unfixed).
+ * Implemented PyInstaller 2.1 support.
+ * Implemented window always on top behaviour.
+ * Comma became the valid separating character.
+ * Implemented horizontal numbers output for e-tables rows.
+ * Removed annoying default numbers.
+ * Implemented initial kernel messages localization ~ ⅓.
+ * Fixed a stuck introduced by Gauß distribution implemented.
+ * UI became set correctly.
+ * Had not to be Lesser GPL if PyQt is used.
+ * Another workaround for minor bug with line breaks in the output was added.
+
 Thu Apr 24 07:04:25 2014 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 - 0.2.4 was released:
