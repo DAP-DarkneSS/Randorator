@@ -35,6 +35,7 @@ from body import randorator
 #=================================|Global|==================================#
 
 dict_def = {
+"str_langu": "en",
 "str_minim": "0",
 "str_maxim": "9",
 "str_quant": "5",
@@ -48,6 +49,7 @@ dict_def = {
 "log_max_v": False,
 "log_rsd_a": True,
 "log_rsd_w": False,
+"log_horiz": False,
 "str_sortm": ""}
 # Default values are set.
 

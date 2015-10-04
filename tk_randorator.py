@@ -140,6 +140,7 @@ def UserInterface(Settingz):
         text_out.delete(1.0, END)
 #Очистка текстового поля.
         dict_val = {
+        "str_langu": Settingz["str_langu"],
         "str_minim": entry_mini.get(),
         "str_maxim": entry_maxi.get(),
         "str_quant": entry_n.get(),

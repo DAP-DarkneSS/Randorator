@@ -132,6 +132,7 @@ def UserInterface(Settingz):
     def button_fmake(event):
 # Функция для кнопки генерации. Записывается с аргументом события.
         dict_val = {
+        "str_langu": Settingz["str_langu"],
         "str_minim": sizer_mini.GetValue(),
         "str_maxim": sizer_maxi.GetValue(),
         "str_quant": sizer_n.GetValue(),
