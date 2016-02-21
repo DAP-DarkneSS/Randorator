@@ -10,7 +10,7 @@
  * (K/L/X)Ubuntu / Linux Mint / Debian:
 sudo apt-get install python-minimal python-tk python-wxtools
  * Windows: установите с официальных сайтов python 2.7 (http://www.python.org/download/)
-(включает Tk) и wxPython 2.8 (http://www.wxpython.org/download.php)
+(включает Tk) и wxPython (py27) (http://www.wxpython.org/download.php)
 
 - Запуск:
  * Установите зависимости.
@@ -30,7 +30,7 @@ sudo apt-get install python-minimal python-tk python-wxtools
  * (K/L/X)Ubuntu / Linux Mint / Debian:
 sudo apt-get install python-minimal python-tk python-wxtools
  * Windows: install from the official sites python 2.7 (http://www.python.org/download/)
-(it includes Tk) and wxPython 2.8 (http://www.wxpython.org/download.php)
+(it includes Tk) and wxPython (py27) (http://www.wxpython.org/download.php)
 
 - Run:
  * Install dependences.
