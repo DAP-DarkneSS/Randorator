@@ -5,7 +5,7 @@
 #=================================|Copying|=================================#
 
 # Randorator is an advanced graphical generator of random numbers.
-# Copyright (C) 2011-2015 Dmitriy A. Perlow <dap.darkness@gmail.com>
+# Copyright (C) 2011-2016 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 # This file is part of Randorator.
 
@@ -116,7 +116,7 @@ class MyButton:
     def __init__(self, place_class, string_class, command_class):
 #При создании принимается место прикрепления виджета, строковое значение для надписи
 #и строковое для установления команды при нажатии.
-        self.button_class = Button(place_class, width = 15, text = string_class, command = command_class)
+        self.button_class = Button(place_class, width = 30, text = string_class, command = command_class)
         self.button_class.pack(side = LEFT)
 #Кнопка шириной в 14 пикселей прикрепляется к левому краю.
 
@@ -212,8 +212,6 @@ def UserInterface(Settingz):
 #Рамка для кнопок. 
     button_make = MyButton(frame_buttonz, locale(u"ui_gen_b", Settingz["str_langu"]), button_fmake)
 #Кнопка генерирования.
-    button_exit = MyButton(frame_buttonz, locale(u"ui_exi_b", Settingz["str_langu"]), root.destroy)
-#Кнопка выхода из приложения.
 
     vcheck_copy = MyVCheck(root, locale(u"ui_clipb", Settingz["str_langu"]), Settingz["log_clipb"])
 #Чекбокс для включения/выключения автоматического копирования значений.

@@ -5,7 +5,7 @@
 #=================================|Copying|=================================#
 
 # Randorator is an advanced graphical generator of random numbers.
-# Copyright (C) 2011-2015 Dmitriy A. Perlow <dap.darkness@gmail.com>
+# Copyright (C) 2011-2016 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 # This file is part of Randorator.
 
@@ -122,7 +122,7 @@ def UserInterface(Settingz):
     class MyButton:
         def __init__(self, place_frame, place_sizer, string_class, command_class):
 # Принимается frame прикрепления виджета, sizer упаковки, строковое значение для надписи и функция.
-            self.button_class = wx.Button(place_frame, label = string_class, size = (120, -1))
+            self.button_class = wx.Button(place_frame, label = string_class, size = (240, -1))
             place_sizer.Add(self.button_class)
             place_frame.Bind(wx.EVT_BUTTON, command_class, self.button_class)
 # Создаётся и добавляется в переданный упаковщик кнопка. Присваевается функция для выполнения.
@@ -158,15 +158,6 @@ def UserInterface(Settingz):
                 wx.TheClipboard.SetData(wx.TextDataObject(dict_out["str_numbz"]))
                 wx.TheClipboard.Close()
 # Если задано, открывается, заполняется и закрывается буфер обмена.
-
-#==========================|Exit_Button_Function|===========================#
-
-    def button_fexit(event):
-# Функция для кнопки выхода. Записывается с аргументом события.
-        frame_root.Close()
-#         app_root.ExitMainLoop()
-#         wx.Exit()
-# Сразу три способа выйти ^,_,^ Два последних вешают программу под IDLE в Windows.
 
 #=============================|Program_Window|==============================#
 
@@ -233,8 +224,6 @@ def UserInterface(Settingz):
 
     button_make = MyButton(panel_root, sizer_buttonz, locale(u"ui_gen_b", Settingz["str_langu"]), button_fmake)
 # Кнопка запуска генерирования.
-    button_exit = MyButton(panel_root, sizer_buttonz, locale(u"ui_exi_b", Settingz["str_langu"]), button_fexit)
-# Кнопка выхода из приложения.
 
 #===============================|Check_Boxes|===============================#
 
