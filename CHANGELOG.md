@@ -1,3 +1,12 @@
+Thu May 31 22:01:15 2018 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
+- 0.2.6 was released:
+ * Fixed minor kernel messages localization issue.
+ * Fixed Windows and/or WxPython issue.
+ * WxPython3 is welcomed.
+ * Exit button was removed as requested.
+ * Implemented PyInstaller 3.0 support.
+ * True average value could always be added to the output.
+
 Sun Oct  4 13:53:19 2015 +0300 Dmitriy A. Perlow <dap.darkness@gmail.com>
 - 0.2.5 was released:
  * Implemented WxPython 3 support that fixed scrolling slider disappearance.
