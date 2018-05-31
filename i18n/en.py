@@ -5,7 +5,7 @@
 #=================================|Copying|=================================#
 
 # Randorator is an advanced graphical generator of random numbers.
-# Copyright (C) 2011-2016 Dmitriy A. Perlow <dap.darkness@gmail.com>
+# Copyright (C) 2011-2018 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 # This file is part of Randorator.
 
@@ -54,7 +54,7 @@ dict_str = {
     u"ui_error": u"Output errors notifications",
     u"ui_truer": u"True random numbers over\nthe Internet, may be slow",
     u"ui_true1": u"True random numbers, slowly",
-    u"ui_rsd_a": u"Output real RSD value",
+    u"ui_rsd_a": u"Output RSD and average",
     u"ui_horiz": u"Horizontal numbers output",
     u"ui_sortm": u" Sorting:",
     u"ui_iftxt": u"Help",

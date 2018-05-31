@@ -5,7 +5,7 @@
 #=================================|Copying|=================================#
 
 # Randorator is an advanced graphical generator of random numbers.
-# Copyright (C) 2011-2016 Dmitriy A. Perlow <dap.darkness@gmail.com>
+# Copyright (C) 2011-2018 Dmitriy A. Perlow <dap.darkness@gmail.com>
 
 # This file is part of Randorator.
 
@@ -427,7 +427,7 @@ def randorator(dict_val):
                 print(u"RSD couldn't be calculated.")
 
         if rsd_out[0]:
-            dict_txt["str_infoz"] += u"RSD, % = " + str(rsd_out[1])
+            dict_txt["str_infoz"] += str(sum(matrix) / n) + u"; RSD, % = " + str(rsd_out[1])
 # If RSD is requested to show and could be get it will be outputed.
 # NOTE I don't really understand why this code is required but it is:
             if ((errorz != []) and (dict_val["log_verbo"])):
